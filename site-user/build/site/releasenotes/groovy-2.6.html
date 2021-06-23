@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Groovy 2.6 release notes</title><link href='../img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='../css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='../css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='../css/style.css'/><link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='../mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='../groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='../events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='../reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='../index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class=''><a href='../learn.html'>Learn</a></li><li class=''><a href='../documentation.html'>Documentation</a></li><li class=''><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='../support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='../ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='../search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li class='active'><a href='#releasenotes'>Release notes for Groovy 2.6</a></li><li><a href='#Groovy2.6releasenotes-Parrot' class='anchor-link'>Parrot Parser</a></li><li><a href='#_feature_differences_with_groovy_3_0' class='anchor-link'>Feature differences with Groovy 3.0</a></li><li><a href='#_bundled_dependencies' class='anchor-link'>Bundled dependencies</a></li><li><a href='#_jdk_requirements' class='anchor-link'>JDK requirements</a></li><li><a href='#Groovy2.6releasenotes-Moreinformation' class='anchor-link'>More information</a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><a name='releasenotes'></a><h1>Release notes for Groovy 2.6</h1><table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<em>WARNING:</em>
+The Groovy 2.6 version of Groovy has been retired to focus on faster delivery of Groovy 3.0.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Groovy 2.6 was intended to be a back-port of Groovy 3.0 for JDK7 but with
+features requiring JDK 8 removed. Alpha versions have been released which support
+the new Parrot parser (when enabled) but these versions are not feature complete wrt Groovy 3.0 functionality.
+We have left the alpha versions available to help people wanting to port towards Groovy 3.0
+but who are stuck on JDK7. However, we strongly encourage all users on JDK8 or above
+to move directly to Groovy 3.0.
+You should consult the <a href="../groovy-3.0.html">Groovy 3.0 release notes</a> for a list of supported language changes.
+Only differences with 3.0 due to the different JVM requirements are reported here.</p>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.6releasenotes-Parrot">Parrot Parser</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy 2.6 defaults to using the old parser but you can enable the Parrot parser which supports additional syntax options and language features.</p>
+</div>
+<div class="sect2">
+<h3 id="_enabling_the_parser">Enabling the parser</h3>
+<div class="paragraph">
+<p>For Groovy 3.0, the new parser is enabled by default.
+However, for Groovy 2.6, you enable the new parser using a system property.
+Use <code>-Dgroovy.antlr4=true</code> (set via <code>JAVA_OPTS</code> if needed).</p>
+</div>
+<div class="paragraph">
+<p>If building from source, you need to provide Gradle with <code>-PuseAntlr4</code>
+in order to include the classes which support the new parser.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_feature_differences_with_groovy_3_0">Feature differences with Groovy 3.0</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy 2.6 doesn&#8217;t support native lambdas.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bundled_dependencies">Bundled dependencies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy 2.6 optionally uses an earlier version of Ant (vs a later version in Groovy 3.0 which requires JDK8).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jdk_requirements">JDK requirements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy 2.6 requires JDK8+ to build and JDK7 (vs JDK8 for Groovy 3.0) is the minimum version of the JRE that we support.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.6releasenotes-Moreinformation">More information</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can browse all the <a href="../changelogs/changelog-2.6.0-alpha-1.html">tickets closed for Groovy 2.6 in JIRA</a>.</p>
+</div>
+</div>
+</div></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='../learn.html'>Learn</a></li><li><a href='../documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='../support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='../ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='../security.html'>Security</a></li><li><a href='../learn.html#books'>Books</a></li><li><a href='../thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='../faq.html'>FAQ</a></li><li><a href='../search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='../mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='../groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='../events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='../reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='../img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='../js/vendor/jquery-1.10.2.min.js' defer></script><script src='../js/vendor/classie.js' defer></script><script src='../js/vendor/bootstrap.js' defer></script><script src='../js/vendor/sidebarEffects.js' defer></script><script src='../js/vendor/modernizr-2.6.2.min.js' defer></script><script src='../js/plugins.js' defer></script><script src='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js'></script><script>document.addEventListener('DOMContentLoaded',prettyPrint)</script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>

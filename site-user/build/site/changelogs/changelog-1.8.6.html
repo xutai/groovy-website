@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Groovy 1.8.6 Changelog</title><link href='../img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='../css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='../css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='../css/style.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='../mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='../groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='../events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='../reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='../index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class=''><a href='../learn.html'>Learn</a></li><li class=''><a href='../documentation.html'>Documentation</a></li><li class=''><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='../support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='../ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='../search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li class='active'><a href='#changelog'>Changelog for Groovy 1.8.6</a></li><li><a href='#type0' class='anchor-link'>Bug</a></li><li><a href='#type1' class='anchor-link'>Improvement</a></li><li><a href='#type2' class='anchor-link'>New Feature</a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><a name='changelog'></a><h1>Changelog for Groovy 1.8.6</h1><a name='type0'></a><h2>Bug</h2><ul><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-4231'>GROOVY-4231</a>] - DOMCategory.setValue is unable to handle newly created elements</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-4362'>GROOVY-4362</a>] - Node.text() returns empty string for non-String or Collection values</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-4617'>GROOVY-4617</a>] - Error when running groovysh with verbose option (-v)</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-4660'>GROOVY-4660</a>] - NPE in groovy.servlet.AbstractHttpServlet if deploy WAR to jetty </li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-4934'>GROOVY-4934</a>] - incorrect signature attributes in class files for inner class generics</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5082'>GROOVY-5082</a>] - Sometimes invalid inner class reference left in .class files produced for interfaces</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5084'>GROOVY-5084</a>] - Groovydoc can&#39;t handle @link tags in package-info.java</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5130'>GROOVY-5130</a>] - Documentation: Error for one of the examples from JN0025-Starting</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5144'>GROOVY-5144</a>] - JsonSlurper does not handle backslashes at the end of a String</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5163'>GROOVY-5163</a>] - IncompatibleClassChangeError when running groovysh</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5170'>GROOVY-5170</a>] -  GroovyRowResult and GroovyResultSet are Inconsistent with each other when using a postgres driver</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5197'>GROOVY-5197</a>] - Source location incorrect for statement after a label</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5202'>GROOVY-5202</a>] - inherited non public listener structure causing NPE</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5207'>GROOVY-5207</a>] - @Field access within closure fails with &#39;BUG! exception in phase &#39;class generation&#39; in source unit&#39;</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5212'>GROOVY-5212</a>] - Compilation problem for java enums defined as groovy classes</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5214'>GROOVY-5214</a>] - Source location incorrect for enums</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5215'>GROOVY-5215</a>] - Linenumber information is missing for Enums in AST</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5216'>GROOVY-5216</a>] - groovy.sql.Sql.newInstance(Map&lt;String, Object&gt;) remove params</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5219'>GROOVY-5219</a>] - FactoryBuilderSupport doesn&#39;t register methods in a predictable order</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5221'>GROOVY-5221</a>] - Problem with @InheritConstructors with multiple level of inheritance (part 1 of 2 - document the current limitation)</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5224'>GROOVY-5224</a>] - groovy.util.Node plus operator assuming all children are not strings</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5247'>GROOVY-5247</a>] - Sorting a map then passing it to JsonBuilder results in a NullPointerException only in 1.8.5</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5248'>GROOVY-5248</a>] - call site caching missing null check</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5254'>GROOVY-5254</a>] - Prohibited final modifier in enum stubs</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5257'>GROOVY-5257</a>] - Node.ReplaceNode method fails cannot remove itself</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5259'>GROOVY-5259</a>] - VerifyError - cannot access outer class static final fields from an inner class</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5260'>GROOVY-5260</a>] - Groovyc stub generation doesn&#39;t handle all primitive types properly</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5262'>GROOVY-5262</a>] - Problem currying null parameters</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5267'>GROOVY-5267</a>] - getting java.lang.VerifyError depending on some simple method content</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5272'>GROOVY-5272</a>] - Intermittant/random incorrect resolution of sub-interface constant values</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5274'>GROOVY-5274</a>] - CLONE - Problem with @InheritConstructors with multiple level of inheritance</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5277'>GROOVY-5277</a>] - SecureASTCustomizer doesn&#39;t check class methods</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5279'>GROOVY-5279</a>] - groovysh holds a grudge - </li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5280'>GROOVY-5280</a>] - DOMCategory: NullPointerException in setValue() when element has no text</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5286'>GROOVY-5286</a>] - Constant pool is used for not final fields too</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5287'>GROOVY-5287</a>] - invalid unboxing in compare and other operations if primopts are enabled</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5288'>GROOVY-5288</a>] - invalid cast of null to int</li></ul><a name='type1'></a><h2>Improvement</h2><ul><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-4735'>GROOVY-4735</a>] - part1: patches to enable groovy-eclipse to run unpatched groovy</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5139'>GROOVY-5139</a>] - GroovyTestCase&#39;s shouldFail {...} should return the throwable and not the enclosed message</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5230'>GROOVY-5230</a>] - Add a &lt;license/&gt; block to groovy&#39;s POM</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5241'>GROOVY-5241</a>] - GroovyScriptEngineImpl could use ConcurrentHashMaps</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5255'>GROOVY-5255</a>] - GroovyClassLoader-aware constructor of GroovyScriptEngineImpl</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5266'>GROOVY-5266</a>] - GroovyEngine not creating friendly script names for ant files</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5269'>GROOVY-5269</a>] - Add hasVariable to binding</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5270'>GROOVY-5270</a>] - TableSorter prints to System.out on table change</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5271'>GROOVY-5271</a>] - TimeDuration should implement Comparable</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5283'>GROOVY-5283</a>] - Add a collate method to List</li></ul><a name='type2'></a><h2>New Feature</h2><ul><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-3307'>GROOVY-3307</a>] - Add byte[].encodeHex</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5263'>GROOVY-5263</a>] - New GDK method: Object[].contains()</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5273'>GROOVY-5273</a>] - Provide contains as a DGM method for primitive arrays</li></ul></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='../learn.html'>Learn</a></li><li><a href='../documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='../support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='../ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='../security.html'>Security</a></li><li><a href='../learn.html#books'>Books</a></li><li><a href='../thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='../faq.html'>FAQ</a></li><li><a href='../search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='../mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='../groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='../events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='../reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='../img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='../js/vendor/jquery-1.10.2.min.js' defer></script><script src='../js/vendor/classie.js' defer></script><script src='../js/vendor/bootstrap.js' defer></script><script src='../js/vendor/sidebarEffects.js' defer></script><script src='../js/vendor/modernizr-2.6.2.min.js' defer></script><script src='../js/plugins.js' defer></script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>

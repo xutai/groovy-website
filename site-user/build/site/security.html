@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Security</title><link href='img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='css/style.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class='active'><a href='learn.html'>Learn</a></li><li class=''><a href='documentation.html'>Documentation</a></li><li class=''><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li class='active'><a href='#security'>Security updates</a><a href='#CVE-2015-3253'>CVE-2015-3253</a><a href='#CVE-2016-6814'>CVE-2016-6814</a><a href='#CVE-2020-17521'>CVE-2020-17521</a><a href='#reporting'>Reporting problems</a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><a name='security'></a><h1>Security updates</h1><p>Here you can find information about security patches or updates released for Apache Groovy. Note that unless specified otherwise,
+no binary or source patches are available. To obtain a security fix, you need to upgrade to the latest maintained version of Apache Groovy.</p><p>Releases prior to 2.4.4 were not released under Apache so no official patches for security updates are available for older versions.</p><a name='CVE-2015-3253'></a><h2>CVE-2015-3253 Apache Groovy Information Disclosure</h2><div class="paragraph">
+<p>Severity: Important</p>
+</div>
+<div class="paragraph">
+<p>Vendor: The Apache Software Foundation</p>
+</div>
+<div class="paragraph">
+<p>Versions Affected:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Unsupported Codehaus versions of Groovy from 1.7.0 to 2.4.3</p>
+</li>
+<li>
+<p>Fixed in version 2.4.4</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Impact:</p>
+</div>
+<div class="paragraph">
+<p>Remote execution of untrusted code, DoS</p>
+</div>
+<div class="paragraph">
+<p>Description:</p>
+</div>
+<div class="paragraph">
+<p>When an application has Groovy on the classpath and uses standard Java serialization mechanisms to communicate between servers, or to store local data, it is possible for an attacker to bake a special serialized object that will execute code directly when deserialized. All applications which rely on serialization and do not isolate the code which deserializes objects are subject to this vulnerability.</p>
+</div>
+<div class="paragraph">
+<p>Mitigation:</p>
+</div>
+<div class="paragraph">
+<p>Apache Groovy 2.4.4 is the first supported release under the Apache Software Foundation. It is strongly recommended that all users using serialization upgrade to this version.
+If you cannot upgrade or rely on an older, unsupported version of Groovy, you can apply the following patch on the <code>MethodClosure</code> class (<code>src/main/org/codehaus/groovy/runtime/MethodClosure.java</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code> public class MethodClosure extends Closure {
++    private Object readResolve() {
++        throw new UnsupportedOperationException();
++    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you should make sure to use a custom security policy file (using the standard Java security manager) or make sure that you do not rely on serialization to communicate remotely.</p>
+</div>
+<div class="paragraph">
+<p>Credit:</p>
+</div>
+<div class="paragraph">
+<p>This vulnerability was discovered by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>cpnrodzc7 working with HP&#8217;s Zero Day Initiative</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>References:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3253">CVE-2015-3253: Remote execution of untrusted code</a></p>
+</li>
+<li>
+<p><a href="http://groovy-lang.org/security.html" class="bare">http://groovy-lang.org/security.html</a></p>
+</li>
+</ul>
+</div><a name='CVE-2016-6814'></a><h2>CVE-2016-6814 Apache Groovy Information Disclosure</h2><div class="paragraph">
+<p>Severity: Important</p>
+</div>
+<div class="paragraph">
+<p>Vendor: The Apache Software Foundation</p>
+</div>
+<div class="paragraph">
+<p>Versions Affected:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Unsupported Codehaus versions of Groovy from 1.7.0 to 2.4.3</p>
+</li>
+<li>
+<p>Apache Groovy 2.4.4 to 2.4.7</p>
+</li>
+<li>
+<p>Fixed in version 2.4.8</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Impact:</p>
+</div>
+<div class="paragraph">
+<p>Remote execution of untrusted code, DoS</p>
+</div>
+<div class="paragraph">
+<p>Description:</p>
+</div>
+<div class="paragraph">
+<p>When an application with Groovy on classpath uses standard
+Java serialization mechanisms, e.g. to communicate between servers
+or to store local data, it is possible for an attacker to bake a special
+serialized object that will execute code directly when deserialized.
+All applications which rely on serialization and do not isolate the
+code which deserializes objects are subject to this vulnerability.
+This is similar to CVE-2015-3253 but this exploit involves extra
+wrapping of objects and catching of exceptions which are now safe
+guarded against.</p>
+</div>
+<div class="paragraph">
+<p>Mitigation:</p>
+</div>
+<div class="paragraph">
+<p>Users of Groovy relying on (de)serialization with the affected versions
+should apply one of the following mitigations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Isolate the code doing the (de)serialization</p>
+</li>
+<li>
+<p>Upgrade to Apache Groovy 2.4.8 or later</p>
+</li>
+<li>
+<p>Users of older versions of Groovy can apply the following patch to the
+<code>MethodClosure</code> class (<code>src/main/org/codehaus/groovy/runtime/MethodClosure.java</code>):</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>public class MethodClosure extends Closure {
++    private void readObject(java.io.ObjectInputStream stream) throws
+IOException, ClassNotFoundException {
++        if (ALLOW_RESOLVE) {
++            stream.defaultReadObject();
++        }
++        throw new UnsupportedOperationException();
++    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Credit:</p>
+</div>
+<div class="paragraph">
+<p>This vulnerability was discovered by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Sam Thomas of Pentest Limited working with Trend Micro&#8217;s Zero Day Initiative</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>History:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>2016-09-20 Original advisory</p>
+</li>
+<li>
+<p>2017-01-12 Updated information on affected versions</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>References:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-6814">CVE-2016-6814: Remote execution of untrusted code</a></p>
+</li>
+<li>
+<p><a href="http://groovy-lang.org/security.html" class="bare">http://groovy-lang.org/security.html</a></p>
+</li>
+</ul>
+</div><a name='CVE-2020-17521'></a><h2>CVE-2020-17521 Apache Groovy Information Disclosure</h2><div class="paragraph">
+<p>Severity: Important</p>
+</div>
+<div class="paragraph">
+<p>Vendor: The Apache Software Foundation</p>
+</div>
+<div class="paragraph">
+<p>Versions Affected:</p>
+</div>
+<div class="paragraph">
+<p>Unsupported Codehaus versions of Groovy from 2.0 to 2.4.4.
+Apache Groovy versions 2.4.4 to 2.4.20, 2.5.0 to 2.5.13,
+3.0.0 to 3.0.6, and 4.0.0-alpha-1.</p>
+</div>
+<div class="paragraph">
+<p>Fixed in versions 2.4.21, 2.5.14, 3.0.7, 4.0.0-alpha-2</p>
+</div>
+<div class="paragraph">
+<p>Impact:</p>
+</div>
+<div class="paragraph">
+<p>This vulnerability potentially impacts Unix-like systems, and very old
+versions of Mac OSX and Windows. On such OS versions, Groovy may create
+temporary directories within the OS temporary directory which is shared
+between all users on affected systems. Groovy will create such directories
+for internal use when producing Java Stubs (very low impact) or on behalf
+of user code via two extension methods[4,5] for creating temporary directories.
+If Groovy user code uses either of these extension methods, and stores
+executable code in the resulting temporary directory, then the risk is high,
+since this can lead to local privilege escalation. If such Groovy code is making
+use of the temporary directory to store sensitive information, then the risk is
+medium, since such information could be exposed or modified.</p>
+</div>
+<div class="paragraph">
+<p>When analyzing the impact of this vulnerability, here are the important
+questions to ask:</p>
+</div>
+<div class="paragraph">
+<p>Is the Groovy code running on a machine with an impacted operating system?
+Do other users have access to the machine running the Groovy code?
+Does the Groovy code create temporary directories using Groovy&#8217;s
+createTempDir extension methods[4,5]?</p>
+</div>
+<div class="paragraph">
+<p>If you answer no to any of these questions, you are not affected.
+If you answered yes, does the Groovy code write or store executable code
+in the temporary directory? If you answer yes, the risk is high, and can lead to
+local privilege escalation. Does the Groovy code write sensitive information,
+like API keys or passwords, into the temporary directory? If you answer yes,
+the risk is medium, and information may be exposed or modified.</p>
+</div>
+<div class="paragraph">
+<p>Description:</p>
+</div>
+<div class="paragraph">
+<p>Groovy was making use of a method in the JDK which is now flagged as not
+suitable for security-sensitive contexts. In addition, Groovy wasn&#8217;t checking
+a flag related to successful creation of the temporary directory which leads
+to a race condition whereby the vulnerability exists[1].</p>
+</div>
+<div class="paragraph">
+<p>For the fixed versions, Groovy 2.5 and above is now using a newer JDK method
+which creates a directory that is only readable by the user running the Groovy
+code. The same is true for the fixed Groovy 2.4 version except if running
+on a pre-JDK7 version of the JDK in which case a fallback implementation is
+used which now checks for successful creation of the temporary directory.
+This eliminates the high-risk scenario involving the race condition whereby
+executables or information could be modified, but still leaves the potential
+for sensitive information leakage. Groovy 2.4/JDK 6 users are recommended
+to use the <code>java.io.tmpdir</code> mitigation.</p>
+</div>
+<div class="paragraph">
+<p>Mitigation:</p>
+</div>
+<div class="paragraph">
+<p>Setting the <code>java.io.tmpdir</code> system environment variable to a directory
+that is exclusively owned by the executing user will fix this vulnerability
+for all operating systems and all Groovy versions.</p>
+</div>
+<div class="paragraph">
+<p>Users who cannot easily move to the fixed Groovy versions may wish to
+consider using the JDK&#8217;s Files#createTempDirectory method instead of the
+Groovy extension methods.</p>
+</div>
+<div class="paragraph">
+<p>Credit:</p>
+</div>
+<div class="paragraph">
+<p>This vulnerability was discovered by Jonathan Leitschuh (<a href="https://twitter.com/jlleitschuh" class="bare">https://twitter.com/jlleitschuh</a>)</p>
+</div>
+<div class="paragraph">
+<p>Similar Vulnerabilities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Jetty - <a href="https://github.com/eclipse/jetty.project/security/advisories/GHSA-g3wg-6mcf-8jj6" class="bare">https://github.com/eclipse/jetty.project/security/advisories/GHSA-g3wg-6mcf-8jj6</a></p>
+</li>
+<li>
+<p>JUnit4 - <a href="https://github.com/junit-team/junit4/security/advisories/GHSA-269g-pwp5-87pp" class="bare">https://github.com/junit-team/junit4/security/advisories/GHSA-269g-pwp5-87pp</a></p>
+</li>
+<li>
+<p>Google Guava - <a href="https://github.com/google/guava/issues/4011" class="bare">https://github.com/google/guava/issues/4011</a></p>
+</li>
+<li>
+<p>Apache Ant - <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-1945" class="bare">https://nvd.nist.gov/vuln/detail/CVE-2020-1945</a></p>
+</li>
+<li>
+<p>JetBrains Kotlin Compiler - <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-15824" class="bare">https://nvd.nist.gov/vuln/detail/CVE-2020-15824</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>References:</p>
+</div>
+<div class="paragraph">
+<p>[1] CWE-379: Creation of Temporary File in Directory with Insecure Permissions (<a href="https://cwe.mitre.org/data/definitions/379.html" class="bare">https://cwe.mitre.org/data/definitions/379.html</a>)
+[2] "File.createTempFile" should not be used to create a directory (<a href="https://rules.sonarsource.com/java/tag/owasp/RSPEC-2976" class="bare">https://rules.sonarsource.com/java/tag/owasp/RSPEC-2976</a>)
+[3] Groovy CVE list (<a href="https://groovy-lang.org/security.html" class="bare">https://groovy-lang.org/security.html</a>)
+[4] <a href="https://docs.groovy-lang.org/latest/html/groovy-jdk/java/io/File.html#createTempDir(" class="bare">https://docs.groovy-lang.org/latest/html/groovy-jdk/java/io/File.html#createTempDir(</a>)
+[5] <a href="https://docs.groovy-lang.org/latest/html/groovy-jdk/java/io/File.html#createTempDir(java.lang.String,%20java.lang.String" class="bare">https://docs.groovy-lang.org/latest/html/groovy-jdk/java/io/File.html#createTempDir(java.lang.String,%20java.lang.String</a>)
+[6] related Jira issue: <a href="https://issues.apache.org/jira/browse/GROOVY-9824" class="bare">https://issues.apache.org/jira/browse/GROOVY-9824</a></p>
+</div><a name='reporting'></a><h2>Reporting problems</h2><p>
+The Apache Software Foundation takes a very active stance in eliminating security problems in its software products.
+If you have questions about how to configure or use Groovy securely, you should send them to the users <a href='mailing-lists.html'>mailing list</a>.
+If you find any security problems due to bugs in Groovy software, you should raise issues in the <a href='contribute.html#reporting-issues'>bug tracker</a>.
+The Apache Software Foundation has a dedicated <a href='http://www.apache.org/security/'>security team</a> which you may contact should the need arise.
+</p></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='learn.html'>Learn</a></li><li><a href='documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='security.html'>Security</a></li><li><a href='learn.html#books'>Books</a></li><li><a href='thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='faq.html'>FAQ</a></li><li><a href='search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='js/vendor/jquery-1.10.2.min.js' defer></script><script src='js/vendor/classie.js' defer></script><script src='js/vendor/bootstrap.js' defer></script><script src='js/vendor/sidebarEffects.js' defer></script><script src='js/vendor/modernizr-2.6.2.min.js' defer></script><script src='js/plugins.js' defer></script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>

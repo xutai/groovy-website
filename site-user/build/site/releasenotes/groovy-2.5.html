@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Groovy 2.5 release notes</title><link href='../img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='../css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='../css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='../css/style.css'/><link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='../mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='../groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='../events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='../reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='../index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class=''><a href='../learn.html'>Learn</a></li><li class=''><a href='../documentation.html'>Documentation</a></li><li class=''><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='../support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='../ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='../search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li class='active'><a href='#releasenotes'>Release notes for Groovy 2.5</a></li><li><a href='#Groovy2.5releasenotes-Packaging' class='anchor-link'>Jar packaging and JDK9 support</a></li><li><a href='#Groovy2.5releasenotes-Macros' class='anchor-link'>Macro support</a></li><li><a href='#Groovy2.5releasenotes-NewAstTransforms' class='anchor-link'>New AST Transformations</a></li><li><a href='#Groovy2.5releasenotes-AstTransformImprovements' class='anchor-link'>AST Transformation improvements</a></li><li><a href='#Groovy2.5releasenotes-Toolimprovements' class='anchor-link'>Tool improvements</a></li><li><a href='#Groovy2.5releasenotes-clibuilder' class='anchor-link'>CliBuilder changes</a></li><li><a href='#Groovy2.5releasenotes-OtherImprovements' class='anchor-link'>Other improvements</a></li><li><a href='#Groovy2.5releasenotes-Breakingchanges' class='anchor-link'>Breaking changes</a></li><li><a href='#Groovy2.5releasenotes-Knownissues' class='anchor-link'>Known issues</a></li><li><a href='#Groovy2.5releasenotes-JDKrequirements' class='anchor-link'>JDK requirements changes</a></li><li><a href='#Groovy2.5releasenotes-Moreinformation' class='anchor-link'>More information</a></li><li><a href='#Groovy2.5releasenotes-Addendum251' class='anchor-link'>Addendum for 2.5.1</a></li><li><a href='#Groovy2.5releasenotes-Addendum2510' class='anchor-link'>Addendum for 2.5.10</a></li><li><a href='#Groovy2.5releasenotes-Addendum2513' class='anchor-link'>Addendum for 2.5.13</a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><a name='releasenotes'></a><h1>Release notes for Groovy 2.5</h1><div class="paragraph">
+<p>Groovy 2.5 comes with a host of new features and capabilities.</p>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-Packaging">Jar packaging and JDK9 support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy versions prior to 2.5 included a core groovy jar and
+numerous "module" jars, e.g. groovy-xml.jar. Note: Groovy&#8217;s
+existing "modules" aren&#8217;t (currently) the same as Java9+ modules (more on that later).</p>
+</div>
+<div class="paragraph">
+<p>We also provided a convenience "all" jar by jarjar&#8217;ing the core and
+"module" jars. As part of moving to better JDK9+ support,
+the "all" jar is no longer available but we do provide an
+"all" pom which brings in the equivalent component jars.</p>
+</div>
+<div class="paragraph">
+<p>For most users referencing Groovy&#8217;s "all" dependency, simply
+bumping the version number should be sufficient for you to
+get all the same class files and transitive dependencies as before
+but there are some slight differences discussed below.
+For users with complex builds, which might (perhaps implicitly)
+reference the actual "all" jar itself, perhaps more remediation
+work might be required.</p>
+</div>
+<div class="paragraph">
+<p>There are some caveats:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the groovy-all jar used to have all the transitive dependencies
+(e.g. bsf.jar, testng.jar, ant.jar) listed as optional when referenced
+via the all dependency but included when referenced by the module
+dependencies (e.g. groovy-bsf, groovy-testng, groovy-ant). Now with the
+groovy-all pom since it references the module dependencies, those transitive
+dependencies are all now automatically added. This means that you might
+be able to delete explicit references to those dependencies if you are
+actually using them, and conversely, you might wish to explicitly exclude
+the respective groovy-module (or transitive dependency) for those modules
+you aren&#8217;t in fact using.</p>
+</li>
+<li>
+<p>please read the breaking changes section for unrelated changes
+to the included classes referenced by the "all" pom</p>
+</li>
+<li>
+<p>also note that since the current jars don&#8217;t comply fully
+yet with JDK9+ requirements (e.g. split package requirements)
+you may not be able to place the Groovy jars on your module path.
+Instead, place them on the classpath. On-going work for
+Groovy 3.0 will address split package issues (see <a href="https://issues.apache.org/jira/browse/GROOVY-8647" class="bare">https://issues.apache.org/jira/browse/GROOVY-8647</a>). If the
+Groovy "modules" you want to use aren&#8217;t in the list being rectified for Groovy 3.0, then
+you can probably use them on the module path. The Groovy build currently
+doesn&#8217;t test such usage.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-Macros">Macro support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy is well known for its extensible compilation process.
+The compiler supports a compile-time metaprogramming extension mechanism
+which allows the compilation process to be enhanced with new functionality.
+The mechanism allows the definition and execution of AST transformations at
+various stages of the compilation process.</p>
+</div>
+<div class="paragraph">
+<p>Groovy comes with a number of built-in AST transformations and, importantly,
+you can write your own. To write such transformations until now, you have
+had to become familiar with the compiler&#8217;s internal representation of
+Groovy syntactic structures. But that has now changed.</p>
+</div>
+<div class="paragraph">
+<p>Groovy 2.5+ supports macros. Macros let you use Groovy syntax directly
+rather than using the internal compiler representations when creating
+compile-time metaprogramming extensions. This puts the creation of transformations
+in the hands of all Groovy programmers not just Groovy compiler gurus.</p>
+</div>
+<div class="sect2">
+<h3 id="_expressions_and_statements">Expressions and statements</h3>
+<div class="paragraph">
+<p>Suppose we want to create an <code>@Info</code> transform which when placed on a class
+creates a <code>getInfo()</code> method. Calling the <code>getInfo()</code> method will display some
+information about the class. The traditional way to write the transformation
+code might be something like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">...
+def clazz = new MethodCallExpression(new VariableExpression("this"), "getClass", EMPTY_ARGUMENTS)
+def body = new ExpressionStatement(new MethodCallExpression(clazz, "getName", EMPTY_ARGUMENTS))
+classNode.addMethod('getInfo', ACC_PUBLIC, STRING_TYPE, EMPTY_ARRAY, ClassNode.EMPTY_ARRAY, body)
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will print out the class name when the <code>getInfo()</code> method is called.</p>
+</div>
+<div class="paragraph">
+<p>With macros, the first two lines become:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def body = macro(true) { getClass().name }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Creation of both expressions and statements are supported. The <code>true</code> parameter
+to the <code>macro</code> method ensures we get a statement here which is what <code>addMethod</code> needs.</p>
+</div>
+<div class="paragraph">
+<p>Frequently you will want to receive parameters or resolve surrounding variables.
+This is supported using a special <code>$v</code> notation. Suppose we want to augment the <code>getInfo</code>
+method to additionally output the time the class was compiled and the Groovy version used.
+Our code might look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def date = new ConstantExpression(new Date().toString())
+def version = new ConstantExpression(GroovySystem.version)
+def body = macro(true) {
+    """\
+    Name: ${getClass().name}
+    Compiled: ${$v{ date }}
+    Using Groovy version: ${$v{ version }}""".stripIndent()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What the macro does is convert any Groovy code inside the closure
+argument into its internal representation. When it gets to the
+<code>$v</code> placeholders it does no conversion and just inserts
+those sections directly. This is exactly what we want here since
+we wrote those parts old-school style using the internal
+AST data structures.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_macro_classes">Macro classes</h3>
+<div class="paragraph">
+<p>In addition to the ability to create statements and expressions, as supported by <code>macro</code>,
+you might want to create whole classes. The <code>MacroClass</code> capability allows you to do that.
+You supply the class you are wanting to create in a similar fashion to creating an anonymous
+inner class in Java. The following example shows the approach for a scenario where you
+might want to extract the information collected in previous examples in a class of its own:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">ClassNode buildInfoClass(ClassNode reference) {
+    def date = new ConstantExpression(new Date().toString())
+    def vers = new ConstantExpression(GroovySystem.version)
+    def name = new ClassExpression(reference)
+    ClassNode infoClass = new MacroClass() {
+        class DummyName {
+            java.lang.String getName() { $v{ name }.name }
+            java.lang.String getVersion() { $v{ vers } }
+            java.lang.String getCompiled() { $v{ date } }
+        }
+    }
+    infoClass.name = reference.name + 'Info'
+    return infoClass
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Types inside the <code>MacroClass</code> implementation should be resolved inside, that&#8217;s why we had to write
+<code>java.lang.String</code> instead of simply writing <code>String</code>. See the documentation for further details.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The result of all this is that if we annotate a <code>Foo</code> class with <code>@Info</code>,
+then it is as if we also typed the following source code in as well:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class FooInfo {
+    String getName() { 'Foo' }
+    String getVersion() { '2.5.0' }
+    String getCompiled() { 'Mon May 28 02:09:35 AEST 2018' }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ast_matching">AST matching</h3>
+<div class="paragraph">
+<p>AST transforms typically add additional ASTNodes into the AST tree
+or change some existing subtrees of nodes with a transformed subtree.
+Macros are great for allowing us to succinctly describe the added or
+transformed subtree of nodes but don&#8217;t offer us anything for identifying
+the subtree which might be the candidate to be replaced.
+This is where <code>ASTMatcher</code> comes to the rescue. <code>ASTMatcher</code> compares
+two expressions and each expression can be created with or without macros.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s a trivial example of a transformer that looks for binary expressions
+of the form <code>1 + 1</code> in our code and if it finds it, replaces it with the constant <code>2</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">Expression transform(Expression exp) {
+    Expression pattern = macro { 1 + 1 }
+    if (ASTMatcher.matches(exp, pattern)) {
+        return macro { 2 }
+    }
+    return super.transform(exp)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This happens at compile time, so speeds up our code at runtime.</p>
+</div>
+<div class="paragraph">
+<p>We can generalise this a bit more since <code>ASTMatcher</code> supports constraints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">Expression pattern = macro { a + b }.withConstraints {
+    placeholder a
+    placeholder b
+    anyToken()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>placeholder</code> constraint allows any term to appear
+and the <code>anyToken</code> allows <code>'-'</code>, <code>'*'</code>, <code>'/'</code>, <code>'&lt;'</code> and other tokens to replace the <code>'+'</code>.</p>
+</div>
+<div class="paragraph">
+<p>We can make our transform a bit smarter too as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">Expression transform(Expression exp) {
+    if (ASTMatcher.matches(exp, pattern)) {
+        BinaryExpression be = exp
+        Expression lhs = be.leftExpression
+        Expression rhs = be.rightExpression
+        if (lhs instanceof ConstantExpression &amp;&amp; rhs instanceof ConstantExpression) {
+            def left = lhs.value
+            def right = rhs.value
+            if ((left instanceof String &amp;&amp; right instanceof String)||
+                    (left instanceof Integer &amp;&amp; right instanceof Integer)) {
+                def op = be.operation.text
+                left = left instanceof String ? "'" + left + "'" : left
+                right = right instanceof String ? "'" + right + "'" : right
+                def result = new GroovyShell().evaluate "$left $op $right"
+                return constX(result)
+            }
+        }
+    }
+    return exp.transformExpression(this)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can use our transform, e.g.:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@SmartOps
+class Foo {
+    int theAnswer = 40 + 2
+    int eight = 4 * 2
+    def foobar = 'foo' + 'bar'
+    def test() {
+        assert 3 &lt; 4
+        assert foobar.size() == 6
+        assert theAnswer + eight == 25 + 25
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If we look at this class at the end of the SEMANTIC_ANALYSIS phase in the AST
+browser, we&#8217;ll indeed see that the initial value expression for <code>theAnswer</code>, <code>eight</code> and <code>foobar</code>
+are binary expressions as is the expression for the first assert and the right-hand side of the <code>==</code>
+expression for the third assert`. If we move forward to the end of the CANONICALIZATION phase
+we&#8217;ll see that all 5 of those binary expressions are now constant expressions. It is as if we had typed
+our source code in as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Foo {
+    int theAnswer = 42
+    int eight = 8
+    def foobar = 'foobar'
+    def test() {
+        assert true
+        assert foobar.size() == 6
+        assert theAnswer + eight == 50
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_macro_methods">Macro methods</h3>
+<div class="paragraph">
+<p>The compiler capability to <em>expand</em> macros with their replacements can also be enhanced by your own methods.
+Consider the following definition:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class StringMacroMethods {
+    @Macro
+    static Expression upper(MacroContext macroContext, ConstantExpression constX) {
+        if (constX.value instanceof String) {
+            return new ConstantExpression(constX.value.toUpperCase())
+        }
+        macroContext.sourceUnit.addError(new SyntaxException("Can't use upper with non-String", constX))
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you register the method in the same way as you would with extension methods (by creating
+a reference to the class in a <code>META-INF/groovy/org.codehaus.groovy.runtime.ExtensionMethods</code> file).</p>
+</div>
+<div class="paragraph">
+<p>Now, assuming the META-INF file and class are on your classpath, you can use the <code>upper</code> method in
+your code such as shown in the following test code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">assertScript '''
+    def foo = upper('Foo')
+    assert foo == 'FOO'
+'''
+def msg = shouldFail '''
+    def foo = upper(42)
+'''
+assert msg.contains("Can't use upper with non-String")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s important to realise that use of <code>upper</code> doesn&#8217;t cause a call to <code>toUpperCase</code>
+to be embedded in the bytecode but rather causes <code>toUpperCase</code> to be called at compile time.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-NewAstTransforms">New AST Transformations</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>@AutoFinal</code> automatically applies the "final"-keyword to every parameter/field
+of an annotated class/method/closure/ctor.
+(<a href="https://issues.apache.org/jira/browse/GROOVY-8300">GROOVY-8300</a>).</p>
+</li>
+<li>
+<p><code>@AutoImplement</code> allows you to provide dummy implementations of any abstract
+methods that might be inherited from super classes or interfaces
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7860">GROOVY-7860</a>).</p>
+</li>
+<li>
+<p><code>@ImmutableBase</code> checks the validity of an immutable class and makes some preliminary changes
+to the class to support immutability.
+Normally not used directly but brought in automatically by the <code>@Immutable</code> meta annotation.</p>
+</li>
+<li>
+<p><code>@ImmutableOptions</code> allows known immutable properties/classes to be declared.
+Normally not used directly but brought in automatically by the <code>@Immutable</code> meta annotation.</p>
+</li>
+<li>
+<p><code>@KnownImmutable</code> is a marker interface used to designate a class as being immutable.
+Not usually used explicitly but rather implicitly added via the <code>@Immutable</code> meta annotation.
+If you create your own Java or Groovy immutable class manually, you can add this annotation
+to save you having to list your class as one of the known immutable classes.</p>
+</li>
+<li>
+<p><code>@MapConstructor</code> adds a <code>Map</code>-based constructor to a class. This allows a usage
+style similar to Groovy&#8217;s named parameters but doesn&#8217;t use the no-arg constructor
+and then call setters. This is useful if you have final properties in your class or you
+need the class file to have the <code>Map</code> constructor for polyglot integration purposes
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7353">GROOVY-7353</a>).</p>
+</li>
+<li>
+<p><code>@NamedDelegate</code> is a marker interface used to indicate that the property names of the annotated
+parameter represent valid key names when using named arguments and that the property types are
+applicable for type checking purposes</p>
+</li>
+<li>
+<p><code>@NamedParam</code> is a marker interface used to indicate that the name of the annotated parameter
+(or specified optional name) is a valid key name when using named arguments
+and that the parameter type is applicable for type checking purposes</p>
+</li>
+<li>
+<p><code>@NamedParams</code> is the collector annotation for <code>@NamedParam</code></p>
+</li>
+<li>
+<p><code>@NamedVariant</code> allows construction of a named-arg equivalent of a method or constructor.
+This allows the creation of methods or constructors which can be used with Groovy&#8217;s named-argument
+syntax yet still retain good type checking capabilities.
+Combining <code>@NamedDelegate</code> and <code>@NamedParam</code> when using <code>@NamedVariant</code> can be quite powerful.
+For example, given these class definitions:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>class Animal {
+    String type, name
+}
+
+@ToString(includeNames=true)
+class Color {
+    Integer r, g, b
+}
+
+@NamedVariant
+String foo(String s1, @NamedParam String s2,
+           @NamedDelegate Color shade,
+           @NamedDelegate Animal pet) {
+    "$s1 $s2 ${pet.type?.toUpperCase()}:$pet.name $shade"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>the constructed foo method will look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">String foo(@NamedParam(value = 's2', type = String)
+           @NamedParam(value = 'r', type = Integer)
+           @NamedParam(value = 'g', type = Integer)
+           @NamedParam(value = 'b', type = Integer)
+           @NamedParam(value = 'type', type = String)
+           @NamedParam(value = 'name', type = String)
+           Map __namedArgs, String s1) {
+    // some key validation code ...
+    return this.foo(s1, __namedArgs.s2,
+            ['r': __namedArgs.r, 'g': __namedArgs.g, 'b': __namedArgs.b] as Color,
+            ['type': __namedArgs.type, 'name': __namedArgs.name] as Animal)
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@PropertyOptions</code> a marker annotation used to indicate that special property handling code will be generated for this class.
+It can be used to override how properties are set within the constructor or accessed via getters. This lets you customize
+for instance how <code>@Immutable</code> classes are generated.</p>
+</li>
+<li>
+<p><code>@VisibilityOptions</code> is a marker annotation used in the context of AST transformations to provide a custom visibility.
+One example of its use would be when you want to create a private constructor
+that might perhaps be called only from within a static factory method of the class:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>import groovy.transform.*
+import static groovy.transform.options.Visibility.PRIVATE
+
+@TupleConstructor
+@VisibilityOptions(PRIVATE)
+class Person {
+    String name
+    static makePerson(String first, String last) {
+        new Person("$first $last")
+    }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here using <code>@TupleConstructor</code> saves us the effort of writing the typical
+boiler-plate code within the constructor but we don&#8217;t need to make it public
+but instead use it within our hand-written factory method which can focus
+on our particular business logic relevant to that factory method.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-AstTransformImprovements">AST Transformation improvements</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>@Canonical</code> is now a meta-annotation (<a href="https://issues.apache.org/jira/browse/GROOVY-6319">GROOVY-6319</a>)
+allowing more flexible usage of the annotation attributes from its constituent annotations and allowing
+you to define an alternative custom meta-annotation.
+<code>@Canonical</code> expands into the <code>@TupleConstructor</code>, <code>@EqualsAndHashCode</code> and <code>@ToString</code> annotations.
+Any annotation attributes are automatically distributed to the component annotations that support them
+as shown in the following example:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@Canonical(cache = true, useSetters = true, includeNames = true)
+class Point {
+  int x, y
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>is expanded into:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@ToString(cache = true, includeNames = true)
+@TupleConstructor(useSetters = true)
+@EqualsAndHashCode(cache = true)
+class Point {
+  int x, y
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@Immutable</code> is now a meta-annotation (<a href="https://issues.apache.org/jira/browse/GROOVY-8440">GROOVY-8440</a>)
+with the same advantages as described for <code>@Canonical</code>. It expands into numerous other annotations as shown
+in the following example:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@Immutable
+class Point {
+  int x, y
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>is equivalent to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@ToString(includeSuperProperties = true, cache = true)
+@EqualsAndHashCode(cache = true)
+@ImmutableBase
+@ImmutableOptions
+@PropertyOptions(propertyHandler = groovy.transform.options.ImmutablePropertyHandler)
+@TupleConstructor(defaults = false)
+@MapConstructor(noArg = true, includeSuperProperties = true, includeFields = true)
+@KnownImmutable
+class Point {
+  int x, y
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This might seem like quite a few component annotations but you rarely see
+the expanded list and having these annotations gives you fine-grained control
+when combing the bits you want, for example you can create a dependency injection
+(one constructor only) friendly immutable class by using this combination:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@ImmutableBase
+@PropertyOptions(propertyHandler = ImmutablePropertyHandler)
+@Canonical(defaults=false)
+class Shopper {
+  String first, last
+  Date born
+  List items
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@Immutable</code> now supports Java&#8217;s <code>Optional</code> container class
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7600">GROOVY-7600</a>).</p>
+</li>
+<li>
+<p><code>@Immutable</code> handles inheritance hierarchies
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7162">GROOVY-7162</a>).</p>
+</li>
+<li>
+<p><code>@Immutable</code> handles JSR-310 <code>java.time</code> classes
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7599">GROOVY-7599</a>).</p>
+</li>
+<li>
+<p><code>@Delegate</code> can now be used on getters
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7769">GROOVY-7769</a>).</p>
+</li>
+<li>
+<p><code>@TupleConstructor</code> now supports <code>pre</code> and <code>post</code> closure conditions to match the functionality provided by <code>@MapConstructor</code>
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7769">GROOVY-7769</a>).</p>
+</li>
+<li>
+<p><code>@TupleConstructor</code> and <code>@Builder</code> should be able to use defined setters rather than the field directly
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7087">GROOVY-7087</a>).</p>
+</li>
+<li>
+<p><code>@Newify</code> supports an additional attribute that allows selecting the classes whose constructors
+can be invoked without the <code>new</code> keyword using a regex pattern for the class name:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>@Newify(pattern="[A-Z].*")}
+class MyTreeProcessor {
+    final myTree = Tree(Tree(Leaf("A"), Leaf("B")), Leaf("C"))
+    ...
+}</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Most annotations check property and field names provided to annotation attributes
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7087">GROOVY-7087</a>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-Toolimprovements">Tool improvements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Some improvements were made to various tools:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>groovy</code> and <code>groovyConsole</code> now let you run JUnit 5 tests directly:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>import org.junit.jupiter.api.*
+// other imports not shown ...
+
+class MyTest {
+  @Test
+  void streamSum() {
+    assert Stream.of(1, 2, 3).mapToInt{ i -&gt; i }.sum() &gt; 5
+  }
+
+  @RepeatedTest(value=2, name = "{displayName} {currentRepetition}/{totalRepetitions}")
+  void streamSumRepeated() {
+    assert Stream.of(1, 2, 3).mapToInt{i -&gt; i}.sum() == 6
+  }
+
+  private boolean isPalindrome(s) { s == s.reverse()  }
+
+  @ParameterizedTest // requires org.junit.jupiter:junit-jupiter-params
+  @ValueSource(strings = [ "racecar", "radar", "able was I ere I saw elba" ])
+  void palindromes(String candidate) {
+    assert isPalindrome(candidate)
+  }
+
+  @TestFactory
+  def dynamicTestCollection() {[
+    dynamicTest("Add test") { -&gt; assert 1 + 1 == 2 },
+    dynamicTest("Multiply Test") { -&gt; assert 2 * 3 == 6 }
+  ]}
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which when run will show:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>JUnit5 launcher: passed=8, failed=0, skipped=0, time=246ms</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>with additional information available via logging if needed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>groovysh</code> offers easier access to grapes
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6514">GROOVY-6514</a>).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>groovy:000&gt; :grab 'com.google.guava:guava:24.1-jre'
+groovy:000&gt; import com.google.common.collect.ImmutableBiMap
+===&gt; com.google.common.collect.ImmutableBiMap
+groovy:000&gt; m = ImmutableBiMap.of('foo', 'bar')
+===&gt; [foo:bar]
+groovy:000&gt; m.inverse()
+===&gt; [bar:foo]
+groovy:000&gt;</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>groovyConsole</code> now provides an ASMifier tab within the AstBrowser
+(<a href="https://issues.apache.org/jira/browse/GROOVY-8091">GROOVY-8091</a>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-clibuilder">CliBuilder changes</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Groovy&#8217;s CliBuilder now supports annotation style definitions
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7825">GROOVY-7825</a>).</p>
+</li>
+<li>
+<p>Revamped versions of CliBuilder now exist supporting Commons CLI and Picocli backed implementations. See
+this <a href="https://blogs.apache.org/logging/entry/groovy-2-5-clibuilder-renewal">blog post</a> for more details.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-OtherImprovements">Other improvements</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Repeated annotation support has been added</p>
+</li>
+<li>
+<p>Alternative to <code>with</code> called <code>tap</code> that has an implicit <code>return delegate</code>
+(<a href="https://issues.apache.org/jira/browse/GROOVY-3976">GROOVY-3976</a>).</p>
+</li>
+<li>
+<p>Various JSON customization options are now supported
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6975">GROOVY-6975</a> and
+<a href="https://issues.apache.org/jira/browse/GROOVY-6854">GROOVY-6854</a>).</p>
+</li>
+<li>
+<p>Method parameter names are now accessible at runtime
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7423">GROOVY-7423</a>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-Breakingchanges">Breaking changes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A few issues fixed might also be considered breaking changes in some
+situations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The extension methods for the <code>java.util.Date</code> class are now in a separate
+<code>groovy-dateutil</code> module which isn&#8217;t included by default when using the <code>groovy-all</code>
+pom dependency. Add the additional module as a dependency if you need it or consider
+migrating to the java.time JSR-310 classes (similar Groovy extension methods exist
+for those classes and they are included by default when using the <code>groovy-all</code> pom dependency).</p>
+</li>
+<li>
+<p>@TupleConstructor could use the order of properties listed in 'includes' when that option is used
+(<a href="https://issues.apache.org/jira/browse/GROOVY-8016">GROOVY-8016</a>)</p>
+</li>
+<li>
+<p>@ToString could output properties in a predefined order when 'includes' is used
+(<a href="https://issues.apache.org/jira/browse/GROOVY-8014">GROOVY-8014</a>)</p>
+</li>
+<li>
+<p>AstNodeToScriptAdapter should output source using the recommended modifier order
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7967">GROOVY-7967</a>)</p>
+</li>
+<li>
+<p>ObjectRange iterator returns null instead of NoSuchElementException
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7961">GROOVY-7961</a>)</p>
+</li>
+<li>
+<p>IntRange iterator returns null instead of NoSuchElementException
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7960">GROOVY-7960</a>)
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7937">GROOVY-7937</a>)</p>
+</li>
+<li>
+<p>o.c.g.r.t.DefaultTypeTransformation does not apply the right toString on primitive arrays when transforming to String
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7853">GROOVY-7853</a>)</p>
+</li>
+<li>
+<p>Remove synchronized methods of groovy.sql.Sql and document it as not thread-safe
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7673">GROOVY-7673</a>)</p>
+</li>
+<li>
+<p>InvokerHelper formatting methods have inconsistent API
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7563">GROOVY-7563</a>)</p>
+</li>
+<li>
+<p>Fix up transforms (apart from TupleConstructor) which are affected by empty includes default
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7529">GROOVY-7529</a>)</p>
+</li>
+<li>
+<p>TupleConstructor with empty includes includes all
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7523">GROOVY-7523</a>)</p>
+</li>
+<li>
+<p>TupleConstructor overwrites empty default constructors
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7522">GROOVY-7522</a>)</p>
+</li>
+<li>
+<p>ResourceGroovyMethods/NioGroovyMethods BOM behavior is inconsistent
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7465">GROOVY-7465</a>)</p>
+</li>
+<li>
+<p>API inconsistency between takeWhile, dropWhile and collectReplacements for CharSequences
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7433">GROOVY-7433</a>)</p>
+</li>
+<li>
+<p>@ToString could support non-field properties
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7394">GROOVY-7394</a>)</p>
+</li>
+<li>
+<p>same linkedlist code different behavior between groovy and java
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6396">GROOVY-6396</a>)</p>
+</li>
+<li>
+<p>CLONE - same linkedlist code different behavior between groovy and java (fix priority of DGM methods vs actual methods on an object)</p>
+</li>
+<li>
+<p>Accessing private methods from public ones using categories and inheritance causes MissingMethodException
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6263">GROOVY-6263</a>)</p>
+</li>
+<li>
+<p>Have the elvis operator (?:) support the Optional type in Java 8
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6744">GROOVY-6744</a>)</p>
+</li>
+<li>
+<p>java.util.Optional should evaluate to false if empty
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7611">GROOVY-7611</a>)</p>
+</li>
+<li>
+<p>If you use the FileSystemCompiler class programmatically (rather than via the groovyc commandline) and you use the
+part of it for handling commandline processing, then you might notice that it has been converted to picocli and usage
+of a handful of methods will throw a DeprecationException which mentions the alternative approach you should use.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-Knownissues">Known issues</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>The GDK documentation for the java.time extensions wasn&#8217;t included in the 2.5.0 release (please see 2.5.1+).</p>
+</li>
+<li>
+<p>Users of <code>groovy.util.CliBuilder</code> need to also include the <code>org.codehaus.groovy:groovy-cli-commons</code>
+dependency on their compile classpath in addition to <code>groovy</code> or <code>groovy-all</code>. This won&#8217;t be required
+after the next maintenance release but users should migrate away from that class in any case as it
+will be removed from the next major version of Groovy.</p>
+</li>
+<li>
+<p>Users of Spock 1.1-groovy-2.4 may find strange ClassCastException errors with some tests, e.g. with <code>cleanup:</code>
+clauses. Using Spock 1.2-groovy-2.4-SNAPSHOT from the <a href="https://oss.sonatype.org/content/repositories/snapshots/" class="bare">https://oss.sonatype.org/content/repositories/snapshots/</a>
+repo may help but work is on-going to improve Spock support.</p>
+</li>
+<li>
+<p>Users combining <code>final</code> and <code>@CompileStatic</code> or <code>final</code> and Spock may see errors from
+the final variable analyzer. Work is underway to resolve those error messages.
+You may need to temporarily remove the <code>final</code> modifier in the meantime.</p>
+</li>
+<li>
+<p>Users needing the groovy-xml module and running on JDK9 and above may need to use
+the <code>--add-modules java.xml.bind</code> command-line option to fix the break in backwards
+compatibility caused by JDK9+.</p>
+</li>
+<li>
+<p>JDK9+ produces warnings with many libraries including Groovy due to some planned
+future restrictions in the JDK. Work is underway to re-engineer parts of Groovy
+to reduce/remove those warnings. Users wanting to hush the warnings as an interim
+measure may consider using the <code>--add-opens</code> escape clause offered by JDK9+.
+See commit <code>92bd96f</code> (currently reverted) on the Groovy master branch for a potential
+list to add.</p>
+</li>
+<li>
+<p>Users of the Spring Boot Gradle plugin wanting to upgrade to Groovy 2.5.0
+might like to re-check the plugin doco if you have any troubles. More comments here:
+<a href="https://github.com/spring-projects/spring-boot/issues/13444" class="bare">https://github.com/spring-projects/spring-boot/issues/13444</a></p>
+</li>
+<li>
+<p>proper OSGi operation was inadvertently broken due to split package
+issues. This should be fixed in 2.5.1. You can only use combinations of
+Groovy classes/modules which avoid the split package problem in the meantime.
+See <a href="https://issues.apache.org/jira/browse/GROOVY-8647" class="bare">https://issues.apache.org/jira/browse/GROOVY-8647</a> for the list of work being
+done on split packages to identify the affected modules/classes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-JDKrequirements">JDK requirements changes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy 2.5 requires JDK8+ to build and JDK7 is the minimum version of the JRE that we support.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-Moreinformation">More information</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can browse all the <a href="../changelogs/changelog-2.5.0.html">tickets closed for Groovy 2.5.0 in JIRA</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-Addendum251">Addendum for 2.5.1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We normally try very hard not to have breaking changes in minor releases, and that remains
+the case for the APIs within 2.5.1, but due to some bugs that slipped through 2.5.0 release
+candidate shakedown and also some usability feedback, we have made the following breaking
+packaging changes in 2.5.1:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>groovy-bsf</code> is now an optional module and isn&#8217;t referenced by default when using the
+<code>groovy-all</code> pom dependency (this helps with an OSGi issue)</p>
+</li>
+<li>
+<p>Groovy&#8217;s extension methods for JAXB are now in the optional <code>groovy-jaxb</code> module.
+This means that you aren&#8217;t using JAXB, you don&#8217;t need to worry about the
+JDK JAXB changes even if you are using the <code>groovy-all</code> pom, you should have nothing to do.<br>
+If you do need the JAXB extension methods, please add that module to your dependency list,
+and depending on your JDK version (see table below), you may have some further steps, e.g.
+add additional dependencies or command-line switches,
+or set one of the JAVA_OPTS or JDK_JAVA_OPTIONS environment variables.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JDK Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Options</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JDK8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do nothing</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JDK9/10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command-line switch/environment variable value:<br>
+&#160;&#160;&#160;&#160;--add-modules java.xml.bind<br>
+when starting the JDK that Groovy will use or see solution for JDK11.
+For a gradle build that needs to work across JDK versions, you might need something like:</p>
+<p class="tableblock"><code>if (JavaVersion.current().isJava9Compatible()) {</code><br>
+&#160;&#160; <code>def jaxbJvmArg = '--add-modules java.xml.bind'</code><br>
+&#160;&#160; <code>tasks.withType(GroovyCompile) {</code><br>
+&#160;&#160;&#160;&#160; <code>groovyOptions.fork = true</code><br>
+&#160;&#160;&#160;&#160; <code>groovyOptions.forkOptions.jvmArgs.add(jaxbJvmArg)</code><br>
+&#160;&#160; <code>}</code><br>
+&#160;&#160; <code>tasks.withType(Test) {</code><br>
+&#160;&#160;&#160;&#160; <code>jvmArgs jaxbJvmArg</code><br>
+&#160;&#160; <code>}</code><br>
+<code>}</code></p>
+<p class="tableblock">The command-line switch approach is automatically done for the Groovy command-line tools, e.g. <code>groovyc</code>, <code>groovy</code>, <code>groovyConsole</code>, etc.
+since <code>groovy-jaxb</code> is currently bundled in the Groovy install.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JDK11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add these dependencies:<br>
+&#160;&#160;&#160;&#160;javax.xml.bind:jaxb-api:2.3.0<br>
+&#160;&#160;&#160;&#160;com.sun.xml.bind:jaxb-core:2.3.0.1<br>
+&#160;&#160;&#160;&#160;com.sun.xml.bind:jaxb-impl:2.3.0.1<br>
+&#160;&#160;&#160;&#160;javax.activation:activation:1.1.1<br>
+The first is required at compile time, the last three at runtime, the last only required for JDK11.
+For an example Gradle build that works JDK8 through 11, see
+<a href="https://github.com/apache/groovy/blob/master/subprojects/groovy-jaxb/build.gradle">build.gradle</a>
+in the groovy-jaxb subproject.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Note: The above above steps aren&#8217;t our final plan in this space. For 2.5.1, we focused just on making
+life better for non-JAXB users using Groovy via Gradle or Maven. For 2.5.2, we hope to make much
+of the above details as hidden as possible and certainly hidden for users of the groovy command-line
+tools for JDK9+.</p>
+</div>
+<div class="paragraph">
+<p>If you are using JDK9+ and the command-line tools (e.g. groovy, groovyc, groovyConsole)
+and want to make your life easier on 2.5.1 in the meantime,
+please consider doing one of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>remove groovy-jaxb jar from your Groovy distribution&#8217;s lib directory</p>
+</li>
+<li>
+<p>copy the startGroovy or startGroovy.bat script files from master</p>
+</li>
+<li>
+<p>copy the four jars mentioned in the above JDK11 table entry into your lib directory</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-Addendum2510">Addendum for 2.5.10</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_known_issues">Known issues</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>2.5.10 may fail to compile code containing a switch statement under certain conditions.
+It only affects code where the switch statement is the last statement in a method and the
+switch statement includes a case statement with a <code>break</code> statement and no other statements.
+See
+(<a href="https://issues.apache.org/jira/browse/GROOVY-9424">GROOVY-9424</a>)
+for known workarounds.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.5releasenotes-Addendum2513">Addendum for 2.5.13</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_breaking_changes">Breaking changes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>If you are using the <code>SecureASTCustomizer</code> and relying on the exact wording of error
+messages, e.g. in tests, then you may need to tweak the wording in those tests.
+See
+(<a href="https://issues.apache.org/jira/browse/GROOVY-9594">GROOVY-9594</a>)
+for more details.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='../learn.html'>Learn</a></li><li><a href='../documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='../support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='../ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='../security.html'>Security</a></li><li><a href='../learn.html#books'>Books</a></li><li><a href='../thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='../faq.html'>FAQ</a></li><li><a href='../search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='../mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='../groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='../events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='../reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='../img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='../js/vendor/jquery-1.10.2.min.js' defer></script><script src='../js/vendor/classie.js' defer></script><script src='../js/vendor/bootstrap.js' defer></script><script src='../js/vendor/sidebarEffects.js' defer></script><script src='../js/vendor/modernizr-2.6.2.min.js' defer></script><script src='../js/plugins.js' defer></script><script src='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js'></script><script>document.addEventListener('DOMContentLoaded',prettyPrint)</script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Invoke dynamic support</title><link href='img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='css/style.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class=''><a href='learn.html'>Learn</a></li><li class=''><a href='documentation.html'>Documentation</a></li><li class='active'><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li><a href='download.html'>Download Groovy</a></li><li><a href='download.html#distro' class='anchor-link'>Distributions</a></li><li><a href='download.html#sdkman' class='anchor-link'>Through SDKMAN!</a></li><li><a href='download.html#buildtools' class='anchor-link'>From your build tools</a></li><li><a href='download.html#otherways' class='anchor-link'>Other ways to get Groovy</a></li><li><a href='versioning.html'>Groovy version scheme</a></li><li class='active'><a href='indy.html'><strong>Invoke dynamic support</strong></a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><div id='contribute-btn'>
+                                            <button type='button' class='btn btn-default' onclick='window.location.href="https://github.com/apache/groovy-website/tree/asf-site/site/src/site/pages/indy.groovy"'>
+                                                <i class='fa fa-pencil-square-o'></i> Improve this doc
+                                            </button>
+                                        </div><h1><i class='fa fa-gear'></i> Invoke dynamic support</h1><article><h2>Introduction</h2><p>
+                                    Since Groovy 2.0, support was added for the JVM invokedynamic instruction.
+                                    This instruction is supported since Java 7 and is a new bytecode instruction in the JVM
+                                    that allows easier implementation of dynamic languages.
+                                    This instruction is used internally, by the JVM, for the lambda support in Java 8.
+                                </p><p>
+                                    This means that unlike APIs, AST transformations or syntactic sugar,
+                                    this feature is not visible to the developer or the end user.
+                                    It is a compilation and runtime feature only.
+                                    This means that given two programs written in Groovy,
+                                    you have the choice to compile it with or without invokedynamic support.
+                                    Whatever you choose, it comes with pros and cons.
+                                </p><ul><li>classes compiled with invokedynamic can only be used on JDK 1.7+<ul><li>without invokedynamic, Groovy classes are still compatible with JDK 1.6+</li></ul></li><li>it is possible to mix classes compiled with and without invokedynamic in the same project, as long as you run JDK 1.7+</li><li>depending on the JVM (even different minor versions of the JVM), you can target close to Java performance for dynamic Groovy with invokedynamic support activated</li></ul><h2>JDK version</h2><p>
+                                    All JDK 7 versions ranging from 7u21 to 7u55 are buggy with regards to invokedynamic.
+                                    If you plan to use invokedynamic support, make sure you either use 7u60 or JDK 8.
+                                </p><h2>The distributions</h2><h3>Two JARs</h3><p>The Groovy distribution comes with two jars:</p><ul><li><code>groovy-x.y.z.jar</code>: compatible with JDK 1.6+, contains Groovy sources compiled with call site caching</li><li><code>groovy-x-y-z-indy.jar</code>: compatible with JDK 1.7+, contains Groovy sources compiled with invokedynamic</li></ul><p>
+                                    As Groovy core and the Groovy modules are sometimes written in Groovy, we currently have no choice but to distribute two distinct versions of Groovy.
+                                    This means that if you pick the "normal" jar, the Groovy classes of Groovy itself are compiled with call site caching,
+                                    while if you use the "indy" jar, the Groovy classes of Groovy itself are compiled using invokedynamic.
+                                </p><p>Both jars contain a fully working Groovy implementation that is capable of compiling user supplied Groovy sources using either 
+                                     invokedynamic or call site caching. The sets of jars are mutually exclusive (don't put both on classpath) and the key difference between 
+                                     them has to do with how the Groovy source files that make up Groovy itself are compiled.
+                                </p><p>
+                                    When accessing a Groovy jar from a Maven repository, you can select the indy version using the 'indy' classifier.
+                                </p><h3>Command-line and indy</h3><p>
+                                    If you download the distribution and use the command line,
+                                    it's always the "normal" version of Groovy which is picked up in classpath.
+                                    This means that whatever command you use (groovy, groovyc, groovysh or groovyConsole), invokedynamic support is not available out of the box.
+                                    To use a Groovy distribution that was compiled with invokedynamic for its Groovy sources you have to switch the jars manually.
+                                    The distribution makes use of the jars in the lib directory, while the indy jars are available in the indy directory.
+                                    You have three things to do:
+                                </p><ul><li>remove or rename the groovy-*.jar files in the lib directory</li><li>replace them with the indy version from the indy directory</li><li>remove the -indy classifier from jar names</li></ul><p>Here's a bash script that would do it all at once:</p><pre><code>$ for f in `ls lib/groovy*.jar | cut -d/ -f2`;do k=`basename $f .jar`; mv lib/$k.jar lib/$k.jar.old; cp indy/$k-indy.jar lib/$k.jar ; done</code></pre><h3>Running groovy script from command line</h3><p>
+                                    The usual way to run a script from the command line is by "groovy foo.groovy", where foo.groovy is the Groovy program in source form.
+                                    To use indy for this you have to use the indy compilation flag, "groovy --indy foo.groovy".
+                                </p><h3>The compilation flag</h3><p>
+                                    Independently of the jar version that you use, invokedynamic support requires a specific compilation flag (indy).
+                                    If you want to compile your classes with invokedynamic support, this flag must be set at compile time.
+                                    The following tables show you what happens with user compiled classes and Groovy core classes depending on the jar you use and the compilation flag:
+                                </p><p>For user compiled classes:</p><table class='table'><tr><th>indy flag</th><th>off</th><th>on</th></tr><tr><td>normal jar</td><td>call site caching</td><td>invokedynamic</td></tr><tr><td>indy jar</td><td>call site caching</td><td>invokedynamic</td></tr></table><p>For core Groovy classes:</p><table class='table'><tr><th>indy flag</th><th>off</th><th>on</th></tr><tr><td>normal jar</td><td>call site caching</td><td>call site caching</td></tr><tr><td>indy jar</td><td>invokedynamic</td><td>invokedynamic</td></tr></table><p>
+                                    So even if you use the indy jar, if you don't use the invokedynamic flag at compile time,
+                                    then the compiled classes will use the "old" format, meaning they will use the JDK1.6+ classes without invokedynamic.
+                                </p></article><hr class='divider'/></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='learn.html'>Learn</a></li><li><a href='documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='security.html'>Security</a></li><li><a href='learn.html#books'>Books</a></li><li><a href='thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='faq.html'>FAQ</a></li><li><a href='search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='js/vendor/jquery-1.10.2.min.js' defer></script><script src='js/vendor/classie.js' defer></script><script src='js/vendor/bootstrap.js' defer></script><script src='js/vendor/sidebarEffects.js' defer></script><script src='js/vendor/modernizr-2.6.2.min.js' defer></script><script src='js/plugins.js' defer></script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>

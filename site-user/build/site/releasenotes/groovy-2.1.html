@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Groovy 2.1 release notes</title><link href='../img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='../css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='../css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='../css/style.css'/><link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='../mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='../groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='../events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='../reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='../index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class=''><a href='../learn.html'>Learn</a></li><li class=''><a href='../documentation.html'>Documentation</a></li><li class=''><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='../support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='../ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='../search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li class='active'><a href='#releasenotes'>Release notes for Groovy 2.1</a></li><li><a href='#Groovy21releasenotes-Fullinvokedynamicsupport' class='anchor-link'>Full invoke dynamic support</a></li><li><a href='#Groovy21releasenotes-GPars10' class='anchor-link'>GPars 1.0</a></li><li><a href='#Groovy21releasenotes-DelegatesToannotation' class='anchor-link'>@DelegatesTo annotation</a></li><li><a href='#Groovy21releasenotes-Typecheckerextensions' class='anchor-link'>Type checker extensions</a></li><li><a href='#Groovy21releasenotes-Compile-time-Meta-annotations' class='anchor-link'>Compile-time Meta-annotations</a></li><li><a href='#Groovy21releasenotes-Compilationcustomization' class='anchor-link'>Compilation customization</a></li><li><a href='#Groovy21releasenotes-OtherMinorEnhancements' class='anchor-link'>Other Minor Enhancements</a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><a name='releasenotes'></a><h1>Release notes for Groovy 2.1</h1><div class="paragraph">
+<p>With this new 2.1 release, Groovy:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>has <strong>full support for the JDK 7 <code>invoke dynamic</code></strong> instruction and
+API,</p>
+</li>
+<li>
+<p>goes beyond conventional static type checking capabilities with a
+<strong>special annotation for closure delegate based Domain-Specific
+Languages</strong> and <strong>static type checker extensions</strong>,</p>
+</li>
+<li>
+<p>provides <strong>additional compilation customization</strong> options,</p>
+</li>
+<li>
+<p>and features a <strong>meta-annotation facility</strong> for combining annotations
+elegantly.</p>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="Groovy21releasenotes-Fullinvokedynamicsupport">Full invoke dynamic support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With Groovy 2.0, we introduced support for JDK 7’s <code>invoke dynamic</code>
+bytecode instruction and API to benefit from the dedicated support and
+performance improvements for dynamic languages starting with JDK
+7. Groovy 2.1 brings <strong>full support for <code>invokedynamic</code></strong> (aka
+<code>indy</code>), completing the work introduced in 2.0. </p>
+</div>
+<div class="paragraph">
+<p>In Groovy 2.0, most method calls were using the <code>invokedynamic</code>
+instruction, but there have been exceptions: constructor calls
+or "spread calls" (where you pass arguments with the "spread
+operator"). Groovy 2.1 completes the implementation started in 2.0.
+Now, code compiled with the <code>invokedynamic</code> JAR on JDK 7 will not be
+using the old "call site caching" code which served us well for
+getting good performance for Groovy prior to JDK 7. If you are lucky
+enough to be using JDK 7 in production, be sure to use the Groovy 2.1
+<code>indy</code> JAR to benefit from the full <code>invokedynamic</code> support. The
+<code>indy</code> version is bundled with the binary download package and can be
+obtained via Maven (all JARs with <code>invokedynamic</code> support are
+postfixed with <code>-indy</code>).</p>
+</div>
+<div class="paragraph">
+<p>You can <a href="../indy.html">learn more about the invoke dynamic support</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy21releasenotes-GPars10">GPars 1.0</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy 2.1’s distribution <strong>bundles the recently released GPars 1.0</strong>, the
+one-stop shop for all your concurrency needs. This new version comes
+with various enhancements in the asynchronous
+functions, <a href="http://www.jroller.com/vaclav/entry/broken_promises">promises</a>,
+parallel collections, actors, dataflow
+support, <a href="http://www.jroller.com/vaclav/entry/gpars_actors_and_dataflow_for">Google App Engine support</a>, etc.</p>
+</div>
+<div class="paragraph">
+<p>Be sure to check
+the <a href="https://web.archive.org/web/20170408172729/http://www.jroller.com/vaclav/entry/i_like_the_smell_of">release announcement</a> and read the “what’s new section”
+of the GPars user guide.
+You can also have a look at the
+detailed <a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12318123&amp;version=17007">JIRA release notes</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy21releasenotes-DelegatesToannotation">@DelegatesTo annotation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Authoring Domain-Specific Languages (DSLs) has always been a sweet spot
+for Groovy, and the availability of closures and the malleable syntax of
+the language has allowed DSL implementors to build nice mini-languages
+like "builders", to represent configuration or hierarchical data.</p>
+</div>
+<div class="paragraph">
+<p>Thanks to the various delegation strategies of
+the <code>groovy.lang.Closure</code> class, a range of very powerful techniques can
+be used when building DSLs. Due to different implementation techniques,
+inferring type information within the DSL has not been straightforward.
+This is especially an issue when DSLs should have proper IDE support
+(e.g. code completion).</p>
+</div>
+<div class="paragraph">
+<p>The very popular and powerful <a href="http://www.gradle.org">Gradle</a> build
+automation system uses its own DSL for build script specifications. On
+the DSL implementation layer are various methods taking closures as
+arguments, and with special delegation strategies delegating to some
+other parameter passed to them. Providing good IDE support for Groovy
+DSLs — like the one in Gradle — has presented a few challenges. Hence
+the need for the <code>@DelegatesTo</code> annotation.</p>
+</div>
+<div class="paragraph">
+<p>Groovy 2.1 introduces the <strong><code>@groovy.lang.DelegatesTo</code> annotation</strong> as
+a <strong>documentation mechanism</strong> for DSL users and maintainers, as an <strong>IDE
+hint for providing better coding assistance</strong>, and as additional
+information that can be <strong>taken into account by the static type checker
+and static compilation</strong> introduced in Groovy 2.0. Let’s see that in
+action with some examples.</p>
+</div>
+<div class="paragraph">
+<p>A closure delegate based method usage might look like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">exec {
+    launch()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>exec()</code> method takes a closure as parameter, and the
+actual <code>launch()</code> call inside that closure is delegated to some
+particular object (the closure delegate), instead of being dispatched to
+the enclosing class. The above code would only fail at runtime (not at
+compile-time!), as the <code>launch()</code> method can not be found in the closure
+context. In order to delegate method calls within the closure’s code
+block to another object instance, we need to set the closure delegate.</p>
+</div>
+<div class="paragraph">
+<p>Setting a closure delegate is as easy as
+invoking <code>Closure#setDelegate(Object)</code>: </p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">void exec(Closure c) {
+    c.delegate = new Executor()
+    c()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The delegate can be set to an arbitrary object instance (here, an
+instance of an <code>Executor</code> class that has a <code>launch()</code> method). When the
+delegate is set accordingly, we can execute the closure code.</p>
+</div>
+<div class="paragraph">
+<p>Note that usually, to avoid odd behavior if the closure is used in
+multiple threads, we tend to clone that closure.</p>
+</div>
+<div class="paragraph">
+<p>The problem with delegate objects are IDEs not knowing about them. Given
+our example, most IDEs will underline the <code>launch()</code> method as being an
+unknown method in this context.</p>
+</div>
+<div class="paragraph">
+<p>This is where <code>@DelegatesTo</code> comes into play. By adding
+the <code>@DelegatesTo</code> annotation to DSL methods like <code>exec(Closure)</code>, IDEs
+get the actual delegate type and other meta-data.</p>
+</div>
+<div class="paragraph">
+<p>A future update might let GroovyDoc show the details about the
+annotation usage to help users know what methods they can call, what
+properties they can access, etc.</p>
+</div>
+<div class="paragraph">
+<p>Here’s what your <code>exec()</code> method will look like with the annotation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">void exec(@DelegatesTo(Executor) Closure c) {
+    c.delegate = new Executor()
+    c()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Besides specifying the actual delegate type, <code>@DelegatesTo</code>  can be used
+to hint at the actual resolve strategy. The resolve strategy determines
+the order in which non-closure method / property calls are looked up. In
+our example, <code>Closure.DELEGATE_FIRST</code> will be used. This indicates the
+closure will attempt to resolve against the given delegate object in
+first place, followed by the owner object:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import static groovy.lang.Closure.*
+// ...
+void exec(@DelegatesTo(strategy = DELEGATE_FIRST, value = Executor) Closure c) {
+    c.delegate = new Executor()
+    c.resolveStrategy = DELEGATE_FIRST
+    c()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>IDE support is not the only reason to use <code>@DelegatesTo</code>. The <strong>static
+type checker and static compiler take the additional meta-data specified
+by the @DelegatesTo annotation into account</strong>. If there is a typo in the
+closure code block, the type checker will complain. And if you use the
+static compilation capability introduced in Groovy 2.0, the calls will
+be compiled statically.</p>
+</div>
+<div class="paragraph">
+<p>Let’s say we wouldn’t call <code>launch()</code> but <code>launchr()</code> in the closure
+code block, we would get a message like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[Static type checking] - Cannot find matching method DelegatesToSamples#launchr().
+Please check if the declared type is right and if the method exists.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Static type checks for custom Domain-Specific Languages</strong> is a very
+convenient feature in Groovy 2.1!</p>
+</div>
+<div class="paragraph">
+<p>In addition, Groovy 2.1 features other abilities for even further type
+checking your DSLs, as you shall see in the following section.</p>
+</div>
+<div class="paragraph">
+<p>Before moving on, let’s mention a few closing details
+about <code>@DelegatesTo</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>@DelegatesTo</code> allows to specify the receiver calls are delegated to.
+For instance, when a delegate calls a method or property on another
+method parameter. Imagine our <code>exec()</code> method taking
+the <code>Executor</code> argument instance as delegate:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">void exec(Executor ex, @DelegatesTo(Executor) Closure c) {
+    c.delegate = ex
+    c()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, the information is lost that the call is delegated to
+the <code>ex</code> parameter. Thanks to the <code>@DelegatesTo.Target</code> annotation we
+can specify ex as target for being the delegate object:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">void exec(@DelegatesTo.Target Executor ex, @DelegatesTo Closure c) {
+    c.delegate = ex
+    c()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What if we had several <code>Executor</code> parameters, how would we differentiate
+which one we’re targeting?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">void exec(
+    @DelegatesTo.Target('param1') Executor ex,
+    @DelegatesTo(target = 'param1') Closure c) { ... }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The delegation "target" can be specified with an arbitrary id. In the
+example above it is <code>param1</code>.</p>
+</div>
+<div class="paragraph">
+<p>One last very nice little feature: if you are using static type
+checking, you can omit the type of the parameter
+and <code>@DelegatesTo</code> combined with "flow typing" (the ability of
+following the current type of an untyped variable) would still know if
+method calls are valid:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">void exec(@DelegatesTo.Target ex, @DelegatesTo Closure c) {
+    c.delegate = ex
+    c()
+}
+
+class Executor {
+    void launch() {}
+}
+
+def ex = new Executor()
+
+exec(ex) {
+    launch()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We’ve seen that the <code>@DelegatesTo</code> helps documenting, tooling, and
+checking Domain-Specific Languages in the specific context of closure
+delegate based methods, but we hinted at the fact we can go beyond, in
+terms of static type checking for your DSLs.</p>
+</div>
+<div class="paragraph">
+<p>For more details take a look at
+the <a href="https://docs.groovy-lang.org/latest/html/documentation/#__code_delegatesto_code">@DelegatesTo documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy21releasenotes-Typecheckerextensions">Type checker extensions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Static type checking was introduced in Groovy 2.0, but Groovy 2.1 goes
+beyond built-in type checks and offers a way to <strong>create type checker
+extensions</strong>. This is great news for Groovy scripts, configuration files,
+or Domain-Specific Languages implementations as they can can be "type
+checked" with more advanced, domain-specific rules. As an example, it
+would be possible to create a custom DSL type checker that throws
+compilation errors when certain verbs of the DSL are not recognized, or
+tells this other noun is allowed even if it’s a dynamic name bound at
+runtime, or type checks literal strings containing SQL code to see if
+the syntax is correct, and more.</p>
+</div>
+<div class="paragraph">
+<p>Imagine a script, where we define a small robot class and instantiate
+it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Robot {
+    void move(String dist) { println "Moved $dist" }
+}
+
+robot = new Robot()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And we want to operate our robot in the <code>operate()</code> method, but we want
+this method to be type checked:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@groovy.transform.TypeChecked
+void operate() {
+    robot.move "left"
+}
+
+operate()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The static type checker will complain as it doesn’t understand where the
+<code>robot</code> variable is coming from, as it’s going through the binding of
+the script — note that we could teach the type checker to figure out
+binding-bound variables. It will throw an error telling us that
+the robot variable was undeclared.</p>
+</div>
+<div class="paragraph">
+<p>But by utilizing type checker extensions, we can hook into the type
+checking process to teach it how to handle unresolved variables! In
+order to do that, we’ll specify an extension script through the newly
+introduced <code>extensions</code> annotation parameter of
+the <code>@TypeChecked</code> annotation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@TypeChecked(extensions = 'RobotMove.groovy')
+void operate() {
+    robot.move "left"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now it’s time to define the type checker extension script
+called <code>RobotMove.groovy</code>. The type checker extension script is written
+by applying a new DSL — the "type checking DSL". The DSL provides
+various hooks for type checker extensions to register to. Going back to
+the example above, we register for unresolved variables using
+the <code>unresolvedVariable</code> hook:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">unresolvedVariable { VariableExpression var -&gt;
+    if ('robot' == var.name) {
+        def robotClass = context.source.AST.classes.find { it.name == 'Robot' }
+        storeType(var, robotClass)
+        handled = true
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The type checker extension script needs to be on the classpath. If this
+is the case, the script gets notified during compile-time when the
+static type checker encounters an unresolved variable. The unresolved
+variable closure is handed over a <code>VariableExpression</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>VariableExpression</code> is an object directly from Groovy’s AST
+(Abstract Syntax Tree). It is a representation of the unresolved
+variable expression. The script checks if the variable is named <code>robot</code>,
+if this is the case, we lookup a <code>ClassNode</code> representing
+the <code>Robot</code> class, and store the type of that variable back in the AST.
+At the end, the <code>handled</code> property is set to true, to indicate the type
+checker already managed that variable. As a consequence, you won’t get
+the compilation error about that undeclared variable.</p>
+</div>
+<div class="paragraph">
+<p>To continue the journey, let’s consider the case where the user enters a
+wrong direction string. We could of course use an enum or some other
+class containing direction constants, but for the sake of the example,
+we’ll have a look at how we can teach the type checker to inspect
+strings and how you can actually throw your own compilation errors.</p>
+</div>
+<div class="paragraph">
+<p>For that purpose, let’s say a robot can only move left, right, forward
+and backward. And now, let’s change our robot move instruction to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">robot.move "sideways"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The robot is not allowed to move sideways, so we should instruct the
+type checker to throw a compilation error if it encounters a direction
+the robot will not be able to understand. Here’s how we can achieve our
+goal, by adding a new event handler to our <code>RobotMove.groovy</code> script:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">afterMethodCall { MethodCall mc -&gt;
+    def method = getTargetMethod(mc)
+    if (mc.objectExpression.name == 'robot' &amp;&amp; method.name == 'move') {
+        def args = getArguments(mc)
+        if (args &amp;&amp; isConstantExpression(args[0]) &amp;&amp; args[0].value instanceof String) {
+            def content = args[0].text
+            if (!(content in ['left', 'right', 'backward', 'forward'])) {
+                addStaticTypeError("'${content}' is not a valid direction", args[0])
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This handler receives a <code>MethodCall</code> expression. We are using
+the <code>getTargetMethod()</code> utility method to retrieve the
+corresponding <code>MethodNode</code>. We check that the method call is a call to
+our <code>robot</code>, and that the name of the method corresponds to
+themove method. Then, we fetch the arguments passed to that method call,
+and if we’re passed a direction in the form of a string constant, we are
+checking that the direction is an actual allowed direction. If this is
+not the case, we are adding a new static typing compilation error into
+the mix, so that the compiler will yell at the poor user because he used
+a direction which is forbidden and not understood by our robot.</p>
+</div>
+<div class="paragraph">
+<p>This second example is also interesting in a way that it shows how you
+can even add compilation checks on things like literal strings on a
+domain-specific level, paving the way for possible checks on sprintf
+strings, on SQL or HQL code in strings, etc, allowing you to go even
+further that what the Java compiler actually checks.</p>
+</div>
+<div class="paragraph">
+<p>The extension script can make use of various event oriented extension
+points and utility methods coming from the <code>TypeCheckingExtension</code> class
+from Groovy, such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>unresolvedVariable</p>
+</li>
+<li>
+<p>unresolvedProperty</p>
+</li>
+<li>
+<p>unresolvedAttribute</p>
+</li>
+<li>
+<p>methodNotFound</p>
+</li>
+<li>
+<p>incompatibleAssignment</p>
+</li>
+<li>
+<p>beforeVisitMethod</p>
+</li>
+<li>
+<p>afterVisitMethod</p>
+</li>
+<li>
+<p>beforeVisitClass</p>
+</li>
+<li>
+<p>afterVisitClass</p>
+</li>
+<li>
+<p>beforeMethodCall</p>
+</li>
+<li>
+<p>afterMethodCall</p>
+</li>
+<li>
+<p>onMethodSelection</p>
+</li>
+<li>
+<p>setup</p>
+</li>
+<li>
+<p>finish</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The two examples are just the tip of the iceberg, but we will work out
+more complete documentation of the various extension points and utility
+methods going forward.</p>
+</div>
+<div class="paragraph">
+<p>For more details take a look at
+the <a href="http://docs.groovy-lang.org/latest/html/documentation/type-checking-extensions.html">type checking extensions documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy21releasenotes-Compile-time-Meta-annotations">Compile-time Meta-annotations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Annotations are a great way to add supplementary meta-data to classes,
+methods, fields, and other source code elements, thus frameworks,
+libraries, and even Groovy’s homegrown AST transformations can take
+advantage of them to do some special treatments to the corresponding AST
+nodes. Every now and then the use case arises to reuse a combination of
+annotations, potentially at the expense of a galore of at-signs that
+obscure the general intent of that particular combination.</p>
+</div>
+<div class="paragraph">
+<p>To group annotations together, to make the intent clearer or to
+streamline your code, Groovy 2.1 offers a <strong>meta-annotation system, which
+allows to combine other annotations into one "alias" annotation</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Imagine we are using some annotations defining constraints on properties
+of your class, like <code>@NotNull</code>, <code>@Length</code>, or <code>@Pattern</code>, which could be
+defined as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@interface NotNull {}
+
+@interface Length {
+    int value() default 0
+}
+
+@interface Pattern {
+    String value() default ".*"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An example of how to annotate an <code>ISBN</code> property with those annotations
+could look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Book {
+    @NotNull
+    @Length(10)
+    @Pattern(/\d{9}(\d|X)/)
+    String isbn10
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For a single property, that’s quite a bit of annotation overload! And it
+could be the case of other domain classes with properties having the
+same validation rules as the ISBN property, where we would need to
+duplicate that pattern.</p>
+</div>
+<div class="paragraph">
+<p>As of Groovy 2.1, <code>@groovy.transform.AnnotationCollector</code> can be used to
+solve code duplication for this use case. <code>@AnnotationCollector</code> can be
+specified on annotation types and acts as meta-annotation. Whenever an
+annotation marked with it is found, it is replaced with its own
+annotations. Let’s illustrate this with our ISBN example.</p>
+</div>
+<div class="paragraph">
+<p>We will create a new annotation combination for the 13-digit ISBN
+standard, but this time, using
+the <code>@AnnotationCollector</code> meta-annotation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@NotNull
+@Length(13)
+@Pattern(/\d{12}(\d|X)/)
+@groovy.transform.AnnotationCollector
+@interface ISBN13 {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>@ISBN13</code> as a single annotation can now be applied on code elements,
+instead of applying the entire annotation gang::</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Book {
+    // ...
+    @ISBN13
+    String isbn13
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What is particularly interesting with such <strong>meta-annotations</strong> is that
+they are actually <strong>replaced at compilation time with
+the <em>real</em> annotations</strong>. So if you counted the number of annotations on
+the <code>isbn13</code> property, you would count 3
+(<code>@NotNull</code>, <code>@Length</code> and <code>@Pattern</code>). Thus, your underlying framework
+doesn’t need to know about that meta-annotation solution and act
+accordingly.</p>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-Alternatenotation">Alternate notation</h3>
+<div class="paragraph">
+<p>In our example above, we annotated our meta-annotation with the
+annotations that are then combined together. But for annotations for
+which you don’t need to specify arguments, you could have also passed
+the names of the annotations to combine as parameters to the annotation
+collector:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.transform.*
+@groovy.transform.AnnotationCollector([ToString, Singleton])
+@interface ChattySingleton {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above case, we combine
+the <code>@Singleton</code> and <code>@ToString</code> transformation into a meta-annotation
+called <code>@ChattySingleton</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-Passingparameters">Passing parameters</h3>
+<div class="paragraph">
+<p>If you need to pass some specific parameter to one of the underlying
+annotations which are combined, you can still do so by passing the
+parameter to the meta-annotation.</p>
+</div>
+<div class="paragraph">
+<p>Let’s assume we need to combine the following annotations:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@interface Service {}
+
+@interface Transactional {
+    String propagation() default "required"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We define the meta-annotation combining both the above annotations:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@groovy.transform.AnnotationCollector([Service, Transactional])
+@interface TransactionalService {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But we want to change the propagation strategy for the
+underlying <code>@Transactional</code> annotation, we do so by passing the
+parameter to the meta-annotation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@TransactionalService(propagation = "mandatory")
+class BankingService { }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that if two combined annotations share the same parameter name, the
+last annotation declared wins and gets the parameter passed to the
+meta-annotation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-Customprocessor">Custom processor</h3>
+<div class="paragraph">
+<p>If you need even more flexibility, meta-annotations allow you to define
+custom processors. The role of the custom processor is to go beyond the
+simple exchange of the meta-annotation with the combined annotations, to
+further customize the logic of that transformation.</p>
+</div>
+<div class="paragraph">
+<p>Custom processors must be precompiled to take action, so we’ll create
+our processor, and then evaluate our final example with <code>GroovyShell</code>,
+but first, let’s talk about the use case.</p>
+</div>
+<div class="paragraph">
+<p>We have two validation annotations for defining a minimum and maximum
+value for an integer property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@interface Min {
+    int value() default 0
+}
+
+@interface Max {
+    int value() default 100
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If we want to define a range of values, with a lower and an upper bound,
+we could define a new annotation and implement the associated validation
+logic, or we could use custom meta-annotation processors to replace a
+range annotation with a minimum and a maximum one.</p>
+</div>
+<div class="paragraph">
+<p>So instead of writing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Room {
+    @Min(1)
+    @Max(4)
+    int numberOfPersons
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We could write:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Room {
+    @Range(from = 1, to = 4)
+    int numberOfPersons
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the normal replacement logic, there’s no way we can map the lower
+and upper bound values to the minimum and maximum annotation element
+default values. That is where custom processors come into play.</p>
+</div>
+<div class="paragraph">
+<p>Our meta-annotation definition will look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@Min @Max
+@AnnotationCollector(processor = 'RangeAnnotationProcessor')
+@interface Range {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice how we specify that the <code>@Range</code> annotation is a combination
+of <code>@Min</code> and <code>@Max</code>, and more importantly, how we pass a processor
+parameter to the <code>@AnnotationCollector</code> to instruct it about our custom
+meta-annotation processing logic.</p>
+</div>
+<div class="paragraph">
+<p>In order to create a custom processor, you have to extend
+the <code>AnnotationCollectorTransform</code> class and override
+the <code>visit()</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import org.codehaus.groovy.transform.AnnotationCollectorTransform
+import org.codehaus.groovy.ast.*
+import org.codehaus.groovy.control.SourceUnit
+
+class RangeAnnotationProcessor extends AnnotationCollectorTransform {
+    List&lt;AnnotationNode&gt; visit(AnnotationNode collector,
+                               AnnotationNode usage,
+                               AnnotatedNode annotated,
+                               SourceUnit src) {
+
+        def minExpr = usage.getMember('from')
+        def maxExpr = usage.getMember('to')
+
+        def (minAnno, maxAnno) = getTargetAnnotationList(collector, usage, src)
+
+        minAnno.addMember('value', minExpr)
+        maxAnno.addMember('value', maxExpr)
+
+        usage.members.remove('from')
+        usage.members.remove('to')
+
+        return [minAnno, maxAnno]
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A few words about the parameters : the <code>collector</code> corresponds to
+the <code>@Range</code> annotation definition, <code>usage</code> to the actual usage of
+the <code>@Range</code> annotation, <code>annotated</code> is the annotated class,
+and <code>src</code> is script being compiled.</p>
+</div>
+<div class="paragraph">
+<p>We start our implementation of the processor by retrieving the numeric
+expressions of the bounds defined as the from and to annotation
+parameters, because we’ll pass those values back to the
+underlying <code>@Min</code> and <code>@Max</code> combined annotations. In order to do that,
+we retrieve the <code>@Min</code> and <code>@Max</code> combined annotations thanks to
+the <code>getTargetAnnotationList()</code> method. We then set the values of
+the <code>@Min</code> and <code>@Max</code> annotations to the expressions we’ve retrieved
+before. We remove the from and to bounds from
+the <code>@Range</code> meta-annotation since those parameters
+aren’t really defined on a real annotation but on a meta-annotation. And
+last, we return the two <code>@Min</code> and <code>@Max</code> annotations. If you wanted the
+Groovy compiler to do its usual replacement logic, you could have also
+called <code>super.visit(&#8230;&#8203;)</code>, but in our case it wasn’t needed.</p>
+</div>
+<div class="paragraph">
+<p>The full example can be found in this Gist on
+Github: <a href="https://gist.github.com/4563430" class="bare">https://gist.github.com/4563430</a></p>
+</div>
+<div class="paragraph">
+<p>Additional details can be found in the
+<a href="http://www.groovy-lang.org/objectorientation.html#_meta_annotations">meta-annotations documentation</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy21releasenotes-Compilationcustomization">Compilation customization</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="Groovy21releasenotes-Custombasescriptclassflag">Custom base script class flag</h3>
+<div class="paragraph">
+<p>When integrating and evaluating Groovy scripts in an application for
+business rules or Domain-Specific Languages, it is often valuable to
+define a base script class, in order to add various utility methods,
+properties, or interception mechanisms for missing methods or
+properties.</p>
+</div>
+<div class="paragraph">
+<p>The <code>CompilerConfiguration</code> object, that you can pass
+to <code>GroovyShell</code> and other integration mechanisms, allows you to specify
+a base script class with the <code>setScriptBaseClass()</code> method.</p>
+</div>
+<div class="paragraph">
+<p>As of Groovy 2.1, we introduce the ability to define a base script class
+reference for your scripts via an additional command-line option <code>-b</code> /
+ <code>--basescript</code> for the <code>groovyc</code> command, as well as for
+the <code>groovy</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Here’s an example using a script called <code>businessRule.groovy</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">assert lookupRate(EUR, USD) == 1.33</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above script, we notice two things: the usage of
+a <code>lookupRate()</code> method, and two undeclared variables: <code>EUR</code> and <code>USD</code>.
+Neither the method, nor the variables have been defined in our script.
+Instead, they are provided by a base script class, which can look like
+the following <code>ExchangeRateBaseScript.groovy</code> class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">abstract class ExchangeRateBaseScript extends Script {
+    def lookupRate(String currency1, String currency2) {
+        if (currency1 == 'EUR' &amp;&amp; currency2 == 'USD')
+            return 1.33
+        else return 1
+    }
+
+    def getProperty(String name) { name }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>lookupRate()</code> method used in our script is declared in the the base
+class, and the two currencies are retrieved via
+the <code>getProperty()</code> method.</p>
+</div>
+<div class="paragraph">
+<p>Now it’s time to wire them together, by instructing the groovyc compiler
+or the <code>groovy</code> command line launcher to use our base script class for
+all <code>groovy.lang.Script</code> descendants:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>groovy --basescript ExchangeRateBaseScript.groovy businessRule.groovy</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-Compilerconfigurationscript">Compiler configuration script</h3>
+<div class="paragraph">
+<p>Similarly to the <code>--basescript</code> flag, there’s another new option for
+the <code>groovy</code> and <code>groovyc</code> commands: the <code>--configscript</code> flag. Its
+purpose is to let you further configure the compiler, in a configuration
+script, by parameterizing the <code>CompilerConfiguration</code> object used for
+the compilation.</p>
+</div>
+<div class="paragraph">
+<p>With a <code>CompilerConfiguration</code>, you can customize the various aspects of
+the Groovy compilation process. For example, you can specify various
+compilation customizers introduced in Groovy 1.8. Imagine you want to
+add a new default import to your classes, like importing
+all <code>java.lang.Math</code> functions and constants, so that your scripts and
+classes don’t have to prefix those functions and constants all the time,
+and to avoid having to do that import wherever needed. Here’s how you
+can proceed.</p>
+</div>
+<div class="paragraph">
+<p>At first, your script, <code>mathFormula.groovy</code>, contains the following
+lines:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import static java.lang.Math.*
+
+assert sin(PI/2) == 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For evaluating such math expressions, you wish to make the static import
+implicit, so that the final script will actually look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">assert sin(PI/2) == 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you’d run it as is, you’d get an error message saying:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>No such property: PI for class: mathFormula</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We need to use <code>CompilerConfiguration</code> to do add an <code>ImportCustomizer</code>.
+We’ll create ai <code>mportConfigurer.groovy</code> script with the content below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import org.codehaus.groovy.control.customizers.ImportCustomizer
+
+def importCustomizer = new ImportCustomizer()
+importCustomizer.addStaticStar('java.lang.Math')
+
+configuration.addCompilationCustomizers(importCustomizer)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We import and then instantiate an <code>ImportCustomizer</code>, on which we ask
+for a static star import of the methods and constants of
+the <code>java.lang.Math</code> class. Eventually, we pass that customizer to
+the <code>configuration</code> variable, which is an instance
+of <code>CompilerConfiguration</code> that will be used for the compilation of your
+math formula.</p>
+</div>
+<div class="paragraph">
+<p>Now, we are able to execute your formula with the following
+command-line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>groovy --configscript importConfigurer.groovy mathFormula.groovy</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-Source-awarecustomizer">Source-aware customizer</h3>
+<div class="paragraph">
+<p>If you use the groovy compiler to compile all your classes, one drawback
+of the approach above is that the customization applies globally to all
+classes that are going to be compiled. You may want to add certain
+default imports only in certain classes (ie. scripts containing math),
+but you might want to do something different for other classes, like
+adding a <code>@ToString</code> transformation to all the domain classes of your
+application. For that purpose, a new customizer was created,
+the <code>SourceAwareCustomizer</code>, to let you filter which classes should be
+impacted by particular compilation customizations, such as filtering by
+class name, by file extension, or by a custom logic.</p>
+</div>
+<div class="paragraph">
+<p>Coming back to our previous example, let’s add the default import to
+our <code>mathFormula.groovy</code> script, but add a <code>@ToString</code> transformation to
+the <code>MyDomain.groovy</code> class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import org.codehaus.groovy.control.customizers.*
+import groovy.transform.ToString
+
+def importCustomizer = new ImportCustomizer()
+importCustomizer.addStaticStar('java.lang.Math')
+
+configuration.addCompilationCustomizers(
+    new SourceAwareCustomizer(new ASTTransformationCustomizer(ToString)) {
+        boolean acceptBaseName(baseName) { baseName ==~ 'MyDomain' }
+    },
+    new SourceAwareCustomizer(importCustomizer) {
+        boolean acceptBaseName(baseName) { baseName ==~ 'mathFormula' }
+    })</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-Compilercustomizationbuilder">Compiler customization builder</h3>
+<div class="paragraph">
+<p>The more complex the customization becomes, the more cumbersome the
+above configuration becomes to write too, that’s why Groovy 2.1 also
+provides a builder for building these types of configurations.</p>
+</div>
+<div class="paragraph">
+<p>The builder allows you to use a familiar declarative syntax and saves
+you from adding manually various imports. Let’s adapt our example above
+with the builder:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">withConfig(configuration) {
+    source(basenameValidator: { it.endsWith('MyDomain') }) {
+        ast(ToString)
+    }
+    source(basenameValidator: { it.endsWith('mathFormula') }) {
+        imports {
+            staticStar 'java.lang.Math'
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The configuration code is easier to read and maintain, thanks to the
+clarity brought by the builder approach. But we’ve only seen a couple
+examples of customization, and you should have a look at the other
+customizations available in the
+org.codehaus.groovy.control.customizers.builder package to learn more
+about them.</p>
+</div>
+<div class="paragraph">
+<p>More details can be found in the
+<a href="http://www.groovy-lang.org/dsls.html#compilation-customizers">compilation customizers documentation</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy21releasenotes-OtherMinorEnhancements">Other Minor Enhancements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="Groovy21releasenotes-AdditionalDGMmethods">Additional DGM methods</h3>
+<div class="paragraph">
+<p>There are now <code>leftShift</code> and <code>withFormatter</code> methods for <code>Appendable</code>
+objects.<br>
+There are now methods for creating temporary directories and determining
+the total size of all files in a directory.<br>
+There is now a <code>collectMany</code> for maps (has been backported to earlier
+versions of Groovy too).<br>
+There is now a <code>closeStreams()</code> method for <code>Process</code> objects.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-GroovyDoc">GroovyDoc</h3>
+<div class="paragraph">
+<p>You can now explicitly set a file encoding.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-Command-line">Command-line</h3>
+<div class="paragraph">
+<p>There is support for using a <code>jar:</code> prefix when running a script from
+a URL, in addition to the <code>file:</code> and <code>http:</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-XMLProcessing">XML Processing</h3>
+<div class="paragraph">
+<p>There is a method for escaping / encoding XML entities in Strings.<br>
+There is a convenience method for serializing <code>Elements</code> objects. <br>
+You can now clone <code>Node</code> and <code>NodeList</code> objects. <br>
+The name() method now works for all <code>Node</code> objects, not just <code>Element</code>
+objects. </p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-ConfigSlurper">ConfigSlurper</h3>
+<div class="paragraph">
+<p>Multiple environments blocks are now supported and merged.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-Delegate">@Delegate</h3>
+<div class="paragraph">
+<p>Can now carry over annotations if desired for methods and method
+parameters.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-ToString">@ToString</h3>
+<div class="paragraph">
+<p>You can now cache the <code>toString</code> value. This is useful for immutable
+objects.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-EqualsAndHashCode">@EqualsAndHashCode</h3>
+<div class="paragraph">
+<p>You can now cache the calculated hashCode value. This is useful for
+immutable objects.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-Immutable">@Immutable</h3>
+<div class="paragraph">
+<p>You can now specify <code>knownImmutables</code>. This is useful when you know you
+are using an immutable object, but its type isn’t one of the known
+immutable types.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy21releasenotes-AutoClone">@AutoClone</h3>
+<div class="paragraph">
+<p>There is now a <code>SIMPLE</code> <code>AutoCloneStyle</code> which avoids some annoyances
+with Java’s cloning behavior from <code>Object</code>. Those who need to clone
+Grails domain objects might find this useful.</p>
+</div>
+</div>
+</div>
+</div></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='../learn.html'>Learn</a></li><li><a href='../documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='../support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='../ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='../security.html'>Security</a></li><li><a href='../learn.html#books'>Books</a></li><li><a href='../thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='../faq.html'>FAQ</a></li><li><a href='../search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='../mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='../groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='../events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='../reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='../img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='../js/vendor/jquery-1.10.2.min.js' defer></script><script src='../js/vendor/classie.js' defer></script><script src='../js/vendor/bootstrap.js' defer></script><script src='../js/vendor/sidebarEffects.js' defer></script><script src='../js/vendor/modernizr-2.6.2.min.js' defer></script><script src='../js/plugins.js' defer></script><script src='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js'></script><script>document.addEventListener('DOMContentLoaded',prettyPrint)</script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>

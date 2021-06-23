@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Groovy 1.6 release notes</title><link href='../img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='../css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='../css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='../css/style.css'/><link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='../mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='../groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='../events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='../reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='../index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class=''><a href='../learn.html'>Learn</a></li><li class=''><a href='../documentation.html'>Documentation</a></li><li class=''><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='../support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='../ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='../search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li class='active'><a href='#releasenotes'>Release notes for Groovy 1.6</a></li><li><a href='#_overview_of_groovy_1_6' class='anchor-link'>Overview of Groovy 1.6</a></li><li><a href='#Groovy16releasenotes-Performanceimprovements' class='anchor-link'>Performance improvements</a></li><li><a href='#Groovy16releasenotes-Multipleassignments' class='anchor-link'>Multiple assignments</a></li><li><a href='#Groovy16releasenotes-Annotationdefinition' class='anchor-link'>Annotation definition</a></li><li><a href='#Groovy16releasenotes-Optionalreturnforifelseandtrycatchfinallyblocks' class='anchor-link'>Optional return for if/else and try/catch/finally blocks</a></li><li><a href='#Groovy16releasenotes-ASTTransformations' class='anchor-link'>AST Transformations</a></li><li><a href='#Groovy16releasenotes-GrapetheGroovyAdaptableAdvancedPackagingEngine' class='anchor-link'>Grape, the Groovy Adaptable / Advanced Packaging Engine</a></li><li><a href='#Groovy16releasenotes-Swingbuilderimprovements' class='anchor-link'>Swing builder improvements</a></li><li><a href='#Groovy16releasenotes-Swingconsoleimprovements' class='anchor-link'>Swing console improvements</a></li><li><a href='#Groovy16releasenotes-Metaprogrammingenhancements' class='anchor-link'>Metaprogramming enhancements</a></li><li><a href='#Groovy16releasenotes-JSR-223GroovyScriptingEngine' class='anchor-link'>JSR-223 Groovy Scripting Engine</a></li><li><a href='#Groovy16releasenotes-JMXBuilder' class='anchor-link'>JMX Builder</a></li><li><a href='#Groovy16releasenotes-ImprovedOSGisupport' class='anchor-link'>Improved OSGi support</a></li><li><a href='#Groovy16releasenotes-Summary' class='anchor-link'>Summary</a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><a name='releasenotes'></a><h1>Release notes for Groovy 1.6</h1><div class="sect1">
+<h2 id="_overview_of_groovy_1_6">Overview of Groovy 1.6</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As we shall see in this article, the main highlights of this Groovy 1.6
+release are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Greater compile-time and runtime performance improvements</strong></p>
+</li>
+<li>
+<p>Multiple assignments</p>
+</li>
+<li>
+<p>Optional return in <code>if</code>/<code>else</code> and <code>try</code>/<code>catch</code> blocks</p>
+</li>
+<li>
+<p>Java 5 annotation definition</p>
+</li>
+<li>
+<p><strong>AST transformations</strong> and all the provided transformation annotations
+like <code>@Singleton</code>, <code>@Lazy</code>, <code>@Immutable</code>, <code>@Delegate</code> and friends</p>
+</li>
+<li>
+<p>The Grape module and dependency system and its <code>@Grab</code> transformation</p>
+</li>
+<li>
+<p>Various Swing builder improvements, thanks to the Swing
+/ <a href="http://griffon-framework.org/">Griffon</a> team, as well as several Swing
+console improvements</p>
+</li>
+<li>
+<p>The integration of <strong>JMX builder</strong></p>
+</li>
+<li>
+<p>Various <strong>metaprogramming improvements</strong>, like the EMC DSL, per-instance
+metaclasses even for POJOs, and runtime mixins</p>
+</li>
+<li>
+<p><strong>JSR-223</strong> scripting engine built-in</p>
+</li>
+<li>
+<p>Out-of-the-box <strong>OSGi readiness</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All those improvements and new features serve one goal: <strong>helping
+developers be more productive and more agile</strong>, by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Focusing more on the task at hand than on boiler-plate technical code</p>
+</li>
+<li>
+<p>Leveraging existing Enterprise APIs rather than reinventing the wheel</p>
+</li>
+<li>
+<p>Improving the overall performance and quality of the language</p>
+</li>
+<li>
+<p>Enabling developers to customize the language at will to derive their
+own Domain-Specific Languages</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>But beyond all these important aspects, <strong>Groovy is not just a language,
+it&#8217;s a whole ecosystem</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The improvements in Groovy&#8217;s generated bytecode information helps
+capable tools coverage
+like <a href="http://cobertura.github.io/cobertura/">Cobertura</a> and
+its Groovy support, or pave the way for new utilities
+like <a href="http://codenarc.sourceforge.net/">CodeNarc</a> for static code analysis
+for Groovy.</p>
+</div>
+<div class="paragraph">
+<p>The malleability of the syntax of the language and its metaprogramming
+capabilities give birth to advanced testing tools such as
+the <a href="http://easyb.org/">Easyb</a> Behavior-Driven-Development project,
+the <a href="http://code.google.com/p/gmock/">GMock</a> mocking library or
+the <a href="http://code.google.com/p/spock/">Spock</a> testing and specification
+framework.</p>
+</div>
+<div class="paragraph">
+<p>Again, Groovy&#8217;s flexibility and expressiveness and its scripting
+capabilities open the doors to advanced build scripting or
+infrastructure systems for your continuous integration practices and
+project build solutions, such
+as <a href="https://gant.github.io/">Gant</a> and <a href="http://www.gradle.org/">Gradle</a>.</p>
+</div>
+<div class="paragraph">
+<p>At the tooling level, Groovy also progresses, for instance with
+its <code>groovydoc</code> Ant task to let you generate proper JavaDoc covering,
+documenting and interlinking both your Groovy and Java source files for
+your Groovy/Java mixed projects.</p>
+</div>
+<div class="paragraph">
+<p>And at the same time, IDE makers improve their support for Groovy, by
+giving users powerful weapons such as cross-language code refactoring,
+profound understanding of dynamic language idioms, code completion, and
+more, to make developers productive when using Groovy in their projects.</p>
+</div>
+<div class="paragraph">
+<p>Now, armed with this knowledge of the Groovy world, it&#8217;s time to dive
+into the novelties of Groovy 1.6!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-Performanceimprovements">Performance improvements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A lot of care has been taken to improve both the compile-time and
+runtime performance of Groovy, compared to previous releases.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>compiler is 3 to 5 times faster</strong> than in previous releases. This
+improvement has also been back-ported in the 1.5.x branch, so that both
+the old maintenance branch and the current stable branch benefit from
+this work. Thanks to class lookup caches, the bigger the project, the
+faster the compilation will be.</p>
+</div>
+<div class="paragraph">
+<p>However, the most noticeable changes will be in the general runtime
+performance improvements of Groovy. We used several benchmarks from
+the <a href="https://salsa.debian.org/benchmarksgame-team/archive-alioth-benchmarksgame/tree/master/contributed-source-code/shootout">Great Language Shootout</a> to
+measure our progress. On those we selected, compared to the old Groovy
+1.5.x line, the*performance improvements ranged from 150% to 460%*.
+Micro-benchmarks obviously rarely reflect the kind of code you have in
+your own projects, but the overall performance of your projects should
+improve significantly.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-Multipleassignments">Multiple assignments</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Groovy 1.6, there is only one syntax addition for being able to
+define and assign several variables at once:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def (a, b) = [1, 2]
+
+assert a == 1
+assert b == 2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A more meaningful example may be methods returning longitude and latitude
+coordinates. If these coordinates are represented as a list of two
+elements, you can easily get back to each element as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def geocode(String location) {
+    // implementation returns [48.824068, 2.531733] for Paris, France
+}
+
+def (lat, long) = geocode("Paris, France")
+
+assert lat == 48.824068
+assert long == 2.531733</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And you can also define the types of the variables in one shot as
+follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def (int i, String s) = [1, 'Groovy']
+
+assert i == 1
+assert s == 'Groovy'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the assignment (with prior definition of the variables), just omit
+the <code>def</code> keyword:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def firstname, lastname
+
+(firstname, lastname) = "Guillaume Laforge".tokenize()
+
+assert firstname == "Guillaume"
+assert lastname == "Laforge"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the list on the right-hand side contains more elements than the
+number of variables on the left-hand side, only the first elements will
+be assigned in order into the variables. Also, when there are less
+elements than variables, the extra variables will be assigned null.</p>
+</div>
+<div class="paragraph">
+<p>So for the case with more variables than list elements, here, <code>c</code> will
+be <code>null</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def elements = [1, 2]
+def (a, b, c) = elements
+
+assert a == 1
+assert b == 2
+assert c == null</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Whereas in the case where there are more list elements than variables,
+we&#8217;ll get the following expectations:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def elements = [1, 2, 3, 4]
+def (a, b, c) = elements
+
+assert a == 1
+assert b == 2
+assert c == 3</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the curious minds, supporting multiple assignments also means we can
+do the standard school swap case in one line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">// given those two variables
+def a = 1, b = 2
+
+// swap variables with a list
+(a, b) = [b, a]
+
+assert a == 2
+assert b == 1</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-Annotationdefinition">Annotation definition</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Actually, when I said that multiple assignments were the sole syntax
+addition, it&#8217;s not entirely true. Groovy supported the syntax for
+annotation definition even in Groovy 1.5, but we had not implemented the
+feature completely. Fortunately, this is now fixed, and it wraps up all
+the Java 5 features supported by Groovy, such as <strong>static
+imports</strong>, <strong>generics</strong>, <strong>annotations</strong>, and <strong>enums</strong>, making Groovy
+the <strong>sole alternative dynamic language for the JVM supporting all those
+Java 5 features</strong>, which is critical for a seamless Java integration
+story, and for the usage in Enterprise frameworks relying on
+annotations, generics and more, like JPA, EJB3, Spring, TestNG, etc.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-Optionalreturnforifelseandtrycatchfinallyblocks">Optional return for if/else and try/catch/finally blocks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is now possible for <code>if/else</code> and <code>try/catch/finally</code> blocks to
+return a value when they are the last expression in a method or a
+closure. No need to explicitly use the <code>return</code> keyword inside these
+constructs, as long as they are the latest expression in the block of
+code.</p>
+</div>
+<div class="paragraph">
+<p>As an example, the following method will return <code>1</code>, although
+the <code>return</code> keyword was omitted.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def method() {
+    if (true) 1 else 0
+}
+
+assert method() == 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For <code>try/catch/finally</code> blocks, the last expression evaluated is the one
+being returned. If an exception is thrown in the <code>try</code> block, the last
+expression in the <code>catch</code> block is returned instead. Note
+that <code>finally</code> blocks don&#8217;t return any value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def method(bool) {
+    try {
+        if (bool) throw new Exception("foo")
+        1
+    } catch(e) {
+        2
+    } finally {
+        3
+    }
+}
+
+assert method(false) == 1
+assert method(true) == 2</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-ASTTransformations">AST Transformations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Although at times, it may sound like a good idea to extend the syntax of
+Groovy to implement new features (like this is the case for instance for
+multiple assignments), most of the time, we can&#8217;t just add a new keyword
+to the grammar, or create some new syntax construct to represent a new
+concept. However, with the idea of AST (Abstract Syntax Tree)
+Transformations, we are able to tackle new and innovative ideas without
+necessary grammar changes.</p>
+</div>
+<div class="paragraph">
+<p>When the Groovy compiler compiles Groovy scripts and classes, at some
+point in the process, the source code will end up being represented in
+memory in the form of a Concrete Syntax Tree, then transformed into an
+Abstract Syntax Tree. The purpose of AST Transformations is to let
+developers hook into the compilation process to be able to modify the
+AST before it is turned into bytecode that will be run by the JVM.</p>
+</div>
+<div class="paragraph">
+<p><strong>AST Transformations provides Groovy with improved compile-time
+metaprogramming capabilities</strong> allowing powerful flexibility at the
+language level, without a runtime performance penalty.</p>
+</div>
+<div class="paragraph">
+<p>There are two kinds of transformations: global and local
+transformations.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Global transformations are applied to by the compiler on the code
+being compiled, wherever the transformation apply. A JAR added to the
+classpath of the compiler should contain a service locator file
+at <code>META-INF/services/org.codehaus.groovy.transform.ASTTransformation</code> with
+a line with the name of the transformation class. The transformation
+class must have a no-args constructor and implement
+the `org.codehaus.groovy.transform.ASTTransformation`interface. It will
+be run against every source in the compilation, so be sure to not create
+transformations which scan all the AST in an expansive and
+time-consuming manner, to keep the compiler fast.</p>
+</li>
+<li>
+<p>Local transformations are transformations applied locally by
+annotating code elements you want to transform. For this, we reuse the
+annotation notation, and those annotations should
+implement <code>org.codehaus.groovy.transform.ASTTransformation</code>. The
+compiler will discover them and apply the transformation on these code
+elements.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Groovy 1.6 provides several local transformation annotations, in the
+Groovy Swing Builder for data binding (<code>@Bindable</code> and <code>@Vetoable</code>), in
+the Grape module system for adding script library dependencies
+(<code>@Grab</code>), or as general language features without requiring any syntax
+change to support them
+(<code>@Singleton</code>, <code>@Immutable</code>, <code>@Delegate</code>, <code>@Lazy</code>, <code>@Newify</code>, <code>@Category</code>, <code>@Mixin</code> and <code>@PackageScope</code>).
+Let&#8217;s have a look at some of these transformations
+(<code>@Bindable</code> and <code>@Vetoable</code> will be covered in the section related to
+the Swing enhancements, and <code>@Grab</code> in the section about Grape).</p>
+</div>
+<div class="sect2">
+<h3 id="Groovy16releasenotes-Singleton">@Singleton</h3>
+<div class="paragraph">
+<p>Whether the singleton is pattern or an anti-pattern, there are still
+some cases where we need to create singletons. We&#8217;re used to create a
+private constructor, a <code>getInstance()</code> method for a static field or even
+an initialized <code>public static final</code> field. So instead of writing code
+like this in Java:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">public class T {
+    public static final T instance = new T();
+    private T() {}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You just need to annotate your type with the <code>@Singleton</code> annotation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@Singleton class T {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The singleton instance can then simply be accessed
+with <code>T.instance</code> (direct public field access).</p>
+</div>
+<div class="paragraph">
+<p>You can also have the lazy loading approach with an additional
+annotation parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@Singleton(lazy = true) class T {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Would become more or less equivalent to this Groovy class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class T {
+    private static volatile T instance
+    private T() {}
+    static T getInstance () {
+        if (instance) {
+            instance
+        } else {
+            synchronized(T) {
+                if (instance) {
+                    instance
+                } else {
+                    instance = new T ()
+                }
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lazy or not, once again, to access the instance, simply
+do <code>T.instance</code> (property access, shortcut for <code>T.getInstance()</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy16releasenotes-Immutable">@Immutable</h3>
+<div class="paragraph">
+<p>Immutable objects are ones which don&#8217;t change after initial creation.
+Such objects are frequently desirable because they are simple and can be
+safely shared even in multi-threading contexts. This makes them great
+for functional and concurrent scenarios. The rules for creating such
+objects are well-known:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No mutators (methods that modify internal state)</p>
+</li>
+<li>
+<p>Class must be final</p>
+</li>
+<li>
+<p>Fields must be private and final</p>
+</li>
+<li>
+<p>Defensive copying of mutable components</p>
+</li>
+<li>
+<p><code>equals()</code>, <code>hashCode()</code> and <code>toString()</code> must be implemented in terms
+of the fields if you want to compare your objects or use them as keys in
+e.g. maps</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Instead of writing a very long Java or Groovy class mimicking this
+immutability behavior, Groovy lets you just write an immutable class as
+follow:
+ </p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@Immutable final class Coordinates {
+    Double latitude, longitude
+}
+
+def c1 = new Coordinates(latitude: 48.824068, longitude: 2.531733)
+def c2 = new Coordinates(48.824068, 2.531733)
+
+assert c1 == c2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All the boiler-plate code is generated at compile-time for you! The
+example shows that to instantiate such immutable coordinates, you can
+use one of the two constructors created by the transformation, one
+taking a map whose keys are the properties to set to the values
+associated with those keys, and the other taking the values of the
+properties as parameters. The <code>assert</code> also shows that <code>equals()</code> was
+implemented and allows us to properly compare such immutable objects.</p>
+</div>
+<div class="paragraph">
+<p>You can have a look at
+the <a href="http://docs.groovy-lang.org/latest/html/gapi/groovy/transform/Immutable.html">details of the implementation</a> of this transformation. For the record, the Groovy
+example above using the`@Immutable` transformation is over 50 lines of
+equivalent Java code.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy16releasenotes-Lazy">@Lazy</h3>
+<div class="paragraph">
+<p>Another transformation is <code>@Lazy</code>. Sometimes, you want to handle the
+initialization of a field of your class lazily, so that its value is
+computed only on first use, often because it may be time-consuming or
+memory-expensive to create. The usual approach is to customize the
+getter of said field, so that it takes care of the initialization when
+the getter is called the first time. But in Groovy 1.6, you can now use
+the <code>@Lazy</code> annotation for that purpose:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Person {
+    @Lazy pets = ['Cat', 'Dog', 'Bird']
+}
+
+def p = new Person()
+assert !(p.dump().contains('Cat'))
+
+assert p.pets.size() == 3
+assert p.dump().contains('Cat')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the case of complex computation for initializing the field, you may
+need to call some method for doing the work, instead of a value like our
+pets list. This is then possible to have the lazy evaluation being done
+by a closure call, as the following example shows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Person {
+    @Lazy List pets = { /* complex computation here */ }()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There is also an option for leveraging Soft references for garbage
+collection friendliness for expensive data structures that may be
+contained by such lazy fields:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Person {
+    @Lazy(soft = true) List pets = ['Cat', 'Dog', 'Bird']
+}
+
+def p = new Person()
+assert p.pets.contains('Cat')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The internal field created by the compiler for <code>pets</code> will actually be a
+Soft reference, but accessing <code>p.pets</code> directly will return the value
+(ie. the list of pets) held by that reference, making the use of the
+soft reference transparent to the user of that class.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy16releasenotes-Delegate">@Delegate</h3>
+<div class="paragraph">
+<p>Java doesn&#8217;t provide any built-in delegation mechanism, and so far
+Groovy didn&#8217;t either. But with the <code>@Delegate</code> transformation, a class
+field or property can be annotated and become an object to which method
+calls are delegated. In the following example, an <code>Event</code> class has a
+date delegate, and the compiler will delegate all of <code>Date&#8217;s methods
+invoked on the `Event</code> class to the <code>Date</code> delegate. As shown in the
+latest <code>assert</code>, the <code>Event</code> class has got a <code>before(Date)</code> method, and
+all of `Date&#8217;s methods.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import java.text.SimpleDateFormat
+
+class Event {
+    @Delegate Date when
+    String title, url
+}
+
+def df = new SimpleDateFormat("yyyy/MM/dd")
+
+def gr8conf = new Event(title: "GR8 Conference",
+                          url: "http://www.gr8conf.org",
+                         when: df.parse("2009/05/18"))
+def javaOne = new Event(title: "JavaOne",
+                          url: "http://java.sun.com/javaone/",
+                         when: df.parse("2009/06/02"))
+
+assert gr8conf.before(javaOne.when)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Groovy compiler adds all of <code>Date&#8217;s methods to the `Event</code> class,
+and those methods simply delegate the call to the <code>Date</code> field. If the
+delegate is not a final class, it is even possible to make
+the <code>Event</code> class a subclass of <code>Date</code> simply by extending <code>Date</code>, as
+shown below. No need to implement the delegation ourselves by adding
+each and every <code>Date</code> methods to our <code>Event</code> class, since the compiler
+is friendly-enough with us to do the job itself.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Event extends Date {
+    @Delegate Date when
+    String title, url
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the case you are delegating to an interface, however, you don&#8217;t even
+need to explicitly say you implement the interface of the delegate.
+The <code>@Delegate</code> transformation will take care of this and implement that
+interface. So the instances of your class will automatically
+be <code>instanceof</code> the delegate&#8217;s interface.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import java.util.concurrent.locks.*
+
+class LockableList {
+    @Delegate private List list = []
+    @Delegate private Lock lock = new ReentrantLock()
+}
+
+def list = new LockableList()
+
+list.lock()
+try {
+    list &lt;&lt; 'Groovy'
+    list &lt;&lt; 'Grails'
+    list &lt;&lt; 'Griffon'
+} finally {
+    list.unlock()
+}
+
+assert list.size() == 3
+assert list instanceof Lock
+assert list instanceof List</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, our <code>LockableList</code> is now a composite of a list and a
+lock and is <code>instanceof</code> of <code>List</code> and <code>Lock</code>. However, if you didn&#8217;t
+intend your class to be implementing these interfaces, you would still
+be able to do so by specifying a parameter on the annotation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@Delegate(interfaces = false) private List list = []</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy16releasenotes-Newify">@Newify</h3>
+<div class="paragraph">
+<p>The <code>@Newify</code> transformation proposes two new ways of instantiating
+classes. The first one is providing Ruby like approach to creating
+instances with a <code>new()</code> class method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@Newify rubyLikeNew() {
+    assert Integer.new(42) == 42
+}
+
+rubyLikeNew()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But it is also possible to follow the Python approach with omitting
+the <code>new</code> keyword. Imagine the following tree creation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Tree {
+    def elements
+    Tree(Object... elements) { this.elements = elements as List }
+}
+
+class Leaf {
+    def value
+    Leaf(value) { this.value = value }
+}
+
+def buildTree() {
+    new Tree(new Tree(new Leaf(1), new Leaf(2)), new Leaf(3))
+}
+
+buildTree()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The creation of the tree is not very readable because of all
+those <code>new</code> keywords spread across the line. The Ruby approach wouldn&#8217;t
+be more readable, since a <code>new()</code> method call for creating each element
+is needed. But by using <code>@Newify</code>, we can improve our tree building
+slightly to make it easier on the eye:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@Newify([Tree, Leaf]) buildTree() {
+    Tree(Tree(Leaf(1), Leaf(2)), Leaf(3))
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll also notice that we just allowed <code>Tree</code> and <code>Leaf</code> to
+be <em>newified</em>. By default, under the scope which is annotated, all
+instantiations are_newified_, but you can limit the reach by specifying
+the classes you&#8217;re interested in. Also, note that for our example,
+perhaps a Groovy builder may have been more appropriate, since its
+purpose is to indeed create any kind of hierarchical / tree structure.</p>
+</div>
+<div class="paragraph">
+<p>If we take another look at our coordinates example from a few sections
+earlier, using both <code>@Immutable</code> and <code>@Newify</code> can be interesting for
+creating a path with a concise but type-safe manner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@Immutable final class Coordinates {
+    Double latitude, longitude
+}
+
+@Immutable final class Path {
+    Coordinates[] coordinates
+}
+
+@Newify([Coordinates, Path])
+def build() {
+    Path(
+        Coordinates(48.824068, 2.531733),
+        Coordinates(48.857840, 2.347212),
+        Coordinates(48.858429, 2.342622)
+    )
+}
+
+assert build().coordinates.size() == 3</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A closing remark here: since a <code>Path(Coordinates[] coordinates)</code> was
+generated, we can use that constructor in a <em>varargs way</em> in Groovy,
+just as if it had been defined as <code>Path(Coordinates&#8230;&#8203; coordinates)</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy16releasenotes-CategoryandMixin">@Category and @Mixin</h3>
+<div class="paragraph">
+<p>If you&#8217;ve been using Groovy for a while, you&#8217;re certainly familiar with
+the concept of Categories. It&#8217;s a mechanism to extend existing types
+(even final classes from the JDK or third-party libraries), to add new
+methods to them. This is also a technique which can be used when writing
+Domain-Specific Languages. Let&#8217;s consider the example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">final class Distance {
+    def number
+    String toString() { "${number}m" }
+}
+
+class NumberCategory {
+    static Distance getMeters(Number self) {
+        new Distance(number: self)
+    }
+}
+
+use(NumberCategory) {
+    def dist = 300.meters
+
+    assert dist instanceof Distance
+    assert dist.toString() == "300m"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We have a simplistic and fictive <code>Distance</code> class which may have been
+provided by a third-party, who had the bad idea of making the
+class`final` so that nobody could ever extend it in any way. But thanks
+to a Groovy Category, we are able to decorate the <code>Distance</code> type with
+additional methods. Here, we&#8217;re going to add a <code>getMeters()</code> method to
+numbers, by actually decorating the <code>Number</code> type. By adding a getter to
+a number, you&#8217;re able to reference it using the nice property syntax of
+Groovy. So instead of writing <code>300.getMeters()</code>, you&#8217;re able to
+write <code>300.meters</code>.</p>
+</div>
+<div class="paragraph">
+<p>The downside of this category system and notation is that to add
+instance methods to other types, you have to create <code>static</code> methods,
+and furthermore, there&#8217;s a first argument which represents the instance
+of the type we&#8217;re working on. The other arguments are the normal
+arguments the method will take as parameters. So it may be a bit less
+intuitive than a normal method definition we would have added
+to <code>Distance</code>, should we have had access to its source code for
+enhancing it. Here comes the <code>@Category</code> annotation, which transforms a
+class with instance methods into a Groovy category:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@Category(Number)
+class NumberCategory {
+    Distance getMeters() {
+        new Distance(number: this)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>No need for declaring the methods <code>static</code>, and the <code>this</code> you use here
+is actually the number on which the category will apply, it&#8217;s not the
+real <code>this</code> of the category instance should we create one. Then to use
+the category, you can continue to use the `use(Category) {}`construct.
+What you&#8217;ll notice however is that these kind of categories only apply
+to one single type at a time, unlike classical categories which can be
+applied to any number of types.</p>
+</div>
+<div class="paragraph">
+<p>Now, pair <code>@Category</code> extensions to the <code>@Mixin</code> transformation, and you
+can mix in various behavior in a class, with an approach similar to
+multiple inheritance:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@Category(Vehicle) class FlyingAbility {
+    def fly() { "I'm the ${name} and I fly!" }
+}
+
+@Category(Vehicle) class DivingAbility {
+    def dive() { "I'm the ${name} and I dive!" }
+}
+
+interface Vehicle {
+    String getName()
+}
+
+@Mixin(DivingAbility)
+class Submarine implements Vehicle {
+    String getName() { "Yellow Submarine" }
+}
+
+@Mixin(FlyingAbility)
+class Plane implements Vehicle {
+    String getName() { "Concorde" }
+}
+
+@Mixin([DivingAbility, FlyingAbility])
+class JamesBondVehicle implements Vehicle {
+    String getName() { "James Bond's vehicle" }
+}
+
+assert new Plane().fly() ==
+       "I'm the Concorde and I fly!"
+assert new Submarine().dive() ==
+       "I'm the Yellow Submarine and I dive!"
+
+assert new JamesBondVehicle().fly() ==
+       "I'm the James Bond's vehicle and I fly!"
+assert new JamesBondVehicle().dive() ==
+       "I'm the James Bond's vehicle and I dive!"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You don&#8217;t inherit from various interfaces and inject the same behavior
+in each subclass, instead you mixin the categories into your class.
+Here, our marvelous James Bond vehicle gets the flying and diving
+capabilities through mixins.</p>
+</div>
+<div class="paragraph">
+<p>An important point to make here is that unlike <code>@Delegate</code> which
+can <em>inject</em> interfaces into the class in which the delegate is
+declared,<code>@Mixin</code> just does runtime mixing — as we shall see in the
+metaprogramming enhancements further down in this article.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy16releasenotes-PackageScope">@PackageScope</h3>
+<div class="paragraph">
+<p>Groovy&#8217;s convention for properties is that any <em>field</em> without any
+visibility modifier is exposed as a property, with a getter and a setter
+transparently generated for you. For instance, this <code>Person</code> class
+exposes a getter <code>getName()</code> and a setter <code>setName()</code> for a
+private <code>name</code> field:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Person {
+    String name
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which is equivalent to this Java class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">public class Person {
+    private String name;
+    public String getName() { return name; }
+    public void setName(name) { this.name = name; }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That said, this approach has one drawback in that you don&#8217;t have the
+possibility to define a field with package-scope visibility. To be able
+to expose a field with package-scope visibility, you can now annotate
+your field with the <code>@PackageScope</code> annotation.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-GrapetheGroovyAdaptableAdvancedPackagingEngine">Grape, the Groovy Adaptable / Advanced Packaging Engine</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To continue our overview of the AST transformations, we&#8217;ll now learn
+more about Grape, a mechanism to add and leverage dependencies in your
+Groovy scripts. Groovy scripts can require certain libraries: by
+explicitly saying so in your script with the <strong>@Grab</strong> transformation or
+with the <strong>Grape.grab()</strong> method call, the runtime will find the needed
+JARs for you. With Grape, you can easily distribute scripts without
+their dependencies, and have them downloaded on first use of your script
+and cached. Under the hood, Grape uses Ivy and Maven repositories
+containing the libraries you may need in your scripts.</p>
+</div>
+<div class="paragraph">
+<p>Imagine you want to get the links of all the PDF documents referenced by
+the Java 5 documentation. You want to parse the HTML page as if it were
+an XML-compliant document (which it is not) with the Groovy <code>XmlParser</code>,
+so you can use the TagSoup SAX-compliant parser which transforms HTML
+into well-formed valid XML. You don&#8217;t even have to mess up with your
+classpath when running your script, just_grab_ the TagSoup library
+through Grape:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import org.ccil.cowan.tagsoup.Parser
+
+// find the PDF links in the Java 1.5.0 documentation
+@Grab(group='org.ccil.cowan.tagsoup', module='tagsoup', version='0.9.7')
+def getHtml() {
+    def tagsoupParser = new Parser()
+    def parser = new XmlParser(tagsoupParser)
+    parser.parse("http://java.sun.com/j2se/1.5.0/download-pdf.html")
+}
+
+html.body.'**'.a.@href.grep(~/.*\.pdf/).each{ println it }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the pleasure of giving another example: let&#8217;s use
+the <a href="http://eclipse.org/jetty/">Jetty servlet container</a> to
+expose <a href="https://docs.groovy-lang.org/latest/html/documentation/template-engines.html">Groovy templates</a> in
+a few lines of code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import org.mortbay.jetty.Server
+import org.mortbay.jetty.servlet.*
+import groovy.servlet.*
+
+@Grab(group = 'org.mortbay.jetty', module = 'jetty-embedded', version = '6.1.0')
+def runServer(duration) {
+    def server = new Server(8080)
+    def context = new Context(server, "/", Context.SESSIONS);
+    context.resourceBase = "."
+    context.addServlet(TemplateServlet, "*.gsp")
+    server.start()
+    sleep duration
+    server.stop()
+}
+
+runServer(10000)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Grape will download Jetty and its dependencies on first launch of this
+script, and cache them. We&#8217;re creating a new Jetty <code>Server</code> on port
+8080, then expose Groovy&#8217;s <code>TemplateServlet</code> at the root of the context
+— Groovy comes with its own powerful template engine mechanism. We start
+the server and let it run for a certain duration. Each time someone will
+hit http://localhost:8080/somepage.gsp, it will display
+the <code>somepage.gsp</code> template to the user — those template pages should be
+situated in the same directory as this server script.</p>
+</div>
+<div class="paragraph">
+<p>Grape can also be used as a method call instead of as an annotation. You
+can also install, list, resolve dependencies from the command-line using
+the <code>grape</code> command. For <a href="../grape.html">more information on Grape</a>, please refer to the documentation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-Swingbuilderimprovements">Swing builder improvements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To wrap up our overview of AST transformations, let&#8217;s finish by speaking
+about two transformations very useful to Swing
+developers:`@Bindable` and <code>@Vetoable</code>. When creating Swing UIs, you&#8217;re
+often interested in monitoring the changes of value of certain UI
+elements. For this purpose, the usual approach is to use
+JavaBeans `PropertyChangeListener`s to be notified when the value of a
+class field changes. You then end up writing this very common
+boiler-plate code in your Java beans:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import com.googlecode.openbeans.PropertyChangeSupport;
+import com.googlecode.openbeans.PropertyChangeListener;
+
+public class MyBean {
+    private String prop;
+
+    PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
+    public void addPropertyChangeListener(PropertyChangeListener l) {
+        pcs.add(l);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener l) {
+        pcs.remove(l);
+    }
+
+    public String getProp() {
+        return prop;
+    }
+
+    public void setProp(String prop) {
+        pcs.firePropertyChanged("prop", this.prop, this.prop = prop);
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Fortunately, with Groovy and the <code>@Bindable</code> annotation, this code can
+be greatly simplified:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class MyBean {
+    @Bindable String prop
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now pair that with Groovy&#8217;s Swing builder new <code>bind()</code> method, define a
+text field and bind its value to a property of your data model:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">textField text: bind(source: myBeanInstance, sourceProperty: 'prop')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or even:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">textField text: bind { myBeanInstance.prop }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The binding also works with simple expressions in the closure, for
+instance something like this is possible too:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">bean location: bind { pos.x + ', ' + pos.y }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You may also be interested in having a look
+at <a href="https://docs.groovy-lang.org/latest/html/api/groovy/util/ObservableMap.html">ObservableMap</a> and <a href="https://docs.groovy-lang.org/latest/html/api/groovy/util/ObservableList.html">ObservableList</a>,
+for a similar mechanism on maps and lists.</p>
+</div>
+<div class="paragraph">
+<p>Along with <code>@Bindable</code>, there&#8217;s also a <code>@Vetoable</code> transformation for
+when you need to be able to veto some property change. Let&#8217;s consider
+a <code>Trumpetist</code> class, where the performer&#8217;s name is not allowed to
+contain the letter `z':</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import com.googlecode.openbeans.*
+import groovy.beans.Vetoable
+
+class Trumpetist {
+    @Vetoable String name
+}
+
+def me = new Trumpetist()
+me.vetoableChange = { PropertyChangeEvent pce -&gt;
+    if (pce.newValue.contains('z'))
+        throw new PropertyVetoException("The letter 'z' is not allowed in a name", pce)
+}
+
+me.name = "Louis Armstrong"
+
+try {
+    me.name = "Dizzy Gillespie"
+    assert false: "You should not be able to set a name with letter 'z' in it."
+} catch (PropertyVetoException pve) {
+    assert true
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Looking at a more thorough Swing builder example with binding:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.swing.SwingBuilder
+import groovy.beans.Bindable
+import static javax.swing.JFrame.EXIT_ON_CLOSE
+
+class TextModel {
+    @Bindable String text
+}
+
+def textModel = new TextModel()
+
+SwingBuilder.build {
+    frame( title: 'Binding Example (Groovy)', size: [240,100], show: true,
+          locationRelativeTo: null, defaultCloseOperation: EXIT_ON_CLOSE ) {
+        gridLayout cols: 1, rows: 2
+        textField id: 'textField'
+        bean textModel, text: bind{ textField.text }
+        label text: bind{ textModel.text }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Running this script shows up the frame below with a text field and a
+label below, and the label&#8217;s text is bound on the text field&#8217;s content.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://web.archive.org/web/20160102200635/http://www.infoq.com/resource/articles/groovy-1-6/en/resources/sc-without-visu.png" alt="image"></span></p>
+</div>
+<div class="paragraph">
+<p>SwingBuilder has evolved so nicely in the past year that the Groovy
+Swing team decided to launch a new project based on it, and on the
+Grails foundations: project <a href="http://griffon-framework.org/">Griffon</a> was
+born. Griffon proposes to bring the <em>Convention over
+Configuration</em> paradigm of Grails, as well as all its project structure,
+plugin system, gant scripting capabilities, etc.</p>
+</div>
+<div class="paragraph">
+<p>If you are developing Swing rich clients, make sure to have a look
+at <a href="http://griffon-framework.org/">Griffon</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-Swingconsoleimprovements">Swing console improvements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Swinging along the topic of UIs, the Swing console has also evolved:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The console can be run as an Applet (<code>groovy.ui.ConsoleApplet</code>).</p>
+</li>
+<li>
+<p>Beyond syntax highlighting, the editor also supports code indentation.</p>
+</li>
+<li>
+<p>Drag&#8217;n&#8217;dropping a Groovy script over the text area will open the file.</p>
+</li>
+<li>
+<p>You can modify the classpath with which the script in the console is
+being run, by adding a new JAR or a directory to the classpath as shown
+in the screenshot below.</p>
+<div class="paragraph">
+<p><span class="image"><img src="https://web.archive.org/web/20160102200636/http://www.infoq.com/resource/articles/groovy-1-6/en/resources/sc-add-jar.png" alt="image"></span></p>
+</div>
+</li>
+<li>
+<p>A couple options have been added to the view menu item: for showing
+the script being run in the output area, and for visualizing the
+execution results.</p>
+<div class="paragraph">
+<p><span class="image"><img src="https://web.archive.org/web/20160102200636/http://www.infoq.com/resource/articles/groovy-1-6/en/resources/sc-options.png" alt="image"></span></p>
+</div>
+</li>
+<li>
+<p>When an exception is thrown in your script, the lines of the
+stacktrace relative to your script are clickable, for easy navigation to
+the point where the error occurred.</p>
+<div class="paragraph">
+<p><span class="image"><img src="https://web.archive.org/web/20160102200636/http://www.infoq.com/resource/articles/groovy-1-6/en/resources/sc-click-stack.png" alt="image"></span></p>
+</div>
+</li>
+<li>
+<p>Also, when your script contains compilation errors, the error messages are clickable too.</p>
+<div class="paragraph">
+<p><span class="image"><img src="https://web.archive.org/web/20160102200636/http://www.infoq.com/resource/articles/groovy-1-6/en/resources/sc-click-comp-error.png" alt="image"></span></p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Back on the visualization of the results in the script output area, a
+fun system was added to let you customize how certain results are
+rendered. When you execute a script returning a map of Jazz musicians,
+you may see something like this in your console:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://web.archive.org/web/20160102200636/http://www.infoq.com/resource/articles/groovy-1-6/en/resources/sc-without-visu.png" alt="image"></span></p>
+</div>
+<div class="paragraph">
+<p>What you see here is the usual textual representation of a <code>Map</code>. But,
+what if we enabled custom visualization of certain results? The Swing
+console allows you to do just that. First of all, you have to ensure
+that the visualization option is
+ticked: <code>View &#8594; Visualize Script Results</code> — for the record, all
+settings of the Groovy Console are stored and remembered thanks to the
+Preference API. There are a few result visualizations built-in: if the
+script returns a <code>java.awt.Image</code>, a <code>javax.swing.Icon</code>, or
+a <code>java.awt.Component</code> with no parent, the object is displayed instead
+of its <code>toString()</code> representation. Otherwise, everything else is still
+just represented as text. Now, create the following Groovy script
+in <code>~/.groovy/OutputTransforms.groovy</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import javax.swing.*
+
+transforms &lt;&lt; { result -&gt;
+    if (result instanceof Map) {
+        def table = new JTable(
+            result.collect{ k, v -&lt;
+                [k, v?.inspect()] as Object[]
+            } as Object[][],
+            ['Key', 'Value'] as Object[])
+        table.preferredViewportSize = table.preferredSize
+        return new JScrollPane(table)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Groovy Swing console will execute that script on startup, injecting
+a <code>transforms</code> list in the binding of the script, so that you can add
+your own script results representations. In our case, we transform
+the <code>Map</code> into a nice-looking Swing <code>JTable</code>. And we&#8217;re now able to
+visualize maps in a friendly and attractive fashion, as the screenshot
+below shows:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://web.archive.org/web/20160102200636/http://www.infoq.com/resource/articles/groovy-1-6/en/resources/sc-with-visu.png" alt="image"></span></p>
+</div>
+<div class="paragraph">
+<p>The Swing console is obviously not to be confused with a real full-blown
+IDE, but for daily scripting tasks, the console is a handy tool in your
+toolbox.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-Metaprogrammingenhancements">Metaprogramming enhancements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>What makes Groovy a dynamic language is its Meta-Object Protocol and its
+concept of metaclasses which represent the runtime behavior of your
+classes and instances. In Groovy 1.6, we continue improving this dynamic
+runtime system, bringing several new capabilities into the mix.</p>
+</div>
+<div class="sect2">
+<h3 id="Groovy16releasenotes-PerinstancemetaclassevenforPOJOs">Per instance metaclass even for POJOs</h3>
+<div class="paragraph">
+<p>So far, Groovy POGOs (Plain Old Groovy Objects) could have a
+per-instance metaclass, but POJOs could only have one metaclass for all
+instances (ie. a per-class metaclass). This is now not the case anymore,
+as POJOs can have a per-instance metaclass too. Also, setting the
+metaclass property to null will restore the default metaclass.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy16releasenotes-ExpandoMetaClassDSL">ExpandoMetaClass DSL</h3>
+<div class="paragraph">
+<p>Initially developed under the <a href="http://grails.org/">Grails</a> umbrella and
+integrated back into Groovy 1.5, ExpandoMetaClass is a very handy way
+for changing the runtime behavior of your objects and classes, instead
+of writing full-blow <code>MetaClass</code> classes. Each time, we want to add /
+change several properties or methods of an existing type, there is too
+much of a repetition of <code>Type.metaClass.xxx</code>. Take for example this
+extract of
+a <a href="http://groovy.dzone.com/news/domain-specific-language-unit-">Unit
+manipulation DSL</a> dealing with operator overloading:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">Number.metaClass.multiply = { Amount amount -&gt; amount.times(delegate) }
+Number.metaClass.div =      { Amount amount -&gt; amount.inverse().times(delegate) }
+
+Amount.metaClass.div =      { Number factor -&gt; delegate.divide(factor) }
+Amount.metaClass.div =      { Amount factor -&gt; delegate.divide(factor) }
+Amount.metaClass.multiply = { Number factor -&gt; delegate.times(factor) }
+Amount.metaClass.power =    { Number factor -&gt; delegate.pow(factor) }
+Amount.metaClass.negative = { -&gt; delegate.opposite() }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The repetition, here, looks obvious. But with the ExpandoMetaClass DSL,
+we can streamline the code by regrouping the operators per type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">Number.metaClass {
+    multiply { Amount amount -&gt; amount.times(delegate) }
+    div      { Amount amount -&gt; amount.inverse().times(delegate) }
+}
+
+Amount.metaClass {
+    div &lt;&lt;   { Number factor -&gt; delegate.divide(factor) }
+    div &lt;&lt;   { Amount factor -&gt; delegate.divide(factor) }
+    multiply { Number factor -&gt; delegate.times(factor) }
+    power    { Number factor -&gt; delegate.pow(factor) }
+    negative { -&gt; delegate.opposite() }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>metaClass()</code> method takes a closure as single argument, containing
+the various definitions of the methods and properties, instead of
+repeating the <code>Type.metaClass</code> on each line. When there is just one
+method of a given name, use the pattern <code>methodName { /* closure <strong>/ }</code>,
+but when there are several, you should use the append operator and
+follow the patten <code>methodName &lt;&lt; { /</strong> closure */ }</code>. Static methods can
+also be added through this mechanism, so instead of the classical
+approach:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">// add a fqn() method to Class to get the fully
+// qualified name of the class (ie. simply Class#getName)
+Class.metaClass.static.fqn = { delegate.name }
+
+assert String.fqn() == "java.lang.String"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can now do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">Class.metaClass {
+    'static' {
+        fqn { delegate.name }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note here that you have to quote the <code>static</code> keyword, to avoid this
+construct to look like a static initializer. For one off method
+addition, the classical approach is obviously more concise, but when you
+have several methods to add, the EMC DSL makes sense.</p>
+</div>
+<div class="paragraph">
+<p>The usual approach for adding properties to existing classes through
+ExpandoMetaClass is to add a getter and a setter as methods. For
+instance, say you want to add a method that counts the number of words
+in a text file, you could try this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">File.metaClass.getWordCount = {
+    delegate.text.split(/\w/).size()
+}
+
+new File('myFile.txt').wordCount</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When there is some logic inside the getter, this is certainly the best
+approach, but when you just want to have new properties holding simple
+values, through the ExpandoMetaClass DSL, it is possible to define them.
+In the following example, a <code>lastAccessed</code> property is added to
+a <code>Car</code> class — each instance will have its property. Whenever a method
+is called on that car, this property is updated with a newer timestamp.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Car {
+    void turnOn() {}
+    void drive() {}
+    void turnOff() {}
+}
+
+Car.metaClass {
+    lastAccessed = null
+    invokeMethod = { String name, args -&gt;
+        def metaMethod = delegate.metaClass.getMetaMethod(name, args)
+        if (metaMethod) {
+            delegate.lastAccessed = new Date()
+            metaMethod.doMethodInvoke(delegate, args)
+        } else {
+            throw new MissingMethodException(name, delegate.class, args)
+        }
+    }
+}
+
+def car = new Car()
+println "Last accessed: ${car.lastAccessed ?: 'Never'}"
+
+car.turnOn()
+println "Last accessed: ${car.lastAccessed ?: 'Never'}"
+
+car.drive()
+sleep 1000
+println "Last accessed: ${car.lastAccessed ?: 'Never'}"
+
+sleep 1000
+car.turnOff()
+println "Last accessed: ${car.lastAccessed ?: 'Never'}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In our example, in the DSL, we access that property through
+the <code>delegate</code> of the closure,
+with <code>delegate.lastAccessed = new Date()</code>. And we intercept any method
+call thanks to <code>invokeMethod()</code>, delegating to the original method for
+the call, and throwing an exception in case the method doesn&#8217;t exist.
+Later on, you can see by executing this script that <code>lastAccessed</code> is
+updated as soon as we call a method on our instance.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy16releasenotes-Runtimemixins">Runtime mixins</h3>
+<div class="paragraph">
+<p>Last metaprogramming feature we&#8217;ll cover today: runtime
+mixins. <code>@Mixin</code> allowed you to mixin new behavior to classes you owned
+and were designing. But you could not mixin anything to types you didn&#8217;t
+own. Runtime mixins propose to fill that gap by letting you add a mixin
+on any type at runtime. If we think again about our example of vehicles
+with some mixed-in capabilities, if we didn&#8217;t <em>own</em> James Bond&#8217;s vehicle
+and give it some diving ability, we could use this mechanism:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">// provided by a third-party
+interface Vehicle {
+    String getName()
+}
+
+// provided by a third-party
+class JamesBondVehicle implements Vehicle {
+    String getName() { "James Bond's vehicle" }
+}
+
+JamesBondVehicle.mixin DivingAbility, FlyingAbility
+
+assert new JamesBondVehicle().fly() ==
+       "I'm the James Bond's vehicle and I fly!"
+assert new JamesBondVehicle().dive() ==
+       "I'm the James Bond's vehicle and I dive!"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One or more mixins can be passed as argument to the
+static <code>mixin()</code> method added by Groovy on <code>Class</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-JSR-223GroovyScriptingEngine">JSR-223 Groovy Scripting Engine</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before Groovy 1.6, if you wanted to integrate Groovy in your Java
+projects through JSR-223 / <code>javax.script.<strong></code>, you had to download a
+Groovy script engine implementation from java.net, and put the JAR in
+your classpath. This additional step wasn&#8217;t very developer friendly,
+requiring some additional work — the JAR wasn&#8217;t even provided in the
+Groovy distribution. Thankfully, 1.6 comes with an implementation of
+the <code>javax.script.</strong></code> APIs.</p>
+</div>
+<div class="paragraph">
+<p>Below, you&#8217;ll find an example evaluating Groovy expressions (the code is
+in Groovy, but it&#8217;s straightforward to convert it back to Java):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import javax.script.*
+
+def manager = new ScriptEngineManager()
+def engine = manager.getEngineByName("groovy")
+
+assert engine.evaluate("2 + 3") == 5</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please note that the <code>javax.script.*</code> APIs are available only on Java 6.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-JMXBuilder">JMX Builder</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Originating as an <a href="http://code.google.com/p/groovy-jmx-builder/">external
+Open-Source project</a> hosted on Google Code, JMX Builder has been
+integrated in Groovy 1.6, to simplify the life of developers needing to
+interact or expose JMX services. JMX Builder features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Domain Specific Language (DSL) for JMX API using Builder pattern</p>
+</li>
+<li>
+<p>Simplified JMX API&#8217;s programmability</p>
+</li>
+<li>
+<p>Declaratively expose Java/Groovy objects as JMX managed MBeans</p>
+</li>
+<li>
+<p>Support class-embedded or explicit descriptors</p>
+</li>
+<li>
+<p>Inherent support for JMX&#8217;s event model</p>
+</li>
+<li>
+<p>Seamlessly create JMX event broadcasters</p>
+</li>
+<li>
+<p>Attach event listeners as inline closures</p>
+</li>
+<li>
+<p>Use Groovy&#8217;s dynamic nature to easily react to JMX events
+notifications</p>
+</li>
+<li>
+<p>Provides a flexible registration policy for MBean</p>
+</li>
+<li>
+<p>No special interfaces or class path restrictions</p>
+</li>
+<li>
+<p>Shields developer from complexity of JMX API</p>
+</li>
+<li>
+<p>Exposes attribute, constructors, operations, parameters, and
+notifications</p>
+</li>
+<li>
+<p>Simplifies the creation of connector servers and connector clients</p>
+</li>
+<li>
+<p>Support for exporting JMX timers</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can find <a href="../jmx.html">more information on JMX Builder</a> and its very extensive coverage of the JMX
+system. Lots of examples will show you how to create a JMX connector
+server or client, how to easily export POGOs as JMX managed beans, how
+to listen to JMX events, and much more.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-ImprovedOSGisupport">Improved OSGi support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Groovy jar files are released with correct OSGi metadata, so they
+can be loaded as a bundle into any OSGi compliant container, such as
+Eclipse Equinox or Apache Felix.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy16releasenotes-Summary">Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy continues its march towards the goal of <strong>simplifying the life of
+developers</strong>, providing various new features and improvements in this new
+release: AST transformations reducing dramatically the number of lines
+of code to express certain concerns and patterns and opening the
+language to developers for further extension, several <strong>metaprogramming
+enhancements to streamline your code</strong> and let you write <strong>more expressive
+business rules</strong>, and <strong>support for common enterprise APIs</strong> such as Java
+6&#8217;s scripting APIs, JMX management system, or OSGi&#8217;s programming model.
+All of this is done obviously <strong>without compromising on the seamless
+integration with Java</strong>, and furthermore, with a <strong>level of performance
+way higher than previous releases</strong>.</p>
+</div>
+</div>
+</div></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='../learn.html'>Learn</a></li><li><a href='../documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='../support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='../ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='../security.html'>Security</a></li><li><a href='../learn.html#books'>Books</a></li><li><a href='../thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='../faq.html'>FAQ</a></li><li><a href='../search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='../mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='../groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='../events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='../reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='../img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='../js/vendor/jquery-1.10.2.min.js' defer></script><script src='../js/vendor/classie.js' defer></script><script src='../js/vendor/bootstrap.js' defer></script><script src='../js/vendor/sidebarEffects.js' defer></script><script src='../js/vendor/modernizr-2.6.2.min.js' defer></script><script src='../js/plugins.js' defer></script><script src='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js'></script><script>document.addEventListener('DOMContentLoaded',prettyPrint)</script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>

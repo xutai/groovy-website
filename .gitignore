@@ -2,7 +2,9 @@
 *.iml
 *.ipr
 *.iws
-build
+#buildSrc/build
+#generator/build
+#site-user/build
 .gradle
 .classpath
 atlassian-ide-plugin.xml

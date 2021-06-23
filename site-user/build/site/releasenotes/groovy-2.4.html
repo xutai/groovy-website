@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Groovy 2.4 release notes</title><link href='../img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='../css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='../css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='../css/style.css'/><link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='../mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='../groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='../events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='../reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='../index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class=''><a href='../learn.html'>Learn</a></li><li class=''><a href='../documentation.html'>Documentation</a></li><li class=''><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='../support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='../ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='../search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li class='active'><a href='#releasenotes'>Release notes for Groovy 2.4</a></li><li><a href='#Android' class='anchor-link'>Android Support</a></li><li><a href='#Groovy2.4releasenotes-Performanceimprovementsandreducedbytecode' class='anchor-link'>Performance improvements and reduced bytecode</a></li><li><a href='#Groovy2.4releasenotes-TraitsSelfTypeannotation' class='anchor-link'>Traits @SelfType annotation</a></li><li><a href='#Groovy2.4releasenotes-GDKimprovements' class='anchor-link'>GDK improvements</a></li><li><a href='#Groovy2.4releasenotes-ASTtransformations' class='anchor-link'>AST transformations</a></li><li><a href='#Groovy2.4releasenotes-Groovyshimprovements' class='anchor-link'>Groovysh improvements</a></li><li><a href='#Groovy2.4releasenotes-Miscellaneous' class='anchor-link'>Miscellaneous</a></li><li><a href='#Groovy2.4releasenotes-Breakingchanges' class='anchor-link'>Breaking changes</a></li><li><a href='#Groovy2.4releasenotes-Moreinformation' class='anchor-link'>More information</a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><a name='releasenotes'></a><h1>Release notes for Groovy 2.4</h1><div class="sect1">
+<h2 id="Android">Android Support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With Groovy 2.4, you can write Android applications in Groovy!</p>
+</div>
+<div class="paragraph">
+<p>A quick <a href="https://docs.groovy-lang.org/latest/html/documentation/tools-groovyc.html#section-android">getting
+started guide</a> is available on the Groovy website.</p>
+</div>
+<div class="paragraph">
+<p>To build your Android applications with the Groovy support, you’ll be
+able to use
+the <a href="https://github.com/groovy/groovy-android-gradle-plugin">Gradle Groovy Android plugin</a>.</p>
+</div>
+<div class="paragraph">
+<p>The <a href="https://github.com/Arasthel/SwissKnife">SwissKnife</a> library builds
+upon the Groovy support to offer very useful AST transformations that
+kill the usual Android boilerplate code, for instance for dealing with
+UI events, with logic to be run in background threads, or make objects
+easily "parcelables", etc.</p>
+</div>
+<div class="paragraph">
+<p>To further understand the new Android support, you can read the
+following articles by Cédric Champeau:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduction: <a href="http://melix.github.io/blog/2014/06/grooid.html">http://melix.github.io/blog/2014/06/grooid.html</a></p>
+</li>
+<li>
+<p>Technical details: <a href="http://melix.github.io/blog/2014/06/grooid2.html">http://melix.github.io/blog/2014/06/grooid2.html</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>And discover presentations on the Android support:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://speakerdeck.com/melix/groovy-and-android-a-winning-pair-1">Groovy and Android, a winning pair</a> by Cédric Champeau</p>
+</li>
+<li>
+<p><a href="https://speakerdeck.com/glaforge/groovy-on-android-groovy-grails-exchange-2014">Groovy on Android</a> by Guillaume Laforge</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The work on the Android support also lead to various optimizations in
+terms of bytecode generation, as explained further down, as well as, for
+instance, improving the handling of overloaded setters
+(<a href="https://issues.apache.org/jira/browse/GROOVY-2049">GROOVY-2049</a>,<a href="https://issues.apache.org/jira/browse/GROOVY-6084">GROOVY-6084</a>,
+<a href="https://issues.apache.org/jira/browse/GROOVY-2500">GROOVY-2500</a>)
+which are frequent in the Android SDK.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.4releasenotes-Performanceimprovementsandreducedbytecode">Performance improvements and reduced bytecode</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This new major release of Groovy has seen various improvements across
+the board to reduce the quantity of bytecode produced, to lower memory
+consumption of internal data structures, fine tune bytecode for better
+performance.</p>
+</div>
+<div class="paragraph">
+<p>Here are some of the tickets related to the topic:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cheaper comparison operations
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7194">GROOVY-7194</a>)</p>
+</li>
+<li>
+<p>Reduced memory consumption for <code>respondsTo()</code>
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7178">GROOVY-7178</a>)</p>
+</li>
+<li>
+<p>For fully statically compiled classes, MOP related generated methods
+are not needed
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6990">GROOVY-6990</a>)</p>
+</li>
+<li>
+<p>Remove unneeded inner class distributor methods when no inner classes
+are present (<a href="https://issues.apache.org/jira/browse/GROOVY-6993">GROOVY-6993</a>)</p>
+</li>
+<li>
+<p>Removal of the timestamp in Groovy classes
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6308">GROOVY-6308</a>)</p>
+</li>
+<li>
+<p>Optimization of primitive type conversions with the as operator
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7140">GROOVY-7140</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.4releasenotes-TraitsSelfTypeannotation">Traits @SelfType annotation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sometimes, it’s desired to be able to restrict a trait’s application so
+that it can only be applied to subclasses of a certain type. That’s what
+the <code>@SelfType</code> annotation is for
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7134">GROOVY-7134</a>).</p>
+</div>
+<div class="paragraph">
+<p>Here’s a concrete example of <code>@SelfType</code> in action.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.transform.*
+
+class Component {
+   void doSomething() {
+       println "Done!"
+   }
+}
+
+@SelfType(Component)
+@TypeChecked
+trait ComponentDecorator {
+   void logAndDoSomething() {
+       println "Going to do something"
+       doSomething()
+   }
+}
+
+class ConcreteComponent
+   extends Component
+   implements ComponentDecorator {}
+
+def c = new ConcreteComponent()
+c.logAndDoSomething()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>ComponentDecorator</code> trait is calling the <code>doSomething()</code> method from
+the <code>Component</code> sub-class to which it will be applied. If you don’t
+specify the <code>@SelfType(Component)</code> annotation, when using static type
+checking or static compilation, the compiler will throw a compilation
+error as it wouldn’t know where the <code>doSomething()</code> method would be coming
+from. With the annotation, you instruct the compiler to figure out that
+this trait will only be applied to child of Component that will have
+that method available. <code>@SelfType</code> is interesting in the context of static
+type checking or compilation, but is not needed if your code is dynamic
+as the resolution will take place at runtime as usual.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.4releasenotes-GDKimprovements">GDK improvements</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>System.currentTimeSeconds()</code> to get the current time in seconds
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6294">GROOVY-6294</a>)</p>
+</li>
+<li>
+<p><code>List#getIndices()</code> to get a range representing the indices of the
+elements of the list
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7171">GROOVY-7171</a>)</p>
+</li>
+<li>
+<p>More collection related methods are moved to iterator-based variants
+to apply to all iterable collection types
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6863">GROOVY-6863</a>) and missing
+methods have been added like <code>init()</code>, <code>dropRight()</code>, <code>takeRight()</code>
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6867">GROOVY-6867</a>)</p>
+</li>
+<li>
+<p><code>Iterable</code> gets <code>disjoin()</code>, <code>minus()</code> and <code>toSpreadMap()</code> methods
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6920">GROOVY-6920</a>)</p>
+</li>
+<li>
+<p>Refinements and concistency for existing collection methods,
+leveraging iterable approaches for stream-like traversals, consistency
+for mutation in place vs  new collection creation, minor optimizations,
+etc. (<a href="https://issues.apache.org/jira/browse/GROOVY-6945">GROOVY-6945</a>)</p>
+</li>
+<li>
+<p>New <code>List#removeAt(index)</code> and <code>Collection#removeElement(Object)</code> methods
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6952">GROOVY-6952</a>)</p>
+</li>
+<li>
+<p><code>Iterable</code> gets a <code>size()</code> method like iterators
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7085">GROOVY-7085</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.4releasenotes-ASTtransformations">AST transformations</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>@ToString</code> transformation offers an <code>includeSuperProperties</code>
+parameter so properties from the super class are also present in the
+string representation
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7161">GROOVY-7161</a>)</p>
+</li>
+<li>
+<p>You can define the compilation phase for the <code>@ASTTest</code> transformation
+for testing your AST transformations
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6968">GROOVY-6968</a>)</p>
+</li>
+<li>
+<p><code>@Synchronized</code> supports explicit static locks to be used by instance
+methods if needed
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7030">GROOVY-7030</a>)</p>
+</li>
+<li>
+<p>Clean up generated code for <code>@AutoExternalizable</code>
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6889">GROOVY-6889</a>) and
+<code>@EqualsAndHashCode</code>
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6893">GROOVY-6893</a>) the when
+using <code>@CompileStatic</code></p>
+</li>
+<li>
+<p><code>@Builder</code>’s default and initializer strategies improved Java
+integration (<a href="https://issues.apache.org/jira/browse/GROOVY-6875">GROOVY-6875</a>)</p>
+</li>
+<li>
+<p><code>@PackageScope</code> allowed on constructors too
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6839">GROOVY-6839</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.4releasenotes-Groovyshimprovements">Groovysh improvements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The venerable Groovysh shell continues seeing some useful improvements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Groovysh supports custom .rc and .profile scripts to be loaded on
+startup (<a href="https://issues.apache.org/jira/browse/GROOVY-6943">GROOVY-6943</a>)</p>
+</li>
+<li>
+<p>completion of instanceof statements
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7200">GROOVY-7200</a>)</p>
+</li>
+<li>
+<p>completion of static members only displayed in a static context
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6622">GROOVY-6622</a>)</p>
+</li>
+<li>
+<p>completion candidates in color
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6563">GROOVY-6563</a>)</p>
+</li>
+<li>
+<p>with :set interpreterMode true, you can let Groovysh to let you see
+and use locally-defined variables after further line executions
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6623">GROOVY-6623</a>)</p>
+</li>
+<li>
+<p>the :load command supports file names containing spaces
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6942">GROOVY-6942</a>)</p>
+</li>
+<li>
+<p>make arguments and flags consistent with the groovy command and allow
+the launch of a script on startup passed as argument and continue
+execution of Groovysh
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6754">GROOVY-6754</a>)</p>
+</li>
+<li>
+<p>make it easier to subclass Groovysh for reuse as an embedded shell
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6752">GROOVY-6752</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.4releasenotes-Miscellaneous">Miscellaneous</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Allow Ant targets declaration by AntBuilder without immediate
+execution (<a href="https://issues.apache.org/jira/browse/GROOVY-2900">GROOVY-2900</a>)</p>
+</li>
+<li>
+<p>Make <code>NamespaceBuilder</code> automatically detect namespace declarations
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6890">GROOVY-6890</a>)</p>
+</li>
+<li>
+<p>Implement and register type checking extensions as subclasses of
+<code>TypeCheckingExtension</code>
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6739">GROOVY-6739</a>)</p>
+</li>
+<li>
+<p><code>ConfigObject</code> overrides <code>toString()</code> and offers a <code>prettyPrint()</code> method
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7183">GROOVY-7183</a>)</p>
+</li>
+<li>
+<p>Improved type checking for certain GDK methods
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6966">GROOVY-6966</a>)</p>
+</li>
+<li>
+<p>Grape is using JCenter through HTTP first for resolving dependencies,
+and now HTTPS is used for better security
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7152">GROOVY-7152</a>)</p>
+</li>
+<li>
+<p>Parameters of <code>@DelegatesTo</code> and <code>@ClosureParams</code> are better aligned
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6956">GROOVY-6956</a>)</p>
+</li>
+<li>
+<p>Multiple labels are supported on the same statement
+(<a href="https://issues.apache.org/jira/browse/GROOVY-3298">GROOVY-3298</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.4releasenotes-Breakingchanges">Breaking changes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A few issues fixed might also be considered breaking changes in some
+situations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Malformed class names for closures in inner classes
+(<a href="https://issues.apache.org/jira/browse/GROOVY-5351">GROOVY-5351</a>)</p>
+</li>
+<li>
+<p>Avoid creation of MOP methods in static compilation
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6990">GROOVY-6990</a>)</p>
+</li>
+<li>
+<p>Reduce memory consumption for respondsTo()
+(<a href="https://issues.apache.org/jira/browse/GROOVY-7178">GROOVY-7178</a>)</p>
+</li>
+<li>
+<p>Making Groovysh more easily extendable and embeddable
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6752">GROOVY-6752</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.4releasenotes-Moreinformation">More information</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can browse all the <a href="../changelogs/changelog-2.4.0.html">tickets closed for Groovy 2.4 in JIRA</a>.</p>
+</div>
+</div>
+</div></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='../learn.html'>Learn</a></li><li><a href='../documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='../support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='../ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='../security.html'>Security</a></li><li><a href='../learn.html#books'>Books</a></li><li><a href='../thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='../faq.html'>FAQ</a></li><li><a href='../search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='../mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='../groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='../events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='../reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='../img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='../js/vendor/jquery-1.10.2.min.js' defer></script><script src='../js/vendor/classie.js' defer></script><script src='../js/vendor/bootstrap.js' defer></script><script src='../js/vendor/sidebarEffects.js' defer></script><script src='../js/vendor/modernizr-2.6.2.min.js' defer></script><script src='../js/plugins.js' defer></script><script src='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js'></script><script>document.addEventListener('DOMContentLoaded',prettyPrint)</script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>

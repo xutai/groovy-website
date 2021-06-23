@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Groovy 2.3 release notes</title><link href='../img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='../css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='../css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='../css/style.css'/><link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='../mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='../groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='../events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='../reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='../index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class=''><a href='../learn.html'>Learn</a></li><li class=''><a href='../documentation.html'>Documentation</a></li><li class=''><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='../support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='../ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='../search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li class='active'><a href='#releasenotes'>Release notes for Groovy 2.3</a></li><li><a href='#Groovy2.3releasenotes-OfficialsupportforrunningGroovyonJDK8' class='anchor-link'>Official support for running Groovy on JDK 8</a></li><li><a href='#Groovy2.3releasenotes-Traits' class='anchor-link'>Traits</a></li><li><a href='#Groovy2.3releasenotes-NewandupdatedASTtransformations' class='anchor-link'>New and updated AST transformations</a></li><li><a href='#Groovy2.3releasenotes-NewNIOmoduleforJava7' class='anchor-link'>New NIO module for Java 7+</a></li><li><a href='#Groovy2.3releasenotes-Performanceimprovements' class='anchor-link'>Performance improvements</a></li><li><a href='#Groovy2.3releasenotes-JSONslurperandbuilderenhancements' class='anchor-link'>JSON slurper and builder enhancements</a></li><li><a href='#Groovy2.3releasenotes-Closureparametertypeinference' class='anchor-link'>Closure parameter type inference</a></li><li><a href='#Groovy2.3releasenotes-Newmarkuptemplateengine' class='anchor-link'>New markup template engine</a></li><li><a href='#Groovy2.3releasenotes-JUnit4GroovyAssertclass' class='anchor-link'>JUnit 4 GroovyAssert class</a></li><li><a href='#Groovy2.3releasenotes-ConfigSlurper' class='anchor-link'>ConfigSlurper</a></li><li><a href='#Groovy2.3releasenotes-Toolsenhancements' class='anchor-link'>Tools enhancements</a></li><li><a href='#Groovy2.3releasenotes-Documentation' class='anchor-link'>Documentation</a></li><li><a href='#Groovy2.3releasenotes-Dependencyupgrades' class='anchor-link'>Dependency upgrades</a></li><li><a href='#Groovy2.3releasenotes-Breakingchanges' class='anchor-link'>Breaking changes</a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><a name='releasenotes'></a><h1>Release notes for Groovy 2.3</h1><div class="paragraph">
+<p>Groovy 2.3 is the new major release of Groovy, featuring
+official <strong>support for running Groovy on JDK 8</strong>, <strong>traits</strong>, new and improved
+AST transformations like <code>@TailRecursive</code>, <code>@Builder</code> and <code>@Sortable</code>, a
+new <em>NIO2 module</em> with <code>Path</code> support, <strong>lightening fast JSON</strong> parsing and
+building,<strong>closure parameter type inference</strong>, a new <strong>markup template engine</strong>,
+Groovysh and GroovyConsole ease of use improvements, a
+new <code>GroovyAssert</code> test utility, more <code>@BaseScript</code> class capabilities,
+and more.</p>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-OfficialsupportforrunningGroovyonJDK8">Official support for running Groovy on JDK 8</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is the first version of Groovy to be officially compatible with JDK
+8.</p>
+</div>
+<div class="paragraph">
+<p>JDK 8 and its interface default methods introduced some
+incompatibilities with a few methods of the Groovy Development Kit, so
+we had to adapt to the situation, introducing minor breaking changes for
+the affected methods and their outcome.</p>
+</div>
+<div class="paragraph">
+<p>Note that we’re not planning to backport the changes to older versions
+of Groovy, so if you want to run Groovy on JDK 8, you’ll have to upgrade
+to the shiniest version of Groovy!</p>
+</div>
+<div class="paragraph">
+<p>Groovy 2.3 doesn’t support the new syntax constructs offered by Java 8
+(such as lambdas, method references, default methods in interfaces,
+etc), but you can very well already <strong>use the new APIs offered by JDK
+8</strong>, and even <strong>use Groovy closures in lieu of Java 8 lambdas</strong>.</p>
+</div>
+<div class="paragraph">
+<p>For reference, here are a couple of examples which use Java 8 streams,
+for iterating over a stream of ints, or over the lines of a file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">IntStream.range(1, 100).forEach { println it }
+
+Files.lines(Paths.get('README.adoc'))
+     .map { it.toUpperCase() }
+     .forEach { println it }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In particular, in the two statements above, notice that we replaced Java
+8 lambdas with Groovy closures, as Groovy provides a closure coercion
+mechanism which transforms a Groovy closure into a functional interface
+— unlike Java, Groovy also provides that coercion mechanism for abstract
+classes containing a single abstract method.</p>
+</div>
+<div class="paragraph">
+<p>In future versions of Groovy, certain Java 8 syntax constructs, or
+particular Groovy methods decorating JDK 8 APIs might be added.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-Traits">Traits</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A major highlight for Groovy 2.3 is the introduction of the <strong>concept of traits</strong>.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.groovy-lang.org/latest/html/documentation/core-traits.html">Traits</a>
+are reusable components of behavior that your classes can implement, and
+are an additional Object-Oriented concept alongside classes and
+interfaces.</p>
+</div>
+<div class="paragraph">
+<p>Below, we create a trait with a concrete method <code>fly()</code> which returns a
+<code>String</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">trait FlyingAbility {
+    String fly() { "I'm flying!" }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then we create a class, <code>Bird</code>, that implements that trait, and
+instantiate it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Bird implements FlyingAbility {}
+def b = new Bird()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can check that the Bird instance does have the new <code>fly()</code> method
+mixed-in:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">assert b.fly() == "I'm flying!"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Groovy traits are stateful (unlike Java 8 interface default methods).
+A trait can have Groovy properties like plain classes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">trait Named {
+    String name
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This time, the <code>Bird</code> class implements that <code>Named</code> trait:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class Bird implements Named {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can instantiate the Bird with the named-argument constructor shortcut
+provided by Groovy:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def b = new Bird(name: 'Colibri')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We assert that the instantiated Bird does have the name property added
+to it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">assert b.name == 'Colibri'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>They allow the composition of behavior without going into the "diamond
+inheritance" problem allowing you to decide which behavior prevails
+upon conflict, either by convention (last trait declared wins) or by
+explicitly overriding the conflicting method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">trait KiteSurfer { String surf() { 'kite' } }
+
+trait WebSurfer  { String surf() {  'web' } }
+
+class Person { String name }
+
+class Hipster extends Person
+           implements KiteSurfer, WebSurfer {}
+
+def h = new Hipster()
+assert h.surf() == 'web'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Above, the <code>surf()</code> method from <code>WebSurfer</code> wins, as it’s the last declared
+trait, but you can reverse the trait implementation order if you want
+kite to be returned. If you want to be more explicit, your <code>Hipster</code> class
+can override the <code>surf()</code> method itself, and call <code>WebSurfer.super.foo()</code> or
+<code>KiteSurfer.super.foo()</code> or do something entirely different.</p>
+</div>
+<div class="paragraph">
+<p>Traits support inheritance, thus a trait can extend another trait or
+implement an interface, as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">trait Named { String name }
+
+trait FlyingAbility extends Named {
+    String fly() { "I'm a flying ${name}!" }
+}
+
+class Bird implements FlyingAbility {}
+def b = new Bird(name: 'Colibri')
+
+assert b.name == 'Colibri'
+assert b.fly() == "I'm a flying Colibri!"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Traits are compatible with static type checking and compilation, as well
+as our usual dynamic behavior. Trait mixed-in methods are actually
+"real" methods (ie. visible from Java as well) and not just dynamic.
+Note however, that not all existing AST transformations are compatible
+with traits.</p>
+</div>
+<div class="paragraph">
+<p>Traits can also be implemented at runtime with <code>as</code> or with
+<code>withTraits</code> if you just want to add behavior of a trait to an object
+you’re instantiating, without having to create an intermediary
+artificial class just for that purpose (also called per-instance
+traits):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">trait Named { String name }
+
+trait Quacks {
+    String quack() { 'Quack!' }
+}
+
+class Animal {}
+
+def na = new Animal().withTraits Named, Quacks
+na.name = 'Daffy'
+assert na.name == 'Daffy'
+assert na.quack() == 'Quack!'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can find more information on traits in the
+exhaustive <a href="https://docs.groovy-lang.org/latest/html/documentation/core-traits.html">traits documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-NewandupdatedASTtransformations">New and updated AST transformations</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="Groovy2.3releasenotes-Newtransformations">New transformations</h3>
+<div class="sect3">
+<h4 id="Groovy2.3releasenotes-TailRecursive">@TailRecursive</h4>
+<div class="paragraph">
+<p><code>@TailRecursive</code> on methods adds tail recursion to methods which are
+recursive and call themselves at the last operation of the method body,
+which helps avoid blowing up the stack with the recursive calls
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6570">GROOVY-6570</a>).</p>
+</div>
+<div class="paragraph">
+<p>Here’s a slightly rewritten factorial implementation, that is friendly
+to tail-call transformation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.transform.TailRecursive
+
+@TailRecursive
+def fact(BigInteger n, accu = 1G) {
+    if (n &lt; 2) accu
+    else fact(n - 1, n * accu)
+}
+
+assert fact(1000) &gt; 10e2566</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Groovy2.3releasenotes-Builder">@Builder</h4>
+<div class="paragraph">
+<p>Recent Java APIs have adopted the builder pattern (not to be confused
+with Groovy’s builders) to instantiate complex objects, without
+requiring to multiply the number of constructors with variants taking
+various combination of parameters. Groovy 2.3 introduces a <code>@Builder</code>
+transformation to automate the creation of such builder APIs
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6484">GROOVY-6484</a>).</p>
+</div>
+<div class="paragraph">
+<p>The <code>@Builder</code> transformation offers different implementation strategies
+that you can choose from:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a simple strategy for creating chained setters</p>
+</li>
+<li>
+<p>an external strategy where you annotate an explicit builder class
+while leaving some buildee class being built untouched</p>
+</li>
+<li>
+<p>a default strategy which creates a nested helper class for instance
+creation</p>
+</li>
+<li>
+<p>and an initializer strategy which creates a nested helper class for
+instance creation which when used with <code>@CompileStatic</code> allows type-safe
+object creation</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here’s an example with the default strategy:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.transform.builder.Builder
+
+@Builder
+class Person {
+    String firstName
+    String lastName
+    int age
+}
+
+def person = Person.builder()
+                   .firstName("Robert")
+                   .lastName("Lewandowski")
+                   .age(21)
+                   .build()
+
+assert person.firstName == "Robert"
+assert person.lastName == "Lewandowski"
+assert person.age == 21</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can have a look at
+the <a href="https://docs.groovy-lang.org/latest/html/documentation/core-metaprogramming.html#xform-Builder">@Builder documentation</a>
+for the other builder variants.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Groovy2.3releasenotes-Sortable">@Sortable</h4>
+<div class="paragraph">
+<p><code>@Sortable</code> on classes implements comparison methods for you (through
+implementing the <code>Comparable</code> interface), according to the declaration
+order of your properties
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6649">GROOVY-6649</a>).</p>
+</div>
+<div class="paragraph">
+<p>For the following <code>Person</code> class, its instances will be sorted by last
+name, then by first name, and by age, in that order:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.transform.*
+
+@Sortable
+@Canonical
+class Person {
+    String last
+    String first
+    int age
+}
+
+def folks = [
+    new Person('Simpson', 'Bart', 12),
+    new Person('Simpson', 'Homer', 40),
+    new Person('Kent', 'Clark', 36)
+]
+
+assert folks.sort()*.first == ['Clark', 'Bart', 'Homer']</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Additionally, you can define included / excluded fields, access
+individual field comparators with methods like <code>comparatorByFirst()</code>.</p>
+</div>
+<div class="paragraph">
+<p>More details on
+the <a href="https://docs.groovy-lang.org/latest/html/documentation/core-metaprogramming.html#xform-Sortable">@Sortable documentation</a> page.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Groovy2.3releasenotes-SourceURI">@SourceURI</h4>
+<div class="paragraph">
+<p>With <code>@SourceURI</code>, you can annotate a <code>java.net.URI</code> or even a
+<code>java.lang.String</code> script variable or class field so that the variable or
+field are injected the URI of the Groovy file.</p>
+</div>
+<div class="paragraph">
+<p>If you evaluate or compile a Groovy script or class, the variable or
+field will contain a data URI, for example, for the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.transform.SourceURI
+
+@SourceURI String src
+
+println src</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>src</code> variable will contain the following data URI:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>data:,import%20groovy.transform.SourceURI%0A%0A@SourceURI%20String%20src%0A%0Aprintln%20src</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you save the script in a file called <code>sourceuri.groovy</code> in <code>/tmp</code>, and
+run that script with the <code>groovy</code> command, you’ll see an absolute <code>File</code>
+path printed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>file:/tmp/sourceuri.groovy</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As we mentioned above, you can also write <code>@SourceURI URI src</code>, if you want
+to have a <code>URI</code> instead of a <code>String</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy2.3releasenotes-Updatedtransformations">Updated transformations</h3>
+<div class="sect3">
+<h4 id="Groovy2.3releasenotes-Delegateimprovements">@Delegate improvements</h4>
+<div class="paragraph">
+<p><code>@Delegate</code> supports <code>includeTypes</code> and <code>excludeTypes</code> attributes to give you
+fine-grained control over which methods to include or exclude from
+delegation. Rather than just matching on name, this option matches on
+the name and parameter types expressed in an interface type
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6329">GROOVY-6329</a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Groovy2.3releasenotes-BaseScriptclassimprovements">@BaseScript class improvements</h4>
+<div class="paragraph">
+<p><a href="https://docs.groovy-lang.org/latest/html/gapi/groovy/transform/BaseScript.html">@BaseScript</a>
+is a fairly recent addition in Groovy, and it allowed to annotate a
+variable in your script to instruct the compiler to use a particular
+base script class for this script. Now we have another notation which is
+nicer as you can annotate an import or a package
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6592">GROOVY-6592</a>) to indicate
+that base script class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@BaseScript(MyScript)
+import groovy.transform.BaseScript</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Additionally, base script classes can now use any abstract method for
+the script body. This means that you can implement the <code>run()</code> method to
+implement specific behavior like setup and tear down in tests
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6585">GROOVY-6585</a>
+and <a href="https://issues.apache.org/jira/browse/GROOVY-6615">GROOVY-6615</a>).</p>
+</div>
+<div class="paragraph">
+<p>Given the following custom base script class, where we implement the
+default <code>run()</code> method, we also create a new abstract method called
+<code>internalRun()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">abstract class CustomBase extends Script {
+    def run() {
+        before()
+        internalRun()
+        after()
+    }
+
+    abstract internalRun()
+
+    def before() { println 'before' }
+    def after()  { println 'after'  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can then have the script below transparently implement the
+<code>internalRun()</code> method instead of the usual <code>run()</code> one:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.transform.BaseScript
+@BaseScript CustomBase script
+
+println 'Hello'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-NewNIOmoduleforJava7">New NIO module for Java 7+</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On JDK 7 and beyond, you can benefit from the same methods as the ones
+of File but for the new NIO2 class <code>Path</code>.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://issues.apache.org/jira/browse/GROOVY-6377">GROOVY-6377</a> and
+the <a href="https://github.com/groovy/groovy-core/pull/260/files">pull request</a>
+for some further hints of the new methods.</p>
+</div>
+<div class="paragraph">
+<p>You’ll find familiar methods of the Groovy GDK on <code>File</code> also available on
+<code>Path</code> like these ones:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">path.withReader { Reader r -&gt; ... }
+path.eachLine { String line -&gt; ... }
+path.eachFileRecurse { Path p -&gt; ... }
+path &lt;&lt; 'some content'
+path &lt;&lt; bytes
+path.readLines()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-Performanceimprovements">Performance improvements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="Groovy2.3releasenotes-Miscellanousimprovements">Miscellanous improvements</h3>
+<div class="paragraph">
+<p>Various minor <strong>performance improvements across the board</strong>, for static
+compilation, the <code>invokedynamic</code> backend, as well as "normal"
+dynamic Groovy, have been worked on.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy2.3releasenotes-DrasticJSONparsingandserializationperformanceimprovements">Drastic JSON parsing and serialization performance improvements</h3>
+<div class="paragraph">
+<p>Groovy JSON support has been refactored and tailored towards
+performance, making Groovy 2.3’s JSON support usually
+<strong>faster than all the JSON libraries</strong> available in the Java ecosystem.</p>
+</div>
+<div class="paragraph">
+<p>Rick Hightower and Andrey Bleschestov covered the performance gains,
+both in parsing and seralization, in
+a <a href="http://rick-hightower.blogspot.fr/2014/04/groovy-and-boon-provide-fastest-json.html">benchmarks on Rick’s blog</a>
+and on <a href="https://github.com/bura/json-benchmarks">Andrey’s JSON benchmark project on Github</a>.
+The results are impressive, as the <strong>parsing is generally roughly 2x to 4x faster</strong> with Groovy’s new
+parsers compared to existing libraries, and <strong>~21x faster than pre-Groovy 2.3 parsing</strong>.
+On the serialization front, Groovy’s
+new <strong>serialization is also ~17x faster than before</strong>, and at the same
+level as competing libraries.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-JSONslurperandbuilderenhancements">JSON slurper and builder enhancements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Beside the performance improvements of the JSON module, other updates
+have taken place.</p>
+</div>
+<div class="paragraph">
+<p>With <a href="https://docs.groovy-lang.org/latest/html/gapi/groovy/json/JsonSlurper.html">JsonSlurper</a>,
+you’ll be able to set
+different <a href="https://docs.groovy-lang.org/latest/html/gapi/groovy/json/JsonParserType.html">parser types</a>
+depending on the kind of input you wish to parse, particularly if
+you know the size of the payload you expect to parse, or whether you
+want a more tolerant parser which accepts elements like comments which
+are not normally supported by the JSON specification.</p>
+</div>
+<div class="paragraph">
+<p>Here’s an example showing how to parse a non-conformant JSON payload:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.json.*
+import static groovy.json.JsonParserType.*
+
+def parser = new JsonSlurper().setType(LAX)
+
+def conf = parser.parseText '''
+    // configuration file
+    {
+        // no quote for key, single quoted value
+        environment: 'production'
+        # pound-style comment
+        'server': 5
+    }
+'''
+
+assert conf.environment == 'production'
+assert conf.server == 5</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-Closureparametertypeinference">Closure parameter type inference</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We closed a gap which forced you to type your closure parameters to get
+correct type inference with static type checking or static compilation
+enabled. In situations like the following, you would have to explicitly
+give the type of the parameter, but it’s no longer required:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">['a','b'].each { it.toUpperCase() }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the signature of your methods taking closures as arguments, you’ll
+also be able to annotate the closure parameter
+with <a href="https://docs.groovy-lang.org/latest/html/gapi/groovy/transform/stc/ClosureParams.html">@ClosureParams</a>
+to give additional hints to the type checker to infer the type of the
+parameters passed to your closure.</p>
+</div>
+<div class="paragraph">
+<p>You can also find more about this in Cédric’s blog post
+on <a href="http://melix.github.io/blog/2014/01/closure_param_inference.html">closure parameter type inference</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-Newmarkuptemplateengine">New markup template engine</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy now has an additional template engine, in the form of the Markup
+template engine, which gives you a very fast template engine (thanks to
+static compilation), based on the familiar Markup builder approach and
+notation, but also offering formatting options (indentation, escaping),
+internationalization, includes, as well as proposing type checked
+templates and models.</p>
+</div>
+<div class="paragraph">
+<p>More details about the
+new <a href="https://docs.groovy-lang.org/latest/html/documentation/markup-template-engine.html">Markup template engine</a>
+in the documentation, as well as in Cédric’s <a href="http://melix.github.io/blog/">blog</a>, if you want to learn more
+about the "behind the scenes" stories!</p>
+</div>
+<div class="paragraph">
+<p>To illustrate the basic usage, consider you have the following template:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def tpl = '''
+    cars {
+        cars.each {
+            car(make: it.make, name: it.name)
+        }
+    }
+'''</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And have the following model:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">model = [cars: [
+    new Car(make: 'Peugeot', name: '508'),
+    new Car(make: 'Toyota',  name: 'Prius')
+]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You would generate the following XML (or HTML) output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="xml">&lt;cars&gt;
+    &lt;car make='Peugeot' name='508'/&gt;
+    &lt;car make='Toyota'  name='Prius'/&gt;
+&lt;/cars&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By doing the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.text.markup.*
+
+def config = new TemplateConfiguration()
+def engine = new MarkupTemplateEngine(config)
+def tmpl = engine.createTemplate(tpl)
+System.out &lt;&lt; tmpl.make(model)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You have useful methods available to your templates, like for including
+other templates:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">// include another template
+include template: 'foo.tpl'
+
+// include raw content
+include unescaped: 'raw.txt'
+
+// escape &amp; include
+include escaped: 'to_escape.txt'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And if you want to have your model be type checked, you can either
+define the model types inside the template like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">modelTypes = {
+    List&lt;Car&gt; cars
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or by using the dedicated template creation method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def modelTypes = [cars: "List&lt;Car&gt;"]
+
+def tmpl = engine.createTypeCheckedModelTemplate(tpl, modelTypes)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that this template engine is super fast as it’s statically
+compiled.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-JUnit4GroovyAssertclass">JUnit 4 GroovyAssert class</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The
+venerable <a href="https://docs.groovy-lang.org/latest/html/gapi/groovy/util/GroovyTestCase.html">GroovyTestCase</a>
+(JUnit 3 based approach) has often been used as a base class for your
+test classes — unless you’ve been using
+the <a href="http://www.spockframework.org/">Spock testing framework</a>, of course.
+One of the drawback of this class is that your test classes can’t extend
+your own classes, but must derive from <code>GroovyTestCase</code> to benefit from
+the additional assertion methods.</p>
+</div>
+<div class="paragraph">
+<p>In earlier versions of Groovy we introduced the JUnit
+4-friendly <a href="https://docs.groovy-lang.org/latest/html/gapi/groovy/util/GroovyAssert.html">GroovyAssert</a>,
+which is a convenient class offering the usual assertion methods of
+<code>GroovyTestCase</code>, but in the form of static methods that you can static
+import in your test class. In Groovy 2.3 we’ve enriched <code>GroovyAssert</code>
+with additional features. There should be no reason to move on from
+JUnit 3 if you haven’t already done so. We didn’t include all of the
+myriad of <code>assertEquals</code> methods from <code>GroovyTestCase</code> as they are typically
+less useful than Groovy’s built-in power assert, but it provides some
+handy <code>shouldFail()</code> and <code>assertScript()</code> methods
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6588">GROOVY-6588</a>).</p>
+</div>
+<div class="paragraph">
+<p>For instance, if you want to leverage the <code>shouldFail(String)</code> and
+<code>assertScript(String)</code> methods, you can do so as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import static groovy.test.GroovyAssert.shouldFail
+
+
+import org.junit.Test
+
+class AssertTest {
+    @Test void checkBadAddition() {
+        shouldFail '''
+            groovy.test.GroovyAssert.assertScript 'assert 1 + 1 == 3'
+        '''
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-ConfigSlurper">ConfigSlurper</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ConfigSlurper has previously supported a single "environments"
+non-configurational conditional block, but you couldn’t define your own.
+With Groovy 2.3 you can also create your own such blocks. For instance
+if you wanted to support "flavors" like OS variants
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6383">GROOVY-6383</a>).</p>
+</div>
+<div class="paragraph">
+<p>Concretely, instead of the familiar environments / production blocks in
+Grails, let’s register a flavors / prod pair: </p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def conf = '''
+    a.b.c = 1
+    flavors {
+        prod {
+            a.b.c = 2
+        }
+    }
+'''
+
+def slurper = new ConfigSlurper('prod')
+slurper.registerConditionalBlock('flavors', 'prod')
+
+def config = slurper.parse(conf)
+
+assert config.a.b.c == 2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition, the <code>isSet()</code> / <code>hasSet()</code> combo methods
+(<a href="https://issues.apache.org/jira/browse/GROOVY-4639">GROOVY-4639</a>) have been
+added so you can double check if a given node of your configuration has
+been defined. Before, whether the node wasn’t defined or containing
+<code>null</code>, you couldn’t differentiate either case easily.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-Toolsenhancements">Tools enhancements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="Groovy2.3releasenotes-Groovysh">Groovysh</h3>
+<div class="paragraph">
+<p>Along with a slightly reduced startup time, Groovysh has seen new
+improvements in its code-completion capabilities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>completion for keywords
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6399">GROOVY-6399</a>)</p>
+</li>
+<li>
+<p>completion for properties
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6395">GROOVY-6395</a>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Commands are now prefixed with ``:''
+(link:https://issues.apache.org/jira/browse/GROOVY-6397).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy2.3releasenotes-GroovyConsole">GroovyConsole</h3>
+<div class="paragraph">
+<p>It is now possible to configure the font used by the console
+(<a href="https://issues.apache.org/jira/browse/GROOVY-6303">GROOVY-6303</a>, although
+without a UI dialog yet), and also to be able to run a selected snippet
+of code reusing the imports defined in your script making it easier to
+just run quick snippets of your script. The ability to comment or
+uncomment selected code by pressing <code>Ctrl +</code> was added
+with <a href="https://issues.apache.org/jira/browse/GROOVY-6459">GROOVY-6459</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-Documentation">Documentation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="Groovy2.3releasenotes-Newdocumentation">New documentation</h3>
+<div class="paragraph">
+<p>We are still working on the
+brand <a href="https://docs.groovy-lang.org/latest/html/documentation/">new documentation</a> for Groovy
+(in Asciidoc(tor) format), so you can already
+have a glimpse at what’s already covered or not.</p>
+</div>
+<div class="paragraph">
+<p>We’re looking forward to your help for fleshing out the various TBD ("To
+Be Done") sections of the documentation, as it’s a gigantic task to
+re-document each and every aspect of the language and its libraries! So
+please shout if you want to <strong>contribute to the new documentation</strong>! All
+help is warmly welcome!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy2.3releasenotes-RefreshedGroovyDocdocumentationstyle">Refreshed GroovyDoc documentation style</h3>
+<div class="paragraph">
+<p>GroovyDoc has been updated with a new fresh and modern skin that will be
+part of the future visual identity of the Groovy website. Those style
+updates are also available by default for your own usage of GroovyDoc,
+making your own documentation nicer on the eye.</p>
+</div>
+<div class="paragraph">
+<p>You can have a look at
+the <a href="http://docs.groovy-lang.org/2.3.0/html/gapi/">GroovyDoc
+documentation for Groovy 2.3.0</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Groovy2.3releasenotes-RefreshedGroovyGDKdocumentationstyle">Refreshed Groovy GDK documentation style</h3>
+<div class="paragraph">
+<p>We also took the opportunity to apply the same stylesheet to our
+<code>DocGenerator</code> tool which is responsible for the generation of the GDK
+documentation, showing the methods the Groovy library adds on top of the
+JDK classes.</p>
+</div>
+<div class="paragraph">
+<p>Please also have a look at the
+new <a href="https://docs.groovy-lang.org/latest/html/groovy-jdk/">restyled GDK documentation</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-Dependencyupgrades">Dependency upgrades</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following dependencies have been upgraded:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>GPars 1.2</strong> for all your concurrency, asynchronous or parallelism needs:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>improvements in the dataflow area, such as lazy tasks and easy
+fork-and-join on Promises</p>
+</li>
+<li>
+<p>actors and dataflow operators now use the Groovy <code>@DelegatesTo</code>
+annotation to allow for statically compiled bodies</p>
+</li>
+<li>
+<p>GPars timers and thread-locals have been made more friendly towards
+managed environments and the GParsConfig class now allows GPars to be
+completely shutdown</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Gradle 1.10</strong> for building Groovy</p>
+</li>
+<li>
+<p><strong>ASM 5.0.1</strong> library for generating our bytecode (also needed for our JDK 8 support)</p>
+</li>
+<li>
+<p><strong>JLine 2.11</strong> and <strong>JANSI 1.11</strong> library for Groovysh</p>
+</li>
+<li>
+<p><strong>Ant 1.9.3</strong> for the Ant builder</p>
+</li>
+<li>
+<p><strong>TestNG 6.8.8</strong> for the TestNG module</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.3releasenotes-Breakingchanges">Breaking changes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy 2.3.0 introduces a limited list of breaking changes.</p>
+</div>
+<div class="paragraph">
+<p>First of all,<strong>Groovy 2.3.0 now requires JDK 6</strong> as its minimal JDK
+requirement. Some parts of Groovy 2.3.0 might still run under JDK 5 but
+no testing has been done on that platform and some parts are known not
+to work. We encourage everyone to move to at least JDK 6.</p>
+</div>
+<div class="paragraph">
+<p>In Groovy 2.3.0, we <strong>reworked our implementation of generics handling</strong>.
+Although we don’t know of any particular breakage so far, the static
+type checker might report new errors as it can be stricter than before.
+If ever you encounter such new errors in this area, please report them
+as soon as you encounter them.</p>
+</div>
+<div class="paragraph">
+<p>With the introduction of "traits" in Groovy 2.3, the <code>trait</code> keyword
+is an addition to the list of keyword of the languages, with the
+consequence that <strong>variables or fields that would use <code>trait</code> as name
+with yield a compilation error</strong>. So you would have to change the name of
+your variable and recompile your code.</p>
+</div>
+<div class="paragraph">
+<p>A few updates have been made to the <strong>XML support around whitespace
+handling, and text node handling</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://issues.apache.org/jira/browse/GROOVY-6685">GROOVY-6685</a></p>
+</li>
+<li>
+<p><a href="https://issues.apache.org/jira/browse/GROOVY-6683">GROOVY-6683</a></p>
+</li>
+<li>
+<p><a href="https://issues.apache.org/jira/browse/GROOVY-6682">GROOVY-6682</a></p>
+</li>
+<li>
+<p><a href="https://issues.apache.org/jira/browse/GROOVY-6678">GROOVY-6678</a></p>
+</li>
+<li>
+<p><a href="https://issues.apache.org/jira/browse/GROOVY-6621">GROOVY-6621</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>With the new default methods on interfaces in JDK 8, there was
+particularly one,
+a <a href="https://issues.apache.org/jira/browse/GROOVY-6465">List#sort(Comparable) method</a>, which <strong>conflicted with one of the GDK</strong>,
+so we had to remove ours to stay compliant with JDK 8.</p>
+</div>
+<div class="paragraph">
+<p>We fixed a <a href="https://issues.apache.org/jira/browse/GROOVY-6456">race condition in AbstractHttpServler#applyResourceNameMatcher</a>
+which incurred a small change in behavior. This feature is seldomly used and doesn’t seem to
+have impacted users of the Groovy servlet machinery so far.</p>
+</div>
+<div class="paragraph">
+<p>You can look at the list of
+the <a href="https://issues.apache.org/jira/browse/GROOVY-6685?jql=project%20%3D%20GROOVY%20AND%20fixVersion%20in%20%28%222.3.0-rc-3%22%2C%20%222.3.0-beta-1%22%2C%20%222.3.0-beta-2%22%2C%20%222.3.0-rc-1%22%2C%20%222.3.0-rc-2%22%29%20AND%20labels%20%3D%20breaking%20AND%20status%20in%20%28Resolved%2C%20Closed%29">breaking changes from our JIRA</a>
+issue tracker.</p>
+</div>
+</div>
+</div></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='../learn.html'>Learn</a></li><li><a href='../documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='../support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='../ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='../security.html'>Security</a></li><li><a href='../learn.html#books'>Books</a></li><li><a href='../thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='../faq.html'>FAQ</a></li><li><a href='../search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='../mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='../groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='../events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='../reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='../img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='../js/vendor/jquery-1.10.2.min.js' defer></script><script src='../js/vendor/classie.js' defer></script><script src='../js/vendor/bootstrap.js' defer></script><script src='../js/vendor/sidebarEffects.js' defer></script><script src='../js/vendor/modernizr-2.6.2.min.js' defer></script><script src='../js/plugins.js' defer></script><script src='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js'></script><script>document.addEventListener('DOMContentLoaded',prettyPrint)</script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>

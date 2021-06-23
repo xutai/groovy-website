@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Groovy 2.4.1 Changelog</title><link href='../img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='../css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='../css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='../css/style.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='../mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='../groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='../events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='../reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='../index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class=''><a href='../learn.html'>Learn</a></li><li class=''><a href='../documentation.html'>Documentation</a></li><li class=''><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='../support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='../ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='../search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li class='active'><a href='#changelog'>Changelog for Groovy 2.4.1</a></li><li><a href='#type0' class='anchor-link'>Bug</a></li><li><a href='#type1' class='anchor-link'>Improvement</a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><a name='changelog'></a><h1>Changelog for Groovy 2.4.1</h1><a name='type0'></a><h2>Bug</h2><ul><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-4852'>GROOVY-4852</a>] - Constant Optimization is a little off</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-4918'>GROOVY-4918</a>] - GetEffectivePojoPropertySite#acceptGetProperty may produce a NullPointerException when provided with a null &#39;receiver&#39; object</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-6349'>GROOVY-6349</a>] - Static type checking error when accessing class of a primitive type</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-6351'>GROOVY-6351</a>] - Static type checking error when accessing static members of a primitive type</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-6590'>GROOVY-6590</a>] - field on primitive not recognized even if existing in wrapper type</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-6697'>GROOVY-6697</a>] - Setting property in trait using &quot;super&quot; doesn&#39;t work</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7000'>GROOVY-7000</a>] - Support MarkupTemplateEngine integration with TemplateServlet</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7173'>GROOVY-7173</a>] - jsonslurper does not unescape Strings (sometimes) on parsing with JsonParsingUsingCharacterSource</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7180'>GROOVY-7180</a>] - Download links of http://groovy-lang.org/install.html is broken</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7240'>GROOVY-7240</a>] - Unable to start dollar slashy strings with an escaped dollar</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7243'>GROOVY-7243</a>] - @Delegate does not honor &quot;includes&quot; on properties - all properties are delegated</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7255'>GROOVY-7255</a>] - Problem With @CompileStatic And Static Trait Members</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7261'>GROOVY-7261</a>] - @Lazy should work in combination with @Delegate</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7262'>GROOVY-7262</a>] - There should be a TimeZone variant of the Date#parse method in DGSM</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7263'>GROOVY-7263</a>] - Problem With Static Imports</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7264'>GROOVY-7264</a>] - NPE in TypeResolver when access$XXX method generated for a method with generic types</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7266'>GROOVY-7266</a>] - CompilationFailedException can be swallowed</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7267'>GROOVY-7267</a>] - avoid hashcode based equality check without equals</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7269'>GROOVY-7269</a>] - Problem With MetaMethods and replacing MetaProperty</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7273'>GROOVY-7273</a>] - :doc command checks wrong api urls</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7275'>GROOVY-7275</a>] - SelfType class &quot;was not matched with found receiver&quot; trait</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7276'>GROOVY-7276</a>] - static compiler fails to eliminate dynamic property lookup</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7277'>GROOVY-7277</a>] - TemplateResource.parse handles paths containing multiple dots incorrectly</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7278'>GROOVY-7278</a>] - Error caused by @CompileStatic</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7280'>GROOVY-7280</a>] - typo: &#39;possible loose of precision&#39; should be &#39;possible loss of precision&#39;</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7285'>GROOVY-7285</a>] - Stackable Traits at runtime don&#39;t honor definition order</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7287'>GROOVY-7287</a>] - Problem With Trait Generics With Conflicting Names</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7297'>GROOVY-7297</a>] - StackOverflowError Related To Trait Generics</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7298'>GROOVY-7298</a>] - NPE in TypeResolver using &lt;T&gt;, Closure&lt;T&gt; and @CompileStatic</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7300'>GROOVY-7300</a>] - CompileStatic doesn&#39;t call property accessors on super classes correctly</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7302'>GROOVY-7302</a>] - LazyMap size returns incorrect result for un-built maps if same key set more than once</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7336'>GROOVY-7336</a>] - Not so helpful error message shown by ClassNodeResolver, after eating up the real exception</li></ul><a name='type1'></a><h2>Improvement</h2><ul><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-6658'>GROOVY-6658</a>] - Set anchors for each section in Groovy Ascii docs.</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7224'>GROOVY-7224</a>] - Extend @Builder InitializerStrategy to support adding the annotation to Constructors</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7228'>GROOVY-7228</a>] - Minor typo in documentation for DefaultGroovyMethods.xor(left, right)</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7235'>GROOVY-7235</a>] - Groovysh code completion is not compatible with JDK 9 (Jigsaw)</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7245'>GROOVY-7245</a>] - Add primitive array join()</li></ul></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='../learn.html'>Learn</a></li><li><a href='../documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='../support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='../ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='../security.html'>Security</a></li><li><a href='../learn.html#books'>Books</a></li><li><a href='../thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='../faq.html'>FAQ</a></li><li><a href='../search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='../mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='../groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='../events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='../reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='../img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='../js/vendor/jquery-1.10.2.min.js' defer></script><script src='../js/vendor/classie.js' defer></script><script src='../js/vendor/bootstrap.js' defer></script><script src='../js/vendor/sidebarEffects.js' defer></script><script src='../js/vendor/modernizr-2.6.2.min.js' defer></script><script src='../js/plugins.js' defer></script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>

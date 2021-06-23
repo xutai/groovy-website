@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Groovy 3.0 release notes</title><link href='../img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='../css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='../css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='../css/style.css'/><link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='../mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='../groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='../events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='../reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='../index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class=''><a href='../learn.html'>Learn</a></li><li class=''><a href='../documentation.html'>Documentation</a></li><li class=''><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='../support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='../ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='../search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li class='active'><a href='#releasenotes'>Release notes for Groovy 3.0</a></li><li><a href='#Groovy3.0releasenotes-Parrot' class='anchor-link'>Parrot Parser</a></li><li><a href='#Groovy3.0releasenotes-GDKimprovements' class='anchor-link'>GDK improvements</a></li><li><a href='#Groovy3.0releasenotes-Miscimprovements' class='anchor-link'>Miscellaneous improvements</a></li><li><a href='#Groovy3.0releasenotes-Splitpackages' class='anchor-link'>Split package changes (from beta-2)</a></li><li><a href='#Groovy3.0releasenotes-OtherBreaking' class='anchor-link'>Other breaking changes</a></li><li><a href='#Groovy3.0releasenotes-KnownIssues' class='anchor-link'>Known issues</a></li><li><a href='#Groovy3.0releasenotes-JdkRequirements' class='anchor-link'>JDK requirements</a></li><li><a href='#Groovy3.0releasenotes-Moreinformation' class='anchor-link'>More information</a></li><li><a href='#Groovy3.0releasenotes-3.0.3' class='anchor-link'>Addendum for 3.0.3</a></li><li><a href='#Groovy3.0releasenotes-3.0.4' class='anchor-link'>Addendum for 3.0.4</a></li><li><a href='#Groovy3.0releasenotes-3.0.5' class='anchor-link'>Addendum for 3.0.5</a></li><li><a href='#Groovy3.0releasenotes-3.0.8' class='anchor-link'>Addendum for 3.0.8</a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><a name='releasenotes'></a><h1>Release notes for Groovy 3.0</h1><div class="paragraph">
+<p>Groovy 3.0 comes with a brand new parser (code-named Parrot) and host of other new features and capabilities.</p>
+</div>
+<div class="sect1">
+<h2 id="Groovy3.0releasenotes-Parrot">Parrot Parser</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy 3.0, has a new parser that is far more flexible and maintainable than the parser in previous versions of Groovy.
+It&#8217;s called the Parrot parser because in the early days of creating the parser, the goal was for the new parser&#8217;s output to be an exact echo of what the old parser produced.
+The new parser has since been extended to support additional syntax options and language features. Some of the new features include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>do-while loops; enhanced (now supporting commas) classic for loops, e.g. <code>for(int i = 0, j = 10; i &lt; j; i++, j--) {..}</code>)</p>
+</li>
+<li>
+<p>lambda expressions, e.g. <code>stream.map(e &#8594; e + 1)</code></p>
+</li>
+<li>
+<p>method references and constructor references</p>
+</li>
+<li>
+<p>try-with-resources, AKA ARM</p>
+</li>
+<li>
+<p>code blocks, i.e. <code>{..}</code></p>
+</li>
+<li>
+<p>Java style array initializers, e.g. <code>new int[] {1, 2, 3}</code></p>
+</li>
+<li>
+<p>default methods within interfaces</p>
+</li>
+<li>
+<p>additional places for type annotations</p>
+</li>
+<li>
+<p>new operators: identity operators(<code>===</code>, <code>!==</code>), elvis assignment(<code>?=</code>), <code>!in</code>, <code>!instanceof</code></p>
+</li>
+<li>
+<p>safe index, e.g. <code>nullableVar?[1, 2]</code></p>
+</li>
+<li>
+<p>non-static inner class instantiation, e.g. <code>outer.new Inner()</code></p>
+</li>
+<li>
+<p>runtime groovydoc, i.e. groovydoc with <code>@Groovydoc</code>; groovydoc attached to AST node as metadata</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>P.S. Parrot is based on the highly optimized version of antlr4(com.tunnelvisionlabs:antlr4), which is licensed under BSD.</strong></p>
+</div>
+<div class="sect2">
+<h3 id="_dowhile_loop">do/while loop</h3>
+<div class="paragraph">
+<p>Java&#8217;s class do/while loop is now supported. Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">// classic Java-style do..while loop
+def count = 5
+def fact = 1
+do {
+    fact *= count--
+} while(count &gt; 1)
+assert fact == 120</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enhanced_classic_java_style_for_loop">Enhanced classic Java-style for loop</h3>
+<div class="paragraph">
+<p>The more elaborate form of Java&#8217;s classic for loop with comma-separate expressions
+is now supported. Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def facts = []
+def count = 5
+for (int fact = 1, i = 1; i &lt;= count; i++, fact *= i) {
+    facts &lt;&lt; fact
+}
+assert facts == [1, 2, 6, 24, 120]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multi_assignment_in_combination_with_for_loop">Multi-assignment in combination with for loop</h3>
+<div class="paragraph">
+<p>Groovy has supported multi-assignment statements since Groovy 1.6:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">// multi-assignment with types
+def (String x, int y) = ['foo', 42]
+assert "$x $y" == 'foo 42'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These can now appear in for loops:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">// multi-assignment goes loopy
+def baNums = []
+for (def (String u, int v) = ['bar', 42]; v &lt; 45; u++, v++) {
+    baNums &lt;&lt; "$u $v"
+}
+assert baNums == ['bar 42', 'bas 43', 'bat 44']</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java_style_array_initialization">Java-style array initialization</h3>
+<div class="paragraph">
+<p>Groovy has always supported literal list/array definitions using square brackets
+and has avoided Java-style curly braces so as not to conflict with closure definitions.
+In the case where the curly braces come immediately after an array type declaration however,
+there is no ambiguity with closure definitions, so the Java style is now also supported.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def primes = new int[] {2, 3, 5, 7, 11}
+assert primes.size() == 5 &amp;&amp; primes.sum() == 28
+assert primes.class.name == '[I'
+
+def pets = new String[] {'cat', 'dog'}
+assert pets.size() == 2 &amp;&amp; pets.sum() == 'catdog'
+assert pets.class.name == '[Ljava.lang.String;'
+
+// traditional Groovy alternative still supported
+String[] groovyBooks = [ 'Groovy in Action', 'Making Java Groovy' ]
+assert groovyBooks.every{ it.contains('Groovy') }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java_style_lambda_syntax">Java-style Lambda syntax</h3>
+<div class="paragraph">
+<p>The Java syntax for lambda expressions is now supported.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">(1..10).forEach(e -&gt; { println e })
+
+assert (1..10).stream()
+                .filter(e -&gt; e % 2 == 0)
+                .map(e -&gt; e * 2)
+                .toList() == [4, 8, 12, 16, 20]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The normal variants are supported and Groovy adds additional features such as default parameter values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">// general form
+def add = (int x, int y) -&gt; { def z = y; return x + z }
+assert add(3, 4) == 7
+
+// curly braces are optional for a single expression
+def sub = (int x, int y) -&gt; x - y
+assert sub(4, 3) == 1
+
+// parameter types are optional
+def mult = (x, y) -&gt; x * y
+assert mult(3, 4) == 12
+
+// no parentheses required for a single parameter with no type
+def isEven = n -&gt; n % 2 == 0
+assert isEven(6)
+assert !isEven(7)
+
+// no arguments case
+def theAnswer = () -&gt; 42
+assert theAnswer() == 42
+
+// any statement requires braces
+def checkMath = () -&gt; { assert 1 + 1 == 2 }
+checkMath()
+
+// example showing default parameter values (no Java equivalent)
+def addWithDefault = (int x, int y = 100) -&gt; x + y
+assert addWithDefault(1, 200) == 201
+assert addWithDefault(1) == 101</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_implementation_details_and_static_optimization">Implementation details and static optimization</h4>
+<div class="paragraph">
+<p>For dynamic Groovy, lambda expressions are turned into equivalent Groovy closures.
+So <code>(e) &#8594; { println e }</code> is the same as <code>{e &#8594; println e}</code>.
+In the spirit of providing a more Java-like experience when using <code>@CompileStatic</code>,
+we support native lambda expressions for static Groovy.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_method_references">Method references</h3>
+<div class="paragraph">
+<p>The Java 8 method reference syntax using the double colon syntax is now supported.
+Let&#8217;s first look at some of the supported cases before coming back to some implementation details.</p>
+</div>
+<div class="paragraph">
+<p>The following examples illustrate referencing both static and instance methods of a class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import java.util.stream.Stream
+
+// class::staticMethod
+assert ['1', '2', '3'] ==
+        Stream.of(1, 2, 3)
+                .map(String::valueOf)
+                .toList()
+
+// class::instanceMethod
+assert ['A', 'B', 'C'] ==
+        ['a', 'b', 'c'].stream()
+                .map(String::toUpperCase)
+                .toList()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following examples illustrate referencing methods of instance variables:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">// instance::instanceMethod
+def sizeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'::length
+assert sizeAlphabet() == 26
+
+// instance::staticMethod
+def hexer = 42::toHexString
+assert hexer(127) == '7f'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following examples illustrate referencing constructors:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">// normal constructor
+def r = Random::new
+assert r().nextInt(10) in 0..9
+
+// array constructor refs are handy when working with various Java libraries, e.g. streams
+assert [1, 2, 3].stream().toArray().class.name == '[Ljava.lang.Object;'
+assert [1, 2, 3].stream().toArray(Integer[]::new).class.name == '[Ljava.lang.Integer;'
+
+// works with multi-dimensional arrays too
+def make2d = String[][]::new
+def tictac = make2d(3, 3)
+tictac[0] = ['X', 'O', 'X']
+tictac[1] = ['X', 'X', 'O']
+tictac[2] = ['O', 'X', 'O']
+assert tictac*.join().join('\n') == '''
+XOX
+XXO
+OXO
+'''.trim()
+
+// also useful for your own classes
+import groovy.transform.Canonical
+import java.util.stream.Collectors
+
+@Canonical
+class Animal {
+    String kind
+}
+
+def a = Animal::new
+assert a('lion').kind == 'lion'
+
+def c = Animal
+assert c::new('cat').kind == 'cat'
+
+def pets = ['cat', 'dog'].stream().map(Animal::new)
+def names = pets.map(Animal::toString).collect(Collectors.joining( "," ))
+assert names == 'Animal(cat),Animal(dog)'</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_implementation_details_and_static_optimization_2">Implementation details and static optimization</h4>
+<div class="paragraph">
+<p>While for the most part you can ignore implementation details, it is useful
+to understand the implementation behind method references in some scenarios.
+For dynamic Groovy, a method reference is implemented as a Closure method reference.
+So <code>String::toUpperCase</code> is the same as <code>String.&amp;toUpperCase</code>.
+In the spirit of providing a more Java-like experience when using <code>@CompileStatic</code>,
+we support native method references for static Groovy.</p>
+</div>
+<div class="paragraph">
+<p>For this example (using <code>String.transform</code> from JDK 12):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@groovy.transform.CompileStatic
+def method() {
+  assert 'Hi'.transform(String::toUpperCase) == 'HI'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The compiler will produce bytecode very similar to what Java would produce
+for this case (involves <code>INVOKEDYNAMIC</code>, method handles and <code>LambdaMetafactory</code> for the bytecode geeks).
+If you are already using <code>@CompileStatic</code> for extra compile-time type safety or performance,
+then the code will be semantically equivalent but optimized similar to Java.</p>
+</div>
+<div class="paragraph">
+<p>If you have code making use of dynamic features, then you should not use <code>@CompileStatic</code> with your method references, e.g.:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def convertCase(boolean upper, String arg) {
+    arg.transform(String::"${upper ? 'toUpperCase' : 'toLowerCase'}")
+}
+assert convertCase(true, 'Hi') == 'HI'
+assert convertCase(false, 'Bye') == 'bye'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since here the <code>GString</code> prohibits the compiler from knowing how to write the
+optimized code that would be required.
+Note: this example is a little contrived and could be refactored to call one
+of two optimized method references but hopefully you get the idea.</p>
+</div>
+<div class="paragraph">
+<p>The same caveat applies if you want to make use of the Closure nature behind the dynamic
+implementation, e.g.:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def upper = String::toUpperCase
+assert upper('hi') == 'HI'
+def upperBye = upper.curry('bye')
+assert upperBye() == 'BYE'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_in_and_instanceof_operators">!in and !instanceof operators</h3>
+<div class="paragraph">
+<p>When wanting the negated form, rather than having to bracket expressions containing
+the <code>in</code> and <code>instanceof</code> infix operators and placing the exclamation operator in
+front of the brackets, an inline variant is now also supported. Examples:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">/* assert !(45 instanceof Date) // old form */
+assert 45 !instanceof Date
+
+assert 4 !in [1, 3, 5, 7]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_elvis_assignment_operator">Elvis assignment operator</h3>
+<div class="paragraph">
+<p>Groovy introduced the Elvis operator Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.transform.ToString
+
+@ToString
+class Element {
+    String name
+    int atomicNumber
+}
+
+def he = new Element(name: 'Helium')
+he.with {
+    name = name ?: 'Hydrogen'   // existing Elvis operator
+    atomicNumber ?= 2           // new Elvis assignment shorthand
+}
+assert he.toString() == 'Element(Helium, 2)'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_identity_comparison_operators">Identity comparison operators</h3>
+<div class="paragraph">
+<p>Both <code>===</code> and <code>!==</code> are supported which are the same as calling the <code>is()</code> method,
+and negating a call to the <code>is()</code> method respectively.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.transform.EqualsAndHashCode
+
+@EqualsAndHashCode
+class Creature { String type }
+
+def cat = new Creature(type: 'cat')
+def copyCat = cat
+def lion = new Creature(type: 'cat')
+
+assert cat.equals(lion) // Java logical equality
+assert cat == lion      // Groovy shorthand operator
+
+assert cat.is(copyCat)  // Groovy identity
+assert cat === copyCat  // operator shorthand
+assert cat !== lion     // negated operator shorthand</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_safe_indexing">Safe indexing</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">String[] array = ['a', 'b']
+assert 'b' == array?[1]      // get using normal array index
+array?[1] = 'c'              // set using normal array index
+assert 'c' == array?[1]
+
+array = null
+assert null == array?[1]     // return null for all index values
+array?[1] = 'c'              // quietly ignore attempt to set value
+assert null == array?[1]
+
+def personInfo = [name: 'Daniel.Sun', location: 'Shanghai']
+assert 'Daniel.Sun' == personInfo?['name']      // get using normal map index
+personInfo?['name'] = 'sunlan'                  // set using normal map index
+assert 'sunlan' == personInfo?['name']
+
+personInfo = null
+assert null == personInfo?['name']              // return null for all map values
+personInfo?['name'] = 'sunlan'                  // quietly ignore attempt to set value
+assert null == personInfo?['name']</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_var_reserved_type">"var" reserved type</h3>
+<div class="paragraph">
+<p>Groovy supports a <code>def</code> type placeholder.
+It can be used with fields, local variables, method parameters and as a method&#8217;s return type.
+In dynamic Groovy, you use <code>def</code> when the type is deemed not important at compile time - normal runtime typing still applies.
+For static Groovy, it is used when type inference is preferred over an explicit type.</p>
+</div>
+<div class="paragraph">
+<p>In Groovy 3.0, a new type placeholder is available: <code>var</code>.
+It provides the syntax equivalent of Java 10&#8217;s <code>var</code> reserved type (but you can use it with Groovy 3 from JDK 8).
+It can be used for fields, local variables and parameters.
+It can also be used for lambda parameters (a Java 11 feature).
+In all cases, it can be considered an alias for <code>def</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">var two = 2                                                      // Java 10
+IntFunction&lt;Integer&gt; twice = (final var x) -&gt; x * two            // Java 11
+assert [1, 2, 3].collect{ twice.apply(it) } == [2, 4, 6]</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<em>Incubating Status:</em> Using <code>var</code> with <code>@CompileStatic</code> is regarded as an incubating feature.
+Currently it is a direct alias for <code>def</code> which means in that scenario, type inference will be available
+which yields similar behavior to Java in most cases.
+Groovy&#8217;s behavior does differ from Java in cases involving flow typing.
+The <em>incubating</em> status indicates that we reserve the right to change the behavior for these flow typing cases.
+While some users have expressed the desire for a behavior closer to Java when <code>var</code> is used with <code>@CompileStatic</code> and flow typing,
+we currently don&#8217;t think the extra complexity in changing behavior is warranted.
+We are however still exploring possibilities in this area.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_arm_try_with_resources">ARM Try with resources</h3>
+<div class="paragraph">
+<p>Groovy often provides better alternatives to Java 7&#8217;s <code>try</code>-with-resources statement for Automatic Resource Management (ARM).
+That syntax is now supported for Java programmers migrating to Groovy and still wanting to use the old style:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">class FromResource extends ByteArrayInputStream {
+    @Override
+    void close() throws IOException {
+        super.close()
+        println "FromResource closing"
+    }
+
+    FromResource(String input) {
+        super(input.toLowerCase().bytes)
+    }
+}
+
+class ToResource extends ByteArrayOutputStream {
+    @Override
+    void close() throws IOException {
+        super.close()
+        println "ToResource closing"
+    }
+}
+
+def wrestle(s) {
+    try (
+            FromResource from = new FromResource(s)
+            ToResource to = new ToResource()
+    ) {
+        to &lt;&lt; from
+        return to.toString()
+    }
+}
+
+def wrestle2(s) {
+    FromResource from = new FromResource(s)
+    try (from; ToResource to = new ToResource()) { // Enhanced try-with-resources in Java 9+
+        to &lt;&lt; from
+        return to.toString()
+    }
+}
+
+assert wrestle("ARM was here!").contains('arm')
+assert wrestle2("ARM was here!").contains('arm')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which yields the following output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>ToResource closing
+FromResource closing
+ToResource closing
+FromResource closing</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nested_code_blocks">Nested code blocks</h3>
+<div class="paragraph">
+<p>An infrequently used structure within Java is the anonymous code block.
+It&#8217;s generally not encouraged as it&#8217;s often a sign that refactoring the
+related code into a method is in order. But it&#8217;s sometimes useful to
+restrict scoping and is now available in Groovy:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">{
+    def a = 1
+    a++
+    assert 2 == a
+}
+try {
+    a++ // not defined at this point
+} catch(MissingPropertyException ex) {
+    println ex.message
+}
+{
+    {
+        // inner nesting is another scope
+        def a = 'banana'
+        assert a.size() == 6
+    }
+    def a = 1
+    assert a == 1
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Be aware though that in Groovy having a code block looking structure after any method
+call will be seen as an attempt to pass a closure as the last parameter in the method call.
+This happens even after a new line. So it&#8217;s safe to start an anonymous code block after any other
+block (e.g. an if-then-else statement or another anonymous code block). Anywhere else and
+you might need to terminate the previous statement with a semicolon. In which case, see the
+note above about refactoring your code! :-)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java_style_non_static_inner_class_instantiation">Java-style non-static inner class instantiation</h3>
+<div class="paragraph">
+<p>Java syntax for non-static inner class instantiation is now supported.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">public class Computer {
+    public class Cpu {
+        int coreNumber
+
+        public Cpu(int coreNumber) {
+            this.coreNumber = coreNumber
+        }
+    }
+}
+
+assert 4 == new Computer().new Cpu(4).coreNumber</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interface_default_methods">Interface default methods</h3>
+<div class="paragraph">
+<p>Java 8 supports adding default implementations to interfaces.
+Groovy&#8217;s traits mechanism provides a more powerful set of OO abstractions
+for <em>inheriting</em> implementation behavior, but Java users are now familiar with default methods,
+so Groovy now supports the same syntax:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">interface Greetable {
+    String target()
+
+    default String salutation() {
+        'Greetings'
+    }
+
+    default String greet() {
+        "${salutation()}, ${target()}"
+    }
+}
+
+class Greetee implements Greetable {
+    String name
+    @Override
+    String target() { name }
+}
+
+def daniel = new Greetee(name: 'Daniel')
+assert 'Greetings, Daniel' == "${daniel.salutation()}, ${daniel.target()}"
+assert 'Greetings, Daniel' == daniel.greet()</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<em>Incubating Status:</em> While this feature will remain, its current implementation, using traits, has incubating status.
+It results in the same behavior as Java&#8217;s implementation but with less compact bytecode.
+We are still exploring approaches to also support native default methods in interfaces.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_system_properties_to_configure_that_new_parser">System properties to configure that new parser</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>groovy.antlr4</code> can be set to <code>false</code> in Groovy 3.x to disable the new parser (set via <code>JAVA_OPTS</code> if needed).
+This property is not needed in normal use, however, at least initially, if you have a problematic source file that
+doesn&#8217;t seem to work with the new parser, you may be able to revert to the old parser to compile just that file.
+You won&#8217;t be able to use any of the new language features with the old parser.
+The old parser is deprecated and will be removed in Groovy 4.</p>
+</li>
+<li>
+<p><code>groovy.attach.groovydoc</code>: whether to attach groovydoc to node as metadata while parsing groovy source code(default: false)</p>
+</li>
+<li>
+<p><code>groovy.attach.runtime.groovydoc</code>: whether to attach <code>@Groovydoc</code> annotation to all members which have groovydoc(i.e. <code>/** &#8230;&#8203; */</code>)</p>
+</li>
+<li>
+<p><code>groovy.antlr4.cache.threshold</code>: how frequently to clear the DFA cache, which is used to store symbol
+information during parsing (default: 64). The more frequently the DFA cache is cleared, the poorer parsing performance will be, but less memory will be used.
+The implementation may restrict the threshold to not be lower than some minimum value.<br>
+<strong>Notice:</strong> This is an advanced internal setting which affects the memory allocation behavior of the parser.
+You should only need to adjust this value if you are facing memory problems when compiling large Groovy files.</p>
+</li>
+<li>
+<p><code>groovy.clear.lexer.dfa.cache</code>: whether to clear the DFA cache of the Groovy lexer once a threshold is reached (default: false)<br>
+<strong>Notice:</strong> This is an advanced internal setting which affects the memory allocation behavior of the parser.
+You should only need to adjust this value if you are facing memory problems when compiling large Groovy files.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy3.0releasenotes-GDKimprovements">GDK improvements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy adds many extension methods to existing Java classes. In Groovy 3, about 80 new such extension methods were added.
+We highlight just a few here:</p>
+</div>
+<div class="sect2">
+<h3 id="_average_on_arrays_and_iterables"><code>average()</code> on arrays and iterables</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">assert 3 == [1, 2, 6].average()</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_takebetween_on_strings_charsequences_and_gstrings"><code>takeBetween()</code> on Strings, CharSequences and GStrings</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">assert 'Groovy'.takeBetween( 'r', 'v' ) == 'oo'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_shuffle_and_shuffled_on_arrays_and_iterables"><code>shuffle()</code> and <code>shuffled()</code> on arrays and iterables</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def orig = [1, 3, 5, 7]
+def mixed = orig.shuffled()
+assert mixed.size() == orig.size()
+assert mixed.toString() ==~ /\[(\d, ){3}\d\]/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_collect_on_future"><code>collect{ }</code> on <code>Future</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">Future&lt;String&gt; foobar = executor.submit{ "foobar" }
+Future&lt;Integer&gt; foobarSize = foobar.collect{ it.size() } // async
+assert foobarSize.get() == 6</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_minus_on_localdate"><code>minus()</code> on <code>LocalDate</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def xmas = LocalDate.of(2019, Month.DECEMBER, 25)
+def newYear = LocalDate.of(2020, Month.JANUARY, 1)
+assert newYear - xmas == 7 // a week apart</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy3.0releasenotes-Miscimprovements">Miscellaneous improvements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_nullcheck_ast_transformation">@NullCheck AST transformation</h3>
+<div class="paragraph">
+<p>Allows null checking guards to be automatically added to methods or constructors
+which ensure all parameters are supplied with non-null values
+(<a href="https://issues.apache.org/jira/browse/GROOVY-8935">GROOVY-8935</a>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_embedded_groovydoc">Embedded Groovydoc</h3>
+<div class="paragraph">
+<p>You can now embed Groovydoc comments in various ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>They can be made available within the AST for use by AST transformations and other tools.
+Our revamped groovydoc tool (still under development) is based on this capability.
+Behind the scenes the groovydoc content is stored as node metadata but a simple API
+hides this implementation detail.
+This feature is enabled using the <code>groovy.attach.groovydoc</code> system property or
+corresponding flag in <code>CompilerConfiguration</code>.</p>
+</li>
+<li>
+<p>Groovydoc comments starting with a special <code>/**@</code> opening comment delimiter can also be embedded into the class file
+(behind the scenes it&#8217;s stored in a @Groovydoc annotation) and is available at runtime for access
+via reflection or via other tools. This is enabled using the <code>groovy.attach.runtime.groovydoc</code> system
+property or corresponding flag in <code>CompilerConfiguration</code>. This provides a capability in Groovy inspired
+by languages like Ruby which can embed documentation into the standard binary jar and is thus always available
+rather than relying on a separate javadoc jar.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here is an example illustrating access to groovydoc comments within the AST:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import org.codehaus.groovy.control.*
+
+def cc = new CompilerConfiguration(optimizationOptions:
+    [(CompilerConfiguration.GROOVYDOC): true])
+
+def ast = new CompilationUnit(cc).tap {
+    addSource 'myScript.groovy', '''
+        /** class doco */
+        class MyClass {
+            /** method doco */
+            def myMethod() {}
+        }
+    '''
+    compile Phases.SEMANTIC_ANALYSIS
+}.ast
+
+def classDoc = ast.classes[0].groovydoc
+assert classDoc.content.contains('class doco')
+def methodDoc = ast.classes[0].methods[0].groovydoc
+assert methodDoc.content.contains('method doco')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is an example using illustrating runtime groovydoc (with and without the flag set):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import org.codehaus.groovy.control.*
+
+def extract(shell) {
+    shell.evaluate( '''
+        /**@
+         * Some class groovydoc for Foo
+         */
+        class Foo {}
+        Foo.class
+        '''
+    ).groovydoc.content.replaceAll('[^\\w\\s]', '').trim()
+}
+
+// first without the flag set
+assert extract(new GroovyShell()) == ''
+
+// now with embedding turned on
+def cc = new CompilerConfiguration(optimizationOptions:
+    [(CompilerConfiguration.RUNTIME_GROOVYDOC): true])
+assert extract(new GroovyShell(cc)) == 'Some class groovydoc for Foo'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jsr308_improvements_work_in_progress">JSR308 improvements (work in progress)</h3>
+<div class="paragraph">
+<p>Groovy has been improving JSR-308 support over recent versions.
+As part of implementing the new grammar, additional support has been added.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy3.0releasenotes-Splitpackages">Split package changes (from beta-2)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Java Platform Module System requires that classes in distinct modules
+have distinct package names. Groovy has its own "modules" but these haven&#8217;t
+historically been structured according to the above requirement.
+For this reason, Groovy 2.x and 3.0 should be added to the classpath not module path
+when using JDK9+. This places Groovy&#8217;s classes into the unnamed module
+where the split package naming requirement is not enforced.</p>
+</div>
+<div class="paragraph">
+<p>Groovy 3 is making changes to allow the codebase to move towards the compliant
+rules and allow Groovy users to begin the migration process.
+Groovy 4 is our target version for fully-compliant artifacts but you can
+start getting your classes ready ahead of time while using Groovy 3.</p>
+</div>
+<div class="paragraph">
+<p>As part of this change, some classes are moving packages.
+In a subset of those moved classes, it makes sense
+for Groovy 3 to have two copies of such classes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a deprecated class having the old package name</p>
+</li>
+<li>
+<p>a new class having the new package name</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This can aid with migration. In many cases, you will be able to recompile
+existing Groovy classes without change and they will use the old versions of the
+classes. You may notice deprecation warnings depending on how you edit classes.
+You should migrate as soon as convenient since your classes may no longer compile under Groovy 4
+if you haven&#8217;t migrated to the new class location.
+Be aware that in some cases, some work is required even under Groovy 3.
+Read the <em>Notes</em> column in the table below for further details.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Original class/package name
+(3.0 and lower if applicable)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>New copied class/package name<br>
+(3.0 and above)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Notes</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="3"><div class="content"><div class="paragraph">
+<p><strong>Module: groovy</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.xml.QName</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.namespace</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>You need to migrate to using the new class at the same time as you migrate to affected modules
+using that class as a parameter in methods including <code>groovy-ant</code> and <code>groovy-xml</code> but only if you
+are using methods with <code>QName</code> parameters. You can continue to use the legacy class in your existing
+code or with the legacy versions of affected classes until Groovy 4.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="3"><div class="content"><div class="paragraph">
+<p><strong>Module: groovy-ant</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.util</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.ant</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Add an <code>import groovy.ant.AntBuilder</code> to classes/scripts
+using <code>AntBuilder</code> or you will still be using the deprecated version.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="3"><div class="content"><div class="paragraph">
+<p><strong>Module: groovy-console</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.ui.ConsoleApplet</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>N/A</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The <code>java.applet</code> API is deprecated. No replacement is planned for this Groovy class in Groovy 4.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.inspect</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.console</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top" rowspan="3"><div class="content"><div class="paragraph">
+<p><code>groovyConsole</code> is normally used as a command-line tool and its use in that form is unaffected.
+If you use any of the classes directly you can use the old versions until you migrate.
+You should not mix and match old and new classes.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.inspect.swingui</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.console.ui</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.ui</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.console.ui</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="3"><div class="content"><div class="paragraph">
+<p><strong>Module: groovy-groovysh</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.codehaus.groovy.tools.shell</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.apache.groovy.groovysh</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>groovysh</code> is normally used as a command-line tool and its use in that form is unaffected.
+If you use any of the classes directly you can use the old versions until you migrate.
+You should not mix and match old and new classes.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="3"><div class="content"><div class="paragraph">
+<p><strong>Module: groovy-jmx</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.util.GroovyMBean</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.jmx</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>You need to add the import for <code>GroovyMBean</code> before Groovy 4.
+Feel free to use the old class in your own code but <code>JmxBuilder</code> only uses the new class.
+You should not mix the old and new classes.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="3"><div class="content"><div class="paragraph">
+<p><strong>Module: groovy-nio</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.codehaus.groovy.runtime.<br>
+NioGroovyMethods</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.apache.groovy.nio.extensions.<br>
+NioExtensions</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>In normal use, related extension methods will simply be automatically available from the new location.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.codehaus.groovy.runtime.<br>
+WritablePath</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.apache.groovy.nio.runtime</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>We recommend that you reference <code>WritablePath</code> via its interfaces in which case you have nothing to do.
+If you must reference the class, we recommend changing imports and recompiling all affected classes.
+If this is difficult, you can use the old class (and directly use the related <code>NioGroovyMethods</code> methods)
+until you are ready to migrate.
+You should not mix and match old and new classes.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="3"><div class="content"><div class="paragraph">
+<p><strong>Module: groovy-swing</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.codehaus.groovy.binding</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.apache.groovy.swing.binding</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top" rowspan="3"><div class="content"><div class="paragraph">
+<p>You can continue to use the old classes if you use them in your existing code or from within legacy classes still
+using the old classes. <code>SwingBuilder</code> now uses the new classes.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.model</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.swing.model</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.inspect.swingui</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.apache.groovy.swing.table</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="3"><div class="content"><div class="paragraph">
+<p><strong>Module: groovy-test</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.codehaus.groovy.runtime.<br>
+ScriptTestAdapter</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.apache.groovy.test</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The old class remains available for use in your own classes if already in use
+but won&#8217;t be recognized by Groovy 3&#8217;s JUnit-related test suite classes.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.transform.<br>
+NotYetImplemented</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.test.<br>
+NotYetImplemented</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Both point to the (moved but otherwise unchanged) AST transform class.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.util</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.test</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><div class="content"><div class="paragraph">
+<p>For classes like <code>GroovyTestCase</code>, you need to import <code>groovy.test.GroovyTestCase</code> to not
+get the deprecated version. You will need to do this before Groovy 4.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.lang</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.test</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="3"><div class="content"><div class="paragraph">
+<p><strong>Module: groovy-xml</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.util</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>groovy.xml</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>For classes like <code>XmlParser</code> and <code>XmlSlurper</code>, you need to import <code>groovy.xml.XmlParser</code> and <code>groovy.xml.XmlSlurper</code> respectively to not
+get the deprecated versions. You will need to do this before Groovy 4. If you are using <code>groovy.xml.XmlUtil.serialize</code> on a
+  <code>groovy.util.slurpersupport.GPathResult</code>, you will need to swap to using the deprecated methods in <code>groovy.util.XmlUtil</code> since
+  <code>groovy.xml.XmlUtil</code> only handles the new classes.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.codehaus.groovy.tools.xml.DomToGroovy</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>org.apache.groovy.xml.tools</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy3.0releasenotes-OtherBreaking">Other breaking changes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In addition to the split package changes, the following other breaking changes exist:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For JDK13+ users, consider using <code>stripIndent(true)</code> instead of <code>stripIndent()</code>
+(<a href="https://issues.apache.org/jira/browse/GROOVY-9423">GROOVY-9423</a>)</p>
+</li>
+<li>
+<p>If a Groovy switch statement has a default branch, it is now required to be the last branch</p>
+</li>
+<li>
+<p>If you extend <code>ProcessingUnit</code> and override <code>setConfiguration</code>, override <code>configure</code> instead
+(<a href="https://issues.apache.org/jira/browse/GROOVY-9122">GROOVY-9122</a>)</p>
+</li>
+<li>
+<p>If you override <code>GroovyClassLoader</code>, be aware that the types for <code>sourceCache</code> and <code>classCache</code>
+have changed from <code>Map</code> to stronger types
+(<a href="https://issues.apache.org/jira/browse/GROOVY-9112">GROOVY-9112</a>)</p>
+</li>
+<li>
+<p>You may notice some minor changes wrt whitespace positioning for help output
+for Groovy tools and CliBuilder usage with Picocli
+(<a href="https://issues.apache.org/jira/browse/GROOVY-8925">GROOVY-8925</a>)</p>
+</li>
+<li>
+<p>Iterating over a String has been made consistent between static and dynamic Groovy
+(<a href="https://issues.apache.org/jira/browse/GROOVY-8882">GROOVY-8882</a>)</p>
+</li>
+<li>
+<p>Alpha versions of Groovy 3 incorrectly let you leave off the brackets when printing empty maps,
+but they are now required, e.g <code>println([:])</code></p>
+</li>
+<li>
+<p>Groovy used to bundle a version of picocli in the distribution but that locked folks into using the supplied version.
+You may now need to add an extra <code>@Grab</code> in certain scripts.
+(<a href="https://issues.apache.org/jira/browse/GROOVY-9165">GROOVY-9165</a>)</p>
+</li>
+<li>
+<p>To avoid usually unnecessary import processing, <code>ImportCustomizer</code> is applied once per module rather than previously once per class
+(<a href="https://issues.apache.org/jira/browse/GROOVY-8399">GROOVY-8399</a>). If you need the old behavior, see the workaround in
+(<a href="https://issues.apache.org/jira/browse/GROOVY-9407">GROOVY-9407</a>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy3.0releasenotes-KnownIssues">Known issues</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>3.0.0 was missing some classes needed for complete operation on JDK9+ without warnings.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy3.0releasenotes-JdkRequirements">JDK requirements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovy 3.0 requires JDK9+ to build and JDK8 is the minimum version of the JRE that we support.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy3.0releasenotes-Moreinformation">More information</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can browse all the <a href="../changelogs/changelog-3.0.0.html">tickets closed for Groovy 3.0 in JIRA</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy3.0releasenotes-3.0.3">Addendum for 3.0.3</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JUnit 3 users using the <code>@NotYetImplemented</code> annotation should consider one of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Stick with the legacy/deprecated <code>@groovy.transform.NotYetImplemented</code> annotation</p>
+</li>
+<li>
+<p>If using the now recommended <code>@groovy.test.NotYetImplemented</code> annotation, use the <code>exception=junit.framework.AssertionFailedError</code> annotation attribute</p>
+</li>
+<li>
+<p>Consider upgrading to JUnit 4 or 5</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For further details see (<a href="https://issues.apache.org/jira/browse/GROOVY-9492">GROOVY-9492</a>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy3.0releasenotes-3.0.4">Addendum for 3.0.4</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We bumped the Groovy dependency for TestNG to 7.2.0. Unfortunately, at the time of release, that version exists only in jcenter,
+not Maven central. If you are using the groovy-all pom or bom, you can add jcenter as a repository to your configuration if not already listed:</p>
+</div>
+<details open>
+<summary>Gradle: build.gradle</summary>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">repositories {
+    jcenter()
+    ...
+}</code></pre>
+</div>
+</div>
+</details>
+<details>
+<summary>Maven: pom.xml</summary>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="xml">&lt;repositories&gt;
+  &lt;repository&gt;
+    &lt;id&gt;central&lt;/id&gt;
+    &lt;name&gt;bintray&lt;/name&gt;
+    &lt;url&gt;http://jcenter.bintray.com&lt;/url&gt;
+  &lt;/repository&gt;
+&lt;/repositories&gt;</code></pre>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Alternatively, if you are not using TestNG, you can exclude <code>groovy-testng</code>, e.g.:</p>
+</div>
+<details open>
+<summary>Gradle: build.gradle</summary>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">dependencies {
+    implementation("org.codehaus.groovy:groovy-all:3.0.4") {
+        exclude(group: 'org.codehaus.groovy', module: 'groovy-testng')
+    }
+}</code></pre>
+</div>
+</div>
+</details>
+<details>
+<summary>Maven: pom.xml</summary>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="xml">&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.codehaus.groovy&lt;/groupId&gt;
+    &lt;artifactId&gt;groovy-all&lt;/artifactId&gt;
+    &lt;version&gt;3.0.4&lt;/version&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+    &lt;exclusions&gt;
+      &lt;exclusion&gt;
+        &lt;groupId&gt;org.codehaus.groovy&lt;/groupId&gt;
+        &lt;artifactId&gt;groovy-testng&lt;/artifactId&gt;
+      &lt;/exclusion&gt;
+    &lt;/exclusions&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy3.0releasenotes-3.0.5">Addendum for 3.0.5</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_potentially_unexpected_dependency_changes">Potentially unexpected dependency changes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>We have reverted TestNG to 7.1.0, so the workarounds mentioned in the 3.0.4 release notes
+are no longer needed. You can exclude 7.1.0 and explicitly include 7.2.0 if you specifically
+need that version of TestNG.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_breaking_changes">Breaking changes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>If you are using <code>SecureASTCustomizer</code> and relying on the exact wording of error
+messages, e.g. perhaps in tests, then you may need to tweak the wording in those tests
+(<a href="https://issues.apache.org/jira/browse/GROOVY-9594">GROOVY-9594</a>).</p>
+</li>
+<li>
+<p>If you are using the <code>groovy-cli-picocli</code> module or scripting most of Groovy&#8217;s command line tools
+(e.g. <code>groovy</code>, <code>groovyc</code>, <code>groovysh</code>, <code>groovydoc</code> etc.)
+and you are relying on the exact wording of error messages, e.g. perhaps in tests,
+then you may need to tweak the wording in those tests
+(<a href="https://issues.apache.org/jira/browse/GROOVY-9627">GROOVY-9627</a>).</p>
+</li>
+<li>
+<p>Groovy is now more compliant with the JavaBeans specification for one edge case scenario
+involving any field having a name starting with an uppercase letter
+(<a href="https://issues.apache.org/jira/browse/GROOVY-9618">GROOVY-9618</a>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy3.0releasenotes-3.0.8">Addendum for 3.0.8</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_breaking_changes_2">Breaking changes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>A regression in the parser which distinguishes between variable declarations and command
+expressions for a particular edge case has been fixed to align with pre Groovy 3 behavior.
+Previously, expressions  like <code>foo bar</code> and <code>_foo bar</code> were treated
+as command expressions whereas <code>Foo bar</code> was deemed  a variable expression.
+The <code>foo</code> and <code>Foo</code> cases remained unaltered but the <code>_foo</code> case was
+unintentionally flipped. Anyone relying on the flipped behavior should change their code to align
+with previous behavior. The edge case only involves variable declarations
+with an explicit type where the type starts with a dollar or underscore character.
+(<a href="https://issues.apache.org/jira/browse/GROOVY-9936">GROOVY-9936</a>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='../learn.html'>Learn</a></li><li><a href='../documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='../support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='../ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='../security.html'>Security</a></li><li><a href='../learn.html#books'>Books</a></li><li><a href='../thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='../faq.html'>FAQ</a></li><li><a href='../search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='../mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='../groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='../events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='../reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='../img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='../js/vendor/jquery-1.10.2.min.js' defer></script><script src='../js/vendor/classie.js' defer></script><script src='../js/vendor/bootstrap.js' defer></script><script src='../js/vendor/sidebarEffects.js' defer></script><script src='../js/vendor/modernizr-2.6.2.min.js' defer></script><script src='../js/plugins.js' defer></script><script src='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js'></script><script>document.addEventListener('DOMContentLoaded',prettyPrint)</script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Groovy 2.5.6 Changelog</title><link href='../img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='../css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='../css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='../css/style.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='../mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='../groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='../events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='../reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='../index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class=''><a href='../learn.html'>Learn</a></li><li class=''><a href='../documentation.html'>Documentation</a></li><li class=''><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='../support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='../ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='../search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li class='active'><a href='#changelog'>Changelog for Groovy 2.5.6</a></li><li><a href='#type0' class='anchor-link'>Bug</a></li><li><a href='#type1' class='anchor-link'>Dependency upgrade</a></li><li><a href='#type2' class='anchor-link'>Improvement</a></li><li><a href='#type3' class='anchor-link'>Sub-task</a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><a name='changelog'></a><h1>Changelog for Groovy 2.5.6</h1><a name='type0'></a><h2>Bug</h2><ul><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7160'>GROOVY-7160</a>] - NoSuchMethodError for varargs when type parameter extends interface</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7687'>GROOVY-7687</a>] - Bug with @CompileStatic and nested closures</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-7812'>GROOVY-7812</a>] - Static inner classes cannot be accessed from other files when running by &#39;groovy&#39; command</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8073'>GROOVY-8073</a>] - Map delegate within @CompileStatic</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8238'>GROOVY-8238</a>] - multiple-catch statement behaves strangely</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8272'>GROOVY-8272</a>] - Extending trait can&#39;t execute static method</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8468'>GROOVY-8468</a>] - @CompileStatic runtime error when call java implemented method that returns generic-array value </li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8873'>GROOVY-8873</a>] - Fails at runtime with @CompileStatic and two nested with</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8951'>GROOVY-8951</a>] - Traits defining getter conflicts with generated getter (improvements for pre-compiled case)</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8954'>GROOVY-8954</a>] - VerifyError due to incorrect bytecode produced when a trait super property call also comes from an interface</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8959'>GROOVY-8959</a>] - NPE in StaticVerifier</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8964'>GROOVY-8964</a>] - MissingMethodException when trying to resolve overload with variable arguments</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8967'>GROOVY-8967</a>] - @Immutable not handling property default values from map constructor</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8969'>GROOVY-8969</a>] - Parameter name data is erased when applying traits regardless of --parameters setting</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8970'>GROOVY-8970</a>] - Fix typo in MANIFEST.MF: Main-class</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-9088'>GROOVY-9088</a>] - Groovy with @Compilestatic problem</li></ul><a name='type1'></a><h2>Dependency upgrade</h2><ul><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8968'>GROOVY-8968</a>] - Upgrade picocli to 3.9.2 from 3.7.0</li></ul><a name='type2'></a><h2>Improvement</h2><ul><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8535'>GROOVY-8535</a>] - FieldNode constructor appears to call setType incorrectly</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8719'>GROOVY-8719</a>] - Add DelegatesTo annotation to CompilerCustomizationBuilder.withConfig</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8971'>GROOVY-8971</a>] - The VMPlugin configureClassNode method should retain parameter name information when available</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-8972'>GROOVY-8972</a>] - CompilationUnit#createClassVisitor should use the class node resolver rather than the class loader directly</li></ul><a name='type3'></a><h2>Sub-task</h2><ul><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-2773'>GROOVY-2773</a>] - Strange behaviour when passing chained methods (methodA().methodB().etc()) as parameters</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-3446'>GROOVY-3446</a>] - Method call resolves to statically imported method instead of equally named local method</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-4287'>GROOVY-4287</a>] - CLONE - import of static nested classes in external groovy files is broken</li><li>[<a href='https://issues.apache.org/jira/browse/GROOVY-5852'>GROOVY-5852</a>] - Static import on demand resolves capitalised reference</li></ul></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='../learn.html'>Learn</a></li><li><a href='../documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='../support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='../ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='../security.html'>Security</a></li><li><a href='../learn.html#books'>Books</a></li><li><a href='../thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='../faq.html'>FAQ</a></li><li><a href='../search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='../mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='../groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='../events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='../reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='../img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='../js/vendor/jquery-1.10.2.min.js' defer></script><script src='../js/vendor/classie.js' defer></script><script src='../js/vendor/bootstrap.js' defer></script><script src='../js/vendor/sidebarEffects.js' defer></script><script src='../js/vendor/modernizr-2.6.2.min.js' defer></script><script src='../js/plugins.js' defer></script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>

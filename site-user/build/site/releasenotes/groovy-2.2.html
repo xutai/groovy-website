@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--><head>
+    <meta charset='utf-8'/><meta http-equiv='X-UA-Compatible' content='IE=edge'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>The Apache Groovy programming language - Groovy 2.2 release notes</title><link href='../img/favicon.ico' type='image/x-ico' rel='icon'/><link rel='stylesheet' type='text/css' href='../css/bootstrap.css'/><link rel='stylesheet' type='text/css' href='../css/font-awesome.min.css'/><link rel='stylesheet' type='text/css' href='../css/style.css'/><link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css'/>
+</head><body>
+    <div id='fork-me'>
+        <a href='https://github.com/apache/groovy'>
+            <img style='position: fixed; top: 20px; right: -58px; border: 0; z-index: 100; transform: rotate(45deg);' src='/img/horizontal-github-ribbon.png'/>
+        </a>
+    </div><div id='st-container' class='st-container st-effect-9'>
+        <nav class='st-menu st-effect-9' id='menu-12'>
+            <h2 class='icon icon-lab'>Socialize</h2><ul>
+                <li>
+                    <a href='../mailing-lists.html' class='icon'><span class='fa fa-envelope'></span> Discuss on the mailing-list</a>
+                </li><li>
+                    <a href='../groovy-weekly.html' class='icon'><span class='fa fa-envelope-o'></span> Groovy newsletter</a>
+                </li><li>
+                    <a href='https://twitter.com/ApacheGroovy' class='icon'><span class='fa fa-twitter'></span> Groovy on Twitter</a>
+                </li><li>
+                    <a href='../events.html' class='icon'><span class='fa fa-calendar'></span> Events and conferences</a>
+                </li><li>
+                    <a href='https://github.com/apache/groovy' class='icon'><span class='fa fa-github'></span> Source code on GitHub</a>
+                </li><li>
+                    <a href='../reporting-issues.html' class='icon'><span class='fa fa-bug'></span> Report issues in Jira</a>
+                </li><li>
+                    <a href='http://stackoverflow.com/questions/tagged/groovy' class='icon'><span class='fa fa-stack-overflow'></span> Stack Overflow questions</a>
+                </li><li>
+                    <a href='http://groovycommunity.com/' class='icon'><span class='fa fa-slack'></span> Slack Community</a>
+                </li>
+            </ul>
+        </nav><div class='st-pusher'>
+            <div class='st-content'>
+                <div class='st-content-inner'>
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                <![endif]--><div><div class='navbar navbar-default navbar-static-top' role='navigation'>
+                            <div class='container'>
+                                <div class='navbar-header'>
+                                    <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                                        <span class='sr-only'></span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span>
+                                    </button><a class='navbar-brand' href='../index.html'>
+                                        <i class='fa fa-star'></i> Apache Groovy
+                                    </a>
+                                </div><div class='navbar-collapse collapse'>
+                                    <ul class='nav navbar-nav navbar-right'>
+                                        <li class=''><a href='../learn.html'>Learn</a></li><li class=''><a href='../documentation.html'>Documentation</a></li><li class=''><a href='https://groovy.apache.org/download.html'>Download</a></li><li class=''><a href='../support.html'>Support</a></li><li class=''><a href='https://groovy.apache.org/'>Contribute</a></li><li class=''><a href='../ecosystem.html'>Ecosystem</a></li><li>
+                                            <a data-effect='st-effect-9' class='st-trigger' href='#'>Socialize</a>
+                                        </li><li class=''>
+                                            <a href='../search.html'>
+                                                <i class='fa fa-search'></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><div id='content' class='page-1'><div class='row'><div class='row-fluid'><div class='col-lg-3'><ul class='nav-sidebar'><li class='active'><a href='#releasenotes'>Release notes for Groovy 2.2</a></li><li><a href='#Groovy2.2releasenotes-Implicitclosurecoercion' class='anchor-link'>Implicit closure coercion</a></li><li><a href='#Groovy2.2releasenotes-MemoizedASTtransformationformethods' class='anchor-link'>@Memoized AST transformation for methods</a></li><li><a href='#Groovy2.2releasenotes-Bintray' class='anchor-link'>Bintray’s JCenter repository </a></li><li><a href='#Groovy2.2releasenotes-Definebasescriptclasseswithanannotation' class='anchor-link'>Define base script classes with an annotation</a></li><li><a href='#Groovy2.2releasenotes-NewDelegatingScriptbaseclassforscripts' class='anchor-link'>New DelegatingScript base class for scripts</a></li><li><a href='#Groovy2.2releasenotes-NewLogvariantfortheLog4j2loggingframework' class='anchor-link'>New @Log variant for the Log4j2 logging framework</a></li><li><a href='#Groovy2.2releasenotes-DelegatesTowithgenericstypetokens' class='anchor-link'>@DelegatesTo with generics type tokens</a></li><li><a href='#Groovy2.2releasenotes-Precompiledtypecheckingextensions' class='anchor-link'>Precompiled type checking extensions</a></li><li><a href='#Groovy2.2releasenotes-Groovyshenhancements' class='anchor-link'>Groovysh enhancements</a></li><li><a href='#Groovy2.2releasenotes-OSGimanifestsfortheindyjar' class='anchor-link'>OSGi manifests for the <code>invokedynamic</code> JARs</a></li></ul></div><div class='col-lg-8 col-lg-pull-0'><a name='releasenotes'></a><h1>Release notes for Groovy 2.2</h1><div class="sect1">
+<h2 id="Groovy2.2releasenotes-Implicitclosurecoercion">Implicit closure coercion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Java 8 will feature lambdas, which are similar to Groovy’s closures. One
+particular aspect which is interesting with lambdas is how they are
+converted transparently by Java to interface types that contain one
+single abstract method. With Groovy closures, except for a few cases, we
+have to explicitly use the as operator to do the coercion. In Groovy
+2.2, we are allowing the
+same <a href="http://docs.groovy-lang.org/latest/html/documentation/core-semantics.html#closure-coercion">transparent closure coercion</a> 
+to happen, but without the explicit as type coercion,
+and furthermore, we make it possible to work as well with abstract
+classes as well.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">interface Predicate {
+   boolean test(obj)
+} 
+
+List filter(List list,Predicate pred) {
+   list.findAll { pred.test(it) }
+} 
+def input = [1, 2, 3, 4, 5] 
+def odd = filter(input) { it % 2 == 1 }
+assert odd == [1, 3, 5]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice how the closure is coerced into a Predicate instance. Without
+that new capabilities, we would have had to write the following instead:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def odd = filter(input, { it % 2 == 1} as Predicate)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That way, Groovy closure coercion to SAM types is as concise as Java 8
+lambda closure conversion.</p>
+</div>
+<div class="paragraph">
+<p>Here’s another example using abstract classes, which are not supported
+by Java 8 lambda conversion:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.2releasenotes-MemoizedASTtransformationformethods">@Memoized AST transformation for methods</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Similarly to our Closure memoization capability, you can now annotate
+your methods with the
+new <a href="https://issues.apache.org/jira/browse/GROOVY-4993">@Memoized annotation</a>.
+It will use the same underlying cache solution used for closures, and
+will cache the result of previous executions of the annotated method
+with the same entry parameters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.transform.Memoized 
+
+@Memoized
+int expensiveOp(int a, int b) {
+   sleep 1000    
+   return a + b
+}
+
+expensiveOp(1, 2) // one second to return
+expensiveOp(1, 2) // immediate result returned expensiveOp(1, 2)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.2releasenotes-Bintray">Bintray’s JCenter repository </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The default Grab configuration now use Bintray’s JCenter repository as
+the first in the chain of resolvers, as Bintray’s JCenter repository is
+noticeably faster and more responsive than Maven Central, offers
+dependencies always with their checksums, and stores and caches
+dependencies it wouldn’t have for faster delivery the next time a
+dependency is required. This should make your scripts relying on @Grab
+faster when downloading dependencies for the first time.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.2releasenotes-Definebasescriptclasseswithanannotation">Define base script classes with an annotation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All scripts usually extend
+the <a href="http://docs.groovy-lang.org/latest/html/api/groovy/lang/Script.html">groovy.lang.Script</a> abstract
+class, but it’s possible to set up our own base script class extending
+Script
+through <a href="http://docs.groovy-lang.org/latest/html/api/org/codehaus/groovy/control/CompilerConfiguration.html">CompilerConfiguration</a>.
+A new AST transformation is introduced in Groovy 2.2 which allows you to
+define the base script class as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.transform.BaseScript 
+
+abstract class DeclaredBaseScript extends Script {
+   int meaningOfLife = 42
+}
+
+@BaseScript DeclaredBaseScript baseScript 
+
+assert meaningOfLife == 42</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.2releasenotes-NewDelegatingScriptbaseclassforscripts">New DelegatingScript base class for scripts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With the CompilerConfiguration class that you pass to GroovyShell (as
+well as GroovyClassLoader and others), you can define a base script
+class for the scripts that will be compiled with that shell. It’s handy
+to share common methods to all scripts.</p>
+</div>
+<div class="paragraph">
+<p>For DSL purposes, it’s interesting to actually delegate the method calls
+and unbound variable assignments to a different object than the script
+itself, thanks to the
+new <a href="https://issues.apache.org/jira/browse/GROOVY-6076">DelegatingScript</a>.</p>
+</div>
+<div class="paragraph">
+<p>To make it more concrete, let’s have a look at the following
+configuration script:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">// import the CompilerConfiguration class// to configure the base script class
+import org.codehaus.groovy.control.CompilerConfiguration 
+
+// the script we want to compile
+def scriptContent = '''
+name = 'Guillaume'
+sayHi()'''
+
+// the class definition of the delegate
+class Person {
+   String name
+   void sayHi() {
+      println "Hi $name"
+   }
+} 
+
+// configure the base script class
+def cc = new CompilerConfiguration()
+cc.scriptBaseClass = DelegatingScript.class.name 
+
+// parse script with GroovyShell// and the
+configurationdef sh = new GroovyShell(cc)
+def script = sh.parse(scriptContent) 
+
+// set the delegate and run the script
+def p = new Person()
+script.setDelegate(p)
+script.run() // the name is set correctly
+
+// and the output will display "Hi Guillaume"
+assert p.name == 'Guillaume'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.2releasenotes-NewLogvariantfortheLog4j2loggingframework">New @Log variant for the Log4j2 logging framework</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A new @Log variant has been added to support Log4j2, with the @Log4j2
+AST transformation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.util.logging.Log4j2
+
+@Log4j2
+class MyClass {
+   void doSomething() {
+      log.info 'did something groovy today!'
+   }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.2releasenotes-DelegatesTowithgenericstypetokens">@DelegatesTo with generics type tokens</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The @DelegatesTo annotation, introduced in Groovy 2.1 that helps the
+type checker, IDEs, tools, to provide better support for DSLs using
+closure delegation
+strategies, <a href="https://issues.apache.org/jira/browse/GROOVY-6134">works with generics token types</a> as well.
+You can tell Groovy that the delegatee is
+of the type of the generics component:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import groovy.transform.*
+
+@InheritConstructors
+class MyList extends LinkedList&lt;String&gt; {} 
+
+public &lt;T&gt; Object map(
+    @DelegatesTo.Target List&lt;T&gt; target,
+    @DelegatesTo(genericTypeIndex = 0) Closure arg) {
+    arg.delegate = target.join('')
+    arg()
+}
+
+@TypeChecked
+def test() {
+   map(new MyList([’f', `o', `o'])) {
+      assert toUpperCase() == 'FOO'
+   }
+} </code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the genericTypeIndex attribute of @DelegatesTo that points at the
+index of the generic component. Unfortunately, as the generic
+placeholders are not kept at the bytecode level, it’s impossible to just
+reference T, and we had to use an index to point at the right type.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.2releasenotes-Precompiledtypecheckingextensions">Precompiled type checking extensions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The static type checking extensions introduced in Groovy 2.1 were
+working solely with non-compiled scripts. But with this beta, you can
+also specify a fully-qualified name of
+the <a href="https://issues.apache.org/jira/browse/GROOVY-6043">precompiled class implementing your extension</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">@TypeChecked(extensions = 'com.enterprise.MyDslExtension') </code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Type checking extensions now also support two more
+events: <a href="https://issues.apache.org/jira/browse/GROOVY-6039">ambiguousMethods</a> and <a href="https://issues.apache.org/jira/browse/GROOVY-6044">incompatibleReturnType</a>. </p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.2releasenotes-Groovyshenhancements">Groovysh enhancements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Groovysh has been expanded with various enhancements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>support for <a href="https://issues.apache.org/jira/browse/GROOVY-6073">code completion</a> in various places, like imports, package names, class names,
+variable names, parameter names, keywords, etc.</p>
+</li>
+<li>
+<p>a <a href="https://issues.apache.org/jira/browse/GROOVY-6150">doc command</a> allows you
+to open the relevant JavaDoc and Groovy GDK web pages to have more
+information for a given class, for example try in Groovysh:<br></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>doc java.util.List</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>you can <a href="https://issues.apache.org/jira/browse/GROOVY-6145">complete file names</a> inside strings, particularly handy for your scripting tasks where
+you want to open a file with <code>new File('data.|')</code> (where the pipe
+character is the position of your cursor), and then hit the TAB key to
+have the completion of the file name</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Groovy2.2releasenotes-OSGimanifestsfortheindyjar">OSGi manifests for the <code>invokedynamic</code> JARs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you’re using Groovy in the context of an OSGi container, the Groovy
+JARs contained the right OSGi metadata information in its manifest.
+However, it wasn’t the case for the <code>invokedynamic</code> JARs, as the
+underlying library used by the Gradle OSGi plugin wasn’t supporting JDK
+7 bytecode. Fortunately, this deficiency has been fixed, the Gradle OSGi
+plugin updated, and we’re now able to have our <code>indy</code> JARs work fine
+under OSGi has well.</p>
+</div>
+</div>
+</div></div></div></div></div><footer id='footer'>
+                            <div class='row'>
+                                <div class='colset-3-footer'>
+                                    <div class='col-1'>
+                                        <h1>Groovy</h1><ul>
+                                            <li><a href='../learn.html'>Learn</a></li><li><a href='../documentation.html'>Documentation</a></li><li><a href='https://groovy.apache.org/download.html'>Download</a></li><li><a href='../support.html'>Support</a></li><li><a href='https://groovy.apache.org/'>Contribute</a></li><li><a href='../ecosystem.html'>Ecosystem</a></li>
+                                        </ul>
+                                    </div><div class='col-2'>
+                                        <h1>About</h1><ul>
+                                            <li><a href='https://github.com/apache/groovy'>Source code</a></li><li><a href='../security.html'>Security</a></li><li><a href='../learn.html#books'>Books</a></li><li><a href='../thanks.html'>Thanks</a></li><li><a href='http://www.apache.org/foundation/sponsorship.html'>Sponsorship</a></li><li><a href='../faq.html'>FAQ</a></li><li><a href='../search.html'>Search</a></li>
+                                        </ul>
+                                    </div><div class='col-3'>
+                                        <h1>Socialize</h1><ul>
+                                            <li><a href='../mailing-lists.html'>Discuss on the mailing-list</a></li><li><a href='../groovy-weekly.html'>Groovy newsletter</a></li><li><a href='https://twitter.com/ApacheGroovy'>Groovy on Twitter</a></li><li><a href='../events.html'>Events and conferences</a></li><li><a href='https://github.com/apache/groovy'>Source code on GitHub</a></li><li><a href='../reporting-issues.html'>Report issues in Jira</a></li><li><a href='http://stackoverflow.com/questions/tagged/groovy'>Stack Overflow questions</a></li><li><a href='http://groovycommunity.com/'>Slack Community</a></li>
+                                        </ul>
+                                    </div><div class='col-right'>
+                                        <p>
+                                            The Groovy programming language is supported by the <a href='http://www.apache.org'>Apache Software Foundation</a> and the Groovy community
+                                        </p><img src='../img/asf_logo.png' title='The Apache Software Foundation' alt='The Apache Software Foundation' class='img-responsive'/>
+                                    </div>
+                                </div><div class='clearfix'>&copy; 2003-2021 the Apache Groovy project &mdash; Groovy is Open Source, <a href='http://www.apache.org/licenses/LICENSE-2.0.html'>Apache 2 License</a></div>
+                            </div>
+                        </footer></div>
+                </div>
+            </div>
+        </div>
+    </div><script src='../js/vendor/jquery-1.10.2.min.js' defer></script><script src='../js/vendor/classie.js' defer></script><script src='../js/vendor/bootstrap.js' defer></script><script src='../js/vendor/sidebarEffects.js' defer></script><script src='../js/vendor/modernizr-2.6.2.min.js' defer></script><script src='../js/plugins.js' defer></script><script src='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js'></script><script>document.addEventListener('DOMContentLoaded',prettyPrint)</script><script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-257558-10', 'auto');
+          ga('send', 'pageview');
+    </script>
+</body></html>
